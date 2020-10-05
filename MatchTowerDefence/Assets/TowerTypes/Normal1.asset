@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78a65da6e5679114c849a4e0fa26b5e3, type: 3}
+  m_Name: Normal1
+  m_EditorClassIdentifier: 
+  type: 1
+  attackType: 0
+  nextLevelTower: {fileID: 11400000, guid: e9c2ab97ea8ac1243bb0f936dccabeae, type: 2}
+  sprite: {fileID: 7380605082092375202, guid: d406cd27aee895442be53270fec2fcf2, type: 3}
+  freezeTime: 0
+  damage: 33
+  color: {r: 0.87058824, g: 0.76862746, b: 0.76862746, a: 1}
+  range: 1

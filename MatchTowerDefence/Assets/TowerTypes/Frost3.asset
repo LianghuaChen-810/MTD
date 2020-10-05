@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78a65da6e5679114c849a4e0fa26b5e3, type: 3}
+  m_Name: Frost3
+  m_EditorClassIdentifier: 
+  type: 11
+  attackType: 2
+  nextLevelTower: {fileID: 11400000, guid: 1e3d11b464b5ae44cb62d38685f8fca7, type: 2}
+  sprite: {fileID: -1393936922295370461, guid: 032f657bd1da9084194b78bd8596cb89, type: 3}
+  freezeTime: 3
+  damage: 12
+  color: {r: 0.050980393, g: 0.16078432, b: 0.69803923, a: 1}
+  range: 3
