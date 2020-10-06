@@ -71,6 +71,7 @@ public class BoardManager : MonoBehaviour
                 Tile newTile = newTileObj.GetComponent<Tile>();
                 newTile.boardPos = new Vector2(x, y);
                 newTile.SetTower(newTowerObject);
+                newTile.type = Tile.TileType.TOWER;
 
                 // Add tile as previous object
                 previousLeft[y] = newTowerObject;

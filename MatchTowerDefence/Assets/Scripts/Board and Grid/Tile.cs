@@ -6,8 +6,8 @@ public class Tile : MonoBehaviour
 {
     //[SerializeField]
     //float shootDelay = 1.0f;
-    private WaitForSecondsRealtime _waitTime;
 
+    public enum TileType {NONE, TOWER, PATH, SPAWN};
 
     public Color selectedColor = new Color(.5f, .5f, .5f, 1.0f);
 
@@ -22,6 +22,7 @@ public class Tile : MonoBehaviour
 
 
     public Vector2 boardPos = Vector2.zero;
+    public TileType type = TileType.NONE;
 
     void OnDestroy()
     {
@@ -146,14 +147,21 @@ public class Tile : MonoBehaviour
             {
                 SwapTower(previousSelected); // 2
 
-                previousSelected.ClearAllMatches();
-                ClearAllMatches();
+                ShapeMatch shape = new ShapeMatch(previousSelected);
+                if (shape.matchFound)
+                    shape.PrintShape();
+                shape = new ShapeMatch(this);
+                if (shape.matchFound)
+                    shape.PrintShape();
 
-                GUIManager.instance.MoveCounter--;
-                if (GUIManager.instance.MoveCounter == 0)
-                {
-                    BoardManager.instance.TriggerNextPhase();
-                }
+                //previousSelected.ClearAllMatches();
+                //ClearAllMatches();
+
+                //GUIManager.instance.MoveCounter--;
+                //if (GUIManager.instance.MoveCounter == 0)
+                //{
+                //    BoardManager.instance.TriggerNextPhase();
+                //}
 
                 previousSelected.Deselect();
             }
@@ -173,31 +181,33 @@ public class Tile : MonoBehaviour
     }
 
 
-    // Finds matching tiles in only one direction CastDir (x/y)
-    private List<GameObject> FindMatch(Vector2 castDir)
-    { 
-        List<GameObject> matchingTiles = new List<GameObject>();
-
-
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, castDir);
-        while(hits.Length > 1 && hits[1].collider != null && hits[1].collider.GetComponent<Tile>().tower == tower)
-        { 
-            matchingTiles.Add(hits[1].collider.gameObject);
-            hits = Physics2D.RaycastAll(hits[1].collider.transform.position, castDir);
-        }
-
-
-
-        return matchingTiles;
-    }
-
-
     private void ClearMatch(Vector2[] paths)
     {
         List<GameObject> matchingTiles = new List<GameObject>(); 
+
+        // Find matches for left-right or top-down (paths)
         for (int i = 0; i < paths.Length; i++) 
         {
-            matchingTiles.AddRange(FindMatch(paths[i]));
+            List<GameObject> matchingTilesDir = new List<GameObject>();
+ 
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, paths[i]);
+
+            int count = 0; // Just in case of colldier loops
+            while (hit.collider != null && hit.collider.GetComponent<Tile>().tower == tower)
+            {
+
+                matchingTilesDir.Add(hit.collider.gameObject);
+                hit = Physics2D.Raycast(hit.collider.transform.position, paths[i]);
+                if (count > 50)
+                {
+                    Debug.Log("Raycast loop! ");
+                    break;
+                }
+                count++;
+            }
+
+
+            matchingTiles.AddRange(matchingTilesDir);
         }
         if (matchingTiles.Count >= 2)
         {
@@ -209,7 +219,6 @@ public class Tile : MonoBehaviour
             matchFound = true; 
         }
     }
-
 
     public void ClearAllMatches()
     {
@@ -233,4 +242,5 @@ public class Tile : MonoBehaviour
             StartCoroutine(BoardManager.instance.FindNullTiles());
         }
     }
+
 }
