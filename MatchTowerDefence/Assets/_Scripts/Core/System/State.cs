@@ -1,4 +1,4 @@
-﻿namespace GameCore.system
+﻿namespace GameCore.System
 {
     public abstract class State
     {
@@ -11,6 +11,6 @@
 
         public abstract void OnUpdate();
 
-        public abstract void OnFixedUpdate();
+        public virtual void OnFixedUpdate() { }
     }
 }
