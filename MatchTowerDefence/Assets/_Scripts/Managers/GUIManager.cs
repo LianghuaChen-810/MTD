@@ -5,12 +5,13 @@ using System.Collections;
 public class GUIManager : MonoBehaviour {
 	public static GUIManager instance;
 
-	public Text phaseTxt;
-	public Text moveCounterTxt;
+	[SerializeField] public Text phaseTxt;
+    [SerializeField] private Text moveCounterTxt;
 
-	private int score;
+    [SerializeField] private GameObject MainMenu;
+    [SerializeField] private GameObject CreditsMenu;
 
-
+    private int score;
     private int moveCounter;
 
     public int Score
