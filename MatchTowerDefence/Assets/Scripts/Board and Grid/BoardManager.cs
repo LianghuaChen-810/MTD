@@ -5,14 +5,12 @@ using System.Collections.Generic;
 public class BoardManager : MonoBehaviour
 {
 
-    // SHOULD BE REMOVED FROM HERE
-    public List<Enemy> allEnemies = new List<Enemy>();
-    public GameObject bulletPrefab = null;
-
-    // END
-    public float shiftDelay = 0.03f;
     public static BoardManager instance;
     public List<TowerObject> spawnTowers = new List<TowerObject>();
+
+    public List<Enemy> allEnemies = new List<Enemy>();
+
+    public float shiftDelay = 0.03f;
 
     public GameObject tile;
     public int xSize, ySize;
@@ -68,8 +66,8 @@ public class BoardManager : MonoBehaviour
                 TowerObject newTowerObject = possibleTowers[Random.Range(0, possibleTowers.Count)];
 
                 // Edit tile info
-                Tile newTile = newTileObj.GetComponent<Tile>();
-                newTile.boardPos = new Vector2(x, y);
+                TowerTile newTile = newTileObj.GetComponent<TowerTile>();
+                newTile.boardPosition = new BoardPosition(x, y);
                 newTile.SetTower(newTowerObject);
 
                 // Add tile as previous object
@@ -87,7 +85,7 @@ public class BoardManager : MonoBehaviour
         {
             for (int y = 0; y < ySize; y++)
             {
-                if (tiles[x, y].GetComponent<Tile>().tower == null)
+                if (tiles[x, y].GetComponent<TowerTile>().tower == null)
                 {
                     yield return StartCoroutine(ShiftTowersDown(x, y));
                     break;
@@ -99,7 +97,7 @@ public class BoardManager : MonoBehaviour
         {
             for (int y = 0; y < ySize; y++)
             {
-                tiles[x, y].GetComponent<Tile>().FindMatch();
+                tiles[x, y].GetComponent<TowerTile>().FindMatch();
             }
         }
     }
@@ -108,11 +106,11 @@ public class BoardManager : MonoBehaviour
     private IEnumerator ShiftTowersDown(int x, int yStart)
     {
         IsShifting = true;
-        List<Tile> shiftTiles = new List<Tile>();
+        List<TowerTile> shiftTiles = new List<TowerTile>();
 
         for (int y = yStart; y < ySize; y++)
         {  // 1
-            Tile tile = tiles[x, y].GetComponent<Tile>();
+            TowerTile tile = tiles[x, y].GetComponent<TowerTile>();
             shiftTiles.Add(tile);
         }
 
@@ -120,7 +118,7 @@ public class BoardManager : MonoBehaviour
         {
          //   Debug.Log("For X,Ystart: " + x + " " + yStart);
 
-            var tile = tiles[x, yStart].GetComponent<Tile>();
+            var tile = tiles[x, yStart].GetComponent<TowerTile>();
             if (tile.tower != null)
             {
                 yStart++;
@@ -134,7 +132,7 @@ public class BoardManager : MonoBehaviour
                 int k = 0;
                 for (k = 0; k < shiftTiles.Count - 1; k++)
                 { // 5
-                    shiftTiles[k].SetTower(shiftTiles[k + 1].tower);
+                    shiftTiles[k].SetTower(shiftTiles[k + 1].tower,shiftTiles[k+1].towerBonusDamage);
                     shiftTiles[k + 1].SetTower(null); // 6
                 }
                 shiftTiles[k].SetTower(GetNewTower(x, ySize - 1));
@@ -154,19 +152,19 @@ public class BoardManager : MonoBehaviour
 
         if (x > 0)
         {
-            TowerObject towerObj = tiles[x - 1, y].GetComponent<Tile>().tower;
+            TowerObject towerObj = tiles[x - 1, y].GetComponent<TowerTile>().tower;
             if (possibleTowers.Contains(towerObj))
             possibleTowers.Remove(towerObj);
         }
         if (x < xSize - 1)
         {
-            TowerObject towerObj = tiles[x + 1, y].GetComponent<Tile>().tower;
+            TowerObject towerObj = tiles[x + 1, y].GetComponent<TowerTile>().tower;
             if (possibleTowers.Contains(towerObj))
                 possibleTowers.Remove(towerObj);
         }
         if (y > 0)
         {
-            TowerObject towerObj = tiles[x, y - 1].GetComponent<Tile>().tower;
+            TowerObject towerObj = tiles[x, y - 1].GetComponent<TowerTile>().tower;
             if (possibleTowers.Contains(towerObj))
                 possibleTowers.Remove(towerObj);
         }
@@ -179,17 +177,32 @@ public class BoardManager : MonoBehaviour
 
     public void TriggerNextPhase()
     {
-            var allTiles = FindObjectsOfType<Tile>();
-            foreach (Tile tile in allTiles)
-            {
-                //tile.StartShooting();
-            }
-            var allSpawners = FindObjectsOfType<Spawner>();
-            foreach (Spawner spawner in allSpawners)
-            {
-                spawner.StartSpawning();
-            }
+        var allTiles = FindObjectsOfType<TowerTile>();
+        foreach (TowerTile tile in allTiles)
+        {
+            tile.StartShooting();
+        }
+
+        var allSpawners = FindObjectsOfType<Spawner>();
+        foreach (Spawner spawner in allSpawners)
+        {
+            spawner.StartSpawning();
+        }
 
         GUIManager.instance.phaseTxt.text = "Defense Phase";
+    }
+}
+
+
+
+public struct BoardPosition
+{
+    public int x;
+    public int y;
+
+    public BoardPosition(int _x, int _y)
+    {
+        x = _x;
+        y = _y;
     }
 }

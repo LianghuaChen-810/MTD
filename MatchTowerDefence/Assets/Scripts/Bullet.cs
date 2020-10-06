@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     TowerObject tower = null;
     Enemy enemy = null;
     bool isShot = false;
-
+    public float damage = 0;
     SpriteRenderer render;
 
     Vector3 lastTargetPosition = Vector3.zero;
@@ -34,7 +34,7 @@ public class Bullet : MonoBehaviour
             {
                 if (enemy != null)
                 {
-                    enemy.health -= tower.damage;
+                    enemy.health -= damage;
                     enemy.Freeze(tower.freezeTime);
                 }
                 Destroy(gameObject);
@@ -42,10 +42,11 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    public void Shoot (TowerObject to, Enemy en)
+    public void Shoot (TowerObject to, float bonusDamage, Enemy en)
     {
        
         tower = to;
+        damage = bonusDamage + to.baseDamage;
         render.color = to.color;
         enemy = en;
         isShot = true;
