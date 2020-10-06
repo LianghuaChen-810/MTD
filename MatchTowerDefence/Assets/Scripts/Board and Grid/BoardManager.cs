@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class BoardManager : MonoBehaviour
 {
 
-
     // SHOULD BE REMOVED FROM HERE
     public List<Enemy> allEnemies = new List<Enemy>();
     public GameObject bulletPrefab = null;
@@ -43,33 +42,37 @@ public class BoardManager : MonoBehaviour
 
 
         TowerObject[] previousLeft = new TowerObject[ySize];
-        TowerObject previousBelow = null;
 
         for (int x = 0; x < xSize; x++)
         {
+            TowerObject previousBelow = null;
+
             for (int y = 0; y < ySize; y++)
             {
-                GameObject newTile = Instantiate(tile, new Vector3(startX + x , startY + y, 0), tile.transform.rotation);
-                newTile.name = "Tile_" + x.ToString() + "_" + y.ToString();
-                tiles[x, y] = newTile;
 
-                newTile.transform.parent = transform; // 1
+                // Create new tile object
+                GameObject newTileObj = Instantiate(tile, new Vector3(startX + x , startY + y, 0), tile.transform.rotation);
+                newTileObj.name = "Tile_" + x.ToString() + "_" + y.ToString();
+                tiles[x, y] = newTileObj;
+                newTileObj.transform.parent = transform; // 1
 
-                List<TowerObject> possibleTowers = new List<TowerObject>(); // 1
-                possibleTowers.AddRange(spawnTowers); // 2
+                // Create list of possible towers
+                List<TowerObject> possibleTowers = new List<TowerObject>(); 
+                possibleTowers.AddRange(spawnTowers); 
 
-                possibleTowers.Remove(previousLeft[y]); // 3
+                // Remove tower types on the left and bottom from possible
+                possibleTowers.Remove(previousLeft[y]); 
                 possibleTowers.Remove(previousBelow);
 
-                TowerObject newTowerObject = null;
-                
-               // if (possibleTowers.Count != 0) 
-                    newTowerObject = possibleTowers[Random.Range(0, possibleTowers.Count)];
-                //else
-                //    newTowerObject = spawnTowers[Random.Range(0, spawnTowers.Count)];
+                // Random generation of new tower
+                TowerObject newTowerObject = possibleTowers[Random.Range(0, possibleTowers.Count)];
 
-                newTile.GetComponent<Tile>().SetTower(newTowerObject); // 3
+                // Edit tile info
+                Tile newTile = newTileObj.GetComponent<Tile>();
+                newTile.boardPos = new Vector2(x, y);
+                newTile.SetTower(newTowerObject);
 
+                // Add tile as previous object
                 previousLeft[y] = newTowerObject;
                 previousBelow = newTowerObject;
             }
