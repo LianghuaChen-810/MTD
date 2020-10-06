@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField]
-    float spawnDelay = 1.0f;
+    [SerializeField] float spawnDelay = 1.0f;
     private WaitForSecondsRealtime _waitTime;
-
 
     public List<EnemyObject> allEnemies = new List<EnemyObject>();
     public List<Transform> patrolPoints = new List<Transform>();
