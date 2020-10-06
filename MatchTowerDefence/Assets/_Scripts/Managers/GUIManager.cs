@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class GUIManager : MonoBehaviour {
@@ -8,8 +9,9 @@ public class GUIManager : MonoBehaviour {
 	[SerializeField] public Text phaseTxt;
     [SerializeField] private Text moveCounterTxt;
 
-    [SerializeField] private GameObject MainMenu;
-    [SerializeField] private GameObject CreditsMenu;
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private Image backGround;
+    [SerializeField] private GameObject gamePanel;
 
     private int score;
     private int moveCounter;
@@ -47,6 +49,18 @@ public class GUIManager : MonoBehaviour {
 
         moveCounter = 5;
         moveCounterTxt.text = moveCounter.ToString();
+    }
+
+    public void Play()
+    {
+        SceneManager.LoadScene("Game");
+    }
+
+    public void InitiateGame()
+    {
+        mainMenu.SetActive(false);
+        backGround.gameObject.SetActive(false);
+        gamePanel.SetActive(true);
     }
 
 }

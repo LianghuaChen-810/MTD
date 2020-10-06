@@ -1,18 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using GameCore.System;
 using UnityEngine;
 
-public class PlayingState : MonoBehaviour
+namespace GameCore.GameStates
 {
-    // Start is called before the first frame update
-    void Start()
+    public class PlayingState : GameCore.System.State
     {
-        
-    }
+        GameStateController gameStateController;
+        State previousState;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public PlayingState(GameStateController owner) : base(owner)
+        {
+            Time.timeScale = 1;
+            gameStateController = owner;
+
+            GUIManager.instance.InitiateGame();
+
+            Debug.Log("Game is playing");
+        }
+
+        public override void OnUpdate()
+        {
+            #if UNITY_ANRDOID
+                             // Android code goes here
+            #elif UNITY_IOS
+                             // IOS Code goes here
+            #endif
+        } 
     }
 }
