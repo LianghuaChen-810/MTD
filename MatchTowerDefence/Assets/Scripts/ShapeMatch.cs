@@ -29,15 +29,13 @@ public class ShapeMatch
         // Add starting tile to the queue
         nextTilesToVisit.Enqueue(startTile);
 
-        // Go through the list of tiles 
+        // Go through the queue of tiles to visit
         while (nextTilesToVisit.Count != 0)
         {
             Tile currentTile = nextTilesToVisit.Dequeue();
             alreadyVisitedTiles.Add(currentTile);
 
-            /////////////////////////////////////////////////////////////////////////////
             // Check UP and DOWN for a match-3
-
             List<Tile> matchingTilesDir = new List<Tile>();
             matchingTilesDir.Add(currentTile);
 
@@ -72,9 +70,6 @@ public class ShapeMatch
                 }
             }
 
-            
-
-            /////////////////////////////////////////////////////////////////////////////
             // Check LEFT and RIGHT for a match-3
             matchingTilesDir = new List<Tile>();
             matchingTilesDir.Add(currentTile);
@@ -114,8 +109,6 @@ public class ShapeMatch
 
         tilesInShape = tilesInMatches;
 
-
-
         if (matchFound && tileToSpawnTower == null)
         {
             List<Tile> possibleTilesForTower = new List<Tile>();
@@ -140,24 +133,49 @@ public class ShapeMatch
             int minx = 20000;
             foreach (Tile tile in possibleTilesForTower)
             {
-                if (minx < tile.boardPos.x)
+                if (tile.boardPos.x < minx)
                 {
                     minx = (int)tile.boardPos.x;
                     tileToSpawnTower = tile;
                 }
             }
-
         }
     }
 
     public void PrintShape()
     {
         Debug.Log("------------------------------");
-        Debug.Log("Shape: " + this);
+        Debug.Log("Print Shape: " + this);
         Debug.Log("Was selected: " + tileToSpawnTower);
+        Debug.Log("Match found: " + matchFound);
         foreach (Tile tile in tilesInShape)
         {
-            Debug.Log(tile.boardPos);
+            Debug.Log(tile.name);
+        }
+    }
+
+    public void UpdateTowerFromMatch()
+    {
+        // Go through towers in shape and add bonus attacks and new bonus
+
+        // generate new tower
+        Debug.Log("Tower to spawn: " + tileToSpawnTower.name + " will transform into: " + tileToSpawnTower.tower.nextLevelTower);
+        tileToSpawnTower.SetTower(tileToSpawnTower.tower.nextLevelTower);
+
+        // set new bonus attack
+
+        // remove new tower from towers in shape
+        tilesInShape.Remove(tileToSpawnTower);
+
+        // remove other towers
+        ClearAllOtherTiles();
+    }
+
+    public void ClearAllOtherTiles()
+    {
+        foreach (Tile tile in tilesInShape)
+        {
+            tile.SetTower(null);
         }
     }
 

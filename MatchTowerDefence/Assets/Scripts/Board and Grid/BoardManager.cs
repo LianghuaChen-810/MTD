@@ -71,7 +71,6 @@ public class BoardManager : MonoBehaviour
                 Tile newTile = newTileObj.GetComponent<Tile>();
                 newTile.boardPos = new Vector2(x, y);
                 newTile.SetTower(newTowerObject);
-                newTile.type = Tile.TileType.TOWER;
 
                 // Add tile as previous object
                 previousLeft[y] = newTowerObject;
@@ -100,7 +99,7 @@ public class BoardManager : MonoBehaviour
         {
             for (int y = 0; y < ySize; y++)
             {
-                tiles[x, y].GetComponent<Tile>().ClearAllMatches();
+                tiles[x, y].GetComponent<Tile>().FindMatch();
             }
         }
     }
@@ -183,7 +182,7 @@ public class BoardManager : MonoBehaviour
             var allTiles = FindObjectsOfType<Tile>();
             foreach (Tile tile in allTiles)
             {
-                tile.StartShooting();
+                //tile.StartShooting();
             }
             var allSpawners = FindObjectsOfType<Spawner>();
             foreach (Spawner spawner in allSpawners)
@@ -194,65 +193,3 @@ public class BoardManager : MonoBehaviour
         GUIManager.instance.phaseTxt.text = "Defense Phase";
     }
 }
-
-
-
-
-/*
- * private IEnumerator ShiftTowersDown(int x, int yStart, float shiftDelay = .03f)
-    {
-        IsShifting = true;
-        List<Tile> shiftTiles = new List<Tile>();
-
-        for (int y = yStart; y < ySize; y++)
-        {  // 1
-            Tile tile = tiles[x, y].GetComponent<Tile>();
-            shiftTiles.Add(tile);
-        }
-
-        while (yStart < ySize)
-        {
-            Debug.Log("For X,Ystart: " + x + " " + yStart);
-
-            var tile = tiles[x, yStart].GetComponent<Tile>();
-            if (tile.tower != null)
-            {
-                yStart++;
-                shiftTiles.RemoveAt(0);
-                continue;
-            }
-
-            while (tile.tower == null)
-            {
-                yield return new WaitForSeconds(shiftDelay);
-                int k = 0;
-                for (k = 0; k < shiftTiles.Count - 1; k++)
-                { // 5
-                    shiftTiles[k].tower = shiftTiles[k + 1].tower;
-                    shiftTiles[k + 1].tower = null; // 6
-                }
-                shiftTiles[k].tower.ChangeTower(GetNewTowerType(x, ySize - 1));
-            }
-            shiftTiles.RemoveAt(0);
-            yStart++;
-
-        }
-        IsShifting = false;
-
-        //Debug.Log("Renders count: " + renders.Count);
-
-        //for (int i = 0; i < nullCount; i++)
-        //{ // 3
-        //    yield return new WaitForSeconds(shiftDelay);// 4
-        //    for (int k = 0; k < renders.Count - 1; k++)
-        //    { // 5
-        //        renders[k].sprite = renders[k + 1].sprite;
-
-        //        renders[k + 1].sprite = null; // 6
-        //    }
-        //}
-
-        //IsShifting = false;
-    }
-
-    */
