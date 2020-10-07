@@ -10,6 +10,9 @@ public class BoardManager : MonoBehaviour
     public TileBase testTilePrefab;
     public static BoardManager instance;
     public List<TowerObject> spawnTowers = new List<TowerObject>();
+    public TowerObject AOETower;
+    public TowerObject NormalTower;
+    public TowerObject FrostTower;
 
     public List<Enemy> allEnemies = new List<Enemy>();
 
@@ -66,7 +69,7 @@ public class BoardManager : MonoBehaviour
 
         TowerObject[] previousLeft = new TowerObject[ySize];
         // Create TowerTiles
-        for (int col = 0; col < xSize; col++) 
+        for (int col = 0; col < xSize; col++)
         {
             towerTileColumns[col] = new List<TowerTile>();
             TowerObject previousBelow = null;
@@ -74,8 +77,14 @@ public class BoardManager : MonoBehaviour
             for (int row = 0; row < ySize; row++)
             {
                 Vector3Int tilePos = new Vector3Int(col + minCols, row + minRows, 0);
-       
-                if (tilemap.GetTile(tilePos).name == "MapTile")
+
+                string tilename = tilemap.GetTile(tilePos).name;
+                if (tilename == "MapTile" || tilename == "Frost0Tile" || tilename == "AOE0Tile" || tilename == "Normal0Tile")
+                {
+
+
+                }
+                if (tilename == "MapTile" || tilename == "Frost0Tile" || tilename == "AOE0Tile" || tilename == "Normal0Tile")
                 {
                     // Create new tile object
                     GameObject newTileObj = Instantiate(towerTilePrefab, new Vector3(startX + col, startY + row, 0), towerTilePrefab.transform.rotation);
@@ -84,18 +93,35 @@ public class BoardManager : MonoBehaviour
 
                     towerTileColumns[col].Add(newTileObj.GetComponent<TowerTile>());
 
+                    TowerObject newTowerObject = null;
+                    if (tilename == "MapTile")
+                    {
+                        // Create list of possible towers
+                        List<TowerObject> possibleTowers = new List<TowerObject>();
+                        possibleTowers.AddRange(spawnTowers);
 
-                    // Create list of possible towers
-                    List<TowerObject> possibleTowers = new List<TowerObject>();
-                    possibleTowers.AddRange(spawnTowers);
+                        // Remove tower types on the left and bottom from possible
+                        possibleTowers.Remove(previousLeft[row]);
+                        possibleTowers.Remove(previousBelow);
 
-                    // Remove tower types on the left and bottom from possible
-                    possibleTowers.Remove(previousLeft[row]);
-                    possibleTowers.Remove(previousBelow);
+                        // Random generation of new tower
+                        newTowerObject = possibleTowers[Random.Range(0, possibleTowers.Count)];
 
-                    // Random generation of new tower
-                    TowerObject newTowerObject = possibleTowers[Random.Range(0, possibleTowers.Count)];
+                    }
+                    else if (tilename == "Frost0Tile")
+                    {
+                        newTowerObject = FrostTower;
+                    }
+                    else if (tilename == "Normal0Tile")
+                    {
+                        newTowerObject = NormalTower;
+                    }
+                    else
+                    {
+                        newTowerObject = AOETower;
+                    }
 
+                    Debug.Log(newTileObj.name + " = " + newTowerObject);
                     // Edit tile info
                     TowerTile newTile = newTileObj.GetComponent<TowerTile>();
                     newTile.boardPosition = new BoardPosition(col, row);
@@ -104,11 +130,11 @@ public class BoardManager : MonoBehaviour
                     // Add tile as previous object
                     previousLeft[row] = newTowerObject;
                     previousBelow = newTowerObject;
+
                 }
-                else
-                {
-                    tilemap.SetTile(tilePos, null);
-                }
+  
+                tilemap.SetTile(tilePos, null);
+
             }
 
         }
@@ -146,56 +172,6 @@ public class BoardManager : MonoBehaviour
         }
 
     }
-
-
-    //private void CreateBoard()
-    //{
-    //    towerTileObjs = new GameObject[xSize, ySize];
-
-    //    int halfSizeX = xSize / 2;
-    //    int halfSizeY = ySize / 2;
-    //    float startX = transform.position.x - halfSizeX;
-    //    float startY = transform.position.y - halfSizeY;
-
-
-    //    TowerObject[] previousLeft = new TowerObject[ySize];
-
-    //    for (int x = 0; x < xSize; x++)
-    //    {
-    //        TowerObject previousBelow = null;
-
-    //        for (int y = 0; y < ySize; y++)
-    //        {
-
-    //            // Create new tile object
-    //            GameObject newTileObj = Instantiate(towerTilePrefab, new Vector3(startX + x , startY + y, 0), towerTilePrefab.transform.rotation);
-    //            newTileObj.name = "Tile_" + x.ToString() + "_" + y.ToString();
-    //            towerTileObjs[x, y] = newTileObj;
-    //            newTileObj.transform.parent = transform; // 1
-
-    //            // Create list of possible towers
-    //            List<TowerObject> possibleTowers = new List<TowerObject>(); 
-    //            possibleTowers.AddRange(spawnTowers); 
-
-    //            // Remove tower types on the left and bottom from possible
-    //            possibleTowers.Remove(previousLeft[y]); 
-    //            possibleTowers.Remove(previousBelow);
-
-    //            // Random generation of new tower
-    //            TowerObject newTowerObject = possibleTowers[Random.Range(0, possibleTowers.Count)];
-
-    //            // Edit tile info
-    //            TowerTile newTile = newTileObj.GetComponent<TowerTile>();
-    //            newTile.boardPosition = new BoardPosition(x, y);
-    //            newTile.SetTower(newTowerObject);
-
-    //            // Add tile as previous object
-    //            previousLeft[y] = newTowerObject;
-    //            previousBelow = newTowerObject;
-    //        }
-    //    }
-
-    //}
 
 
     public IEnumerator FindNullTiles()

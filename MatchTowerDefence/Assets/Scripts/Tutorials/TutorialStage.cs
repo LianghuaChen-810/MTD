@@ -37,6 +37,7 @@ public class TutorialStage : MonoBehaviour
 
     public void StopStage()
     {
+        isOn = false;
         foreach (var tro in stageObjects)
         {
             tro.gameObject.SetActive(false);

@@ -112,7 +112,8 @@ public class TowerTile : MonoBehaviour
 
     private void Select()
     {
-        if (TutorialManager.instance.isActive) return;
+        if (TutorialManager.instance != null)
+            if (TutorialManager.instance.isActive) return;
         isSelected = true;
         render.color = selectedColor;
         previousSelected = gameObject.GetComponent<TowerTile>();
@@ -127,7 +128,7 @@ public class TowerTile : MonoBehaviour
 
     void OnMouseDown()
     {
-        //if (GUIManager.instance.MoveCounter == 0) return;
+        if (GUIManager.instance.MoveCounter == 0) return;
 
         if (tower == null || BoardManager.instance.IsShifting)
         {

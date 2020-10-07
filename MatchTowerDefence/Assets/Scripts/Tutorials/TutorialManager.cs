@@ -8,10 +8,10 @@ public class TutorialManager : MonoBehaviour
     public GameObject tutCanvas;
     public static TutorialManager instance;
     public TMP_Text textPanel;
-    public bool isActive = true;
+    public bool isActive = false;
     int tutorialIndex = -1;
     public List<TutorialStage> stages = new List<TutorialStage>();
-
+    public TutorialStage currentStage = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +36,7 @@ public class TutorialManager : MonoBehaviour
             textPanel.text = stages[tutorialIndex].text;
             tutCanvas.SetActive(true);
             stages[tutorialIndex].ExecuteStage();
+            currentStage = stages[tutorialIndex];
 
         } else
         {
