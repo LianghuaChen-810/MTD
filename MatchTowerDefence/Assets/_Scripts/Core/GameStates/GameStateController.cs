@@ -6,6 +6,7 @@ namespace GameCore.GameStates
 {
     public class GameStateController : GameCore.System.Automaton
     {
+
         private void Awake()
         {
             state = new PlayingState(this);
@@ -14,11 +15,6 @@ namespace GameCore.GameStates
         protected override void Update()
         {
             state.OnUpdate();
-        }
-
-        public void Resume()
-        {
-            state = new PlayingState(this);
         }
 
         public bool IsPaused()

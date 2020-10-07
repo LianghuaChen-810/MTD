@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 public class GUIManager : MonoBehaviour {
 	public static GUIManager instance;
@@ -9,10 +8,14 @@ public class GUIManager : MonoBehaviour {
 	[SerializeField] public Text phaseTxt;
     [SerializeField] private Text moveCounterTxt;
 
+    [Header("Menu Panels")]
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private Image backGround;
     [SerializeField] private GameObject gamePanel;
     [SerializeField] public GameObject pauseMenu;
+
+
+    [SerializeField] public Button resumeButton;
 
     private int score;
     private int moveCounter;
@@ -23,7 +26,6 @@ public class GUIManager : MonoBehaviour {
         {
             return score;
         }
-
         set
         {
             score = value;
@@ -37,7 +39,6 @@ public class GUIManager : MonoBehaviour {
         {
             return moveCounter;
         }
-
         set
         {
             moveCounter = value;
@@ -64,4 +65,8 @@ public class GUIManager : MonoBehaviour {
         gamePanel.SetActive(true);
     }
 
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().ToString());
+    }
 }

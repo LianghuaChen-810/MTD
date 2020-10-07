@@ -28,6 +28,7 @@ namespace GameCore.GameStates
             {
                 InitiateNewState();
             }
+            GUIManager.instance.resumeButton.onClick.AddListener(InitiateNewState);
             #endif
         }
         

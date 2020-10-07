@@ -1162,6 +1162,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2356467294211863677, guid: b3cda07b5c9b03e458223f1ae6710590, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5913932660491197412, guid: b3cda07b5c9b03e458223f1ae6710590, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968489350293124784, guid: b3cda07b5c9b03e458223f1ae6710590, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7881069704532640223, guid: b3cda07b5c9b03e458223f1ae6710590, type: 3}
       propertyPath: m_Name
       value: GUIManager
