@@ -150,11 +150,13 @@ public class TowerTile : MonoBehaviour
                 previousSelected.FindMatch();
                 FindMatch();
 
-                //GUIManager.instance.MoveCounter--;
-                //if (GUIManager.instance.MoveCounter == 0)
-                //{
-                //    BoardManager.instance.TriggerNextPhase();
-                //}
+
+                // SHOULD MOVE THIS TO GENERAL LEVEL DATA
+                GUIManager.instance.MoveCounter--;
+                if (GUIManager.instance.MoveCounter == 0)
+                {
+                    BoardManager.instance.TriggerNextPhase();
+                }
 
                 previousSelected.Deselect();
             }
