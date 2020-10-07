@@ -5,6 +5,8 @@ using UnityEngine.Tilemaps;
 
 public class BoardManager : MonoBehaviour
 {
+
+    public CameraManager camManager = null;
     public TileBase testTilePrefab;
     public static BoardManager instance;
     public List<TowerObject> spawnTowers = new List<TowerObject>();
@@ -35,6 +37,10 @@ public class BoardManager : MonoBehaviour
         if (tilemap != null)
         {
             tilemap.CompressBounds();
+            xSize = tilemap.cellBounds.size.x;
+            ySize = tilemap.cellBounds.size.y;
+
+            CameraManager.instance.SetDisplay((Mathf.Max(xSize, ySize) / 2.0f ), transform.position);
             //AnalyseTilemap();
             // CreateBoard();
             CreateTowerBoard();
@@ -42,59 +48,10 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-
-    //void Update()
-    //{
-
-    //    if (Input.GetKeyDown(KeyCode.Space))
-    //    {
-    //        Vector3Int tilePos = new Vector3Int(col + minCols, row + minRows, 0);
-
-    //        tilemap.SetTile(tilePos, testTilePrefab);
-
-    //    }
-
-    //    if (Input.GetKeyDown(KeyCode.D))
-    //    {
-    //        col++;
-    //        Vector3Int tilePos = new Vector3Int(col + minCols, row + minRows, 0);
-
-    //        tilemap.SetTile(tilePos, testTilePrefab);
-            
-    //    }
-
-    //    if (Input.GetKeyDown(KeyCode.W))
-    //    {
-    //        row++;
-
-    //        Vector3Int tilePos = new Vector3Int(col + minCols, row + minRows, 0);
-
-    //        tilemap.SetTile(tilePos, testTilePrefab);
-    //    }
-
-    //}
-    //int minRows, minCols, maxRows, maxCols;
-    //int row = 0, col = 0;
-
-    //private void AnalyseTilemap()
-    //{
-    //     minRows = tilemap.cellBounds.yMin;
-    //     minCols = tilemap.cellBounds.xMin;
-    //     maxRows = tilemap.cellBounds.yMax;
-    //     maxCols = tilemap.cellBounds.xMax;
-
-
-    //    xSize = tilemap.cellBounds.size.x;
-    //    ySize = tilemap.cellBounds.size.y;
-    //}
-
     private void CreateTowerBoard()
     {
         int minRows = tilemap.cellBounds.yMin;
         int minCols = tilemap.cellBounds.xMin;
-        int maxRows = tilemap.cellBounds.yMax;
-        int maxCols = tilemap.cellBounds.xMax;
-
 
         xSize = tilemap.cellBounds.size.x;
         ySize = tilemap.cellBounds.size.y;
