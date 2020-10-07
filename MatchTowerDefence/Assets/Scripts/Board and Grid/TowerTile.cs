@@ -112,6 +112,7 @@ public class TowerTile : MonoBehaviour
 
     private void Select()
     {
+        if (TutorialManager.instance.isActive) return;
         isSelected = true;
         render.color = selectedColor;
         previousSelected = gameObject.GetComponent<TowerTile>();

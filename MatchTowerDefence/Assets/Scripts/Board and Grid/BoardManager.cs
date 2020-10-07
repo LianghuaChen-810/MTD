@@ -40,7 +40,7 @@ public class BoardManager : MonoBehaviour
             xSize = tilemap.cellBounds.size.x;
             ySize = tilemap.cellBounds.size.y;
 
-            CameraManager.instance.SetDisplay((Mathf.Max(xSize, ySize) / 2.0f ), transform.position);
+            camManager.SetDisplay((Mathf.Max(xSize, ySize) / 2.0f ), transform.position);
             //AnalyseTilemap();
             // CreateBoard();
             CreateTowerBoard();

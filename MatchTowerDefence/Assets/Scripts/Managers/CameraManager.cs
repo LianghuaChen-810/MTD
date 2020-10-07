@@ -22,6 +22,7 @@ public class CameraManager : MonoBehaviour
 
     public void SetDisplay(float size, Vector3 focusPoint)
     {
+        cameraComponent = GetComponent<Camera>();
         cameraComponent.orthographicSize = size;
         transform.position = new Vector3(focusPoint.x, focusPoint.y, -11.0f);
     }
