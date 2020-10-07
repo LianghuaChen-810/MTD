@@ -19,23 +19,21 @@ namespace GameCore.GameStates
 
         public override void OnUpdate()
         {
-            #if UNITY_ANRDOID
-                // Android code goes here
-            #elif UNITY_IOS
-                // IOS Code goes here
-            #elif UNITY_STANDALONE_WIN
+            GUIManager.instance.pauseButton.onClick.AddListener(() => InitiatePauseState());
+            #if  UNITY_STANDALONE_WIN
             if (Input.GetKeyUp(KeyCode.Escape))
             {
-                InitiateNewState();
+                InitiatePauseState();
             }
-            GUIManager.instance.resumeButton.onClick.AddListener(InitiateNewState);
             #endif
         }
         
-        private void InitiateNewState()
+        private void InitiatePauseState()
         {
             owner.State = new PauseState(gameStateController);
         }
+
+      
     }
 
 }

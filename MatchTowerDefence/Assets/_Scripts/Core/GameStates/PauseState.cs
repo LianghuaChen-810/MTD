@@ -16,12 +16,9 @@ namespace GameCore.GameStates
         }
 
         public override void OnUpdate()
-        {
-            #if UNITY_ANRDOID
-                 // Android code goes here
-            #elif UNITY_IOS
-                 // IOS Code goes here
-            #elif UNITY_STANDALONE_WIN
+        { 
+            GUIManager.instance.resumeButton.onClick.AddListener(() => InitiateNewState());
+            #if  UNITY_STANDALONE_WIN
             if (Input.GetKeyUp(KeyCode.Escape))
             {
                 InitiateNewState();

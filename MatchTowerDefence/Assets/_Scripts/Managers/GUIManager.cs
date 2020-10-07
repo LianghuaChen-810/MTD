@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class GUIManager : MonoBehaviour {
 	public static GUIManager instance;
 
-	[SerializeField] public Text phaseTxt;
-    [SerializeField] private Text moveCounterTxt;
+    [Header("HUD Texts")]
+    [SerializeField] public TMP_Text phaseTxt;
+    [SerializeField] private TMP_Text moveCounterTxt;
 
     [Header("Menu Panels")]
     [SerializeField] private GameObject mainMenu;
@@ -14,8 +16,8 @@ public class GUIManager : MonoBehaviour {
     [SerializeField] private GameObject gamePanel;
     [SerializeField] public GameObject pauseMenu;
 
-
     [SerializeField] public Button resumeButton;
+    [SerializeField] public Button pauseButton;
 
     private int score;
     private int moveCounter;
