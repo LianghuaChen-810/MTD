@@ -11,10 +11,23 @@ public class TowerTile : MonoBehaviour
     private static TowerTile previousSelected = null; // All Tiles have access to same previous selected tile
     private bool isSelected = false;
 
+
+    // Tower info
     private SpriteRenderer render;
     public TowerObject tower = null;
-    public BoardPosition boardPosition = new BoardPosition(0, 0);
     public int towerBonusDamage = 0;
+
+    // Board info
+    public BoardPosition boardPosition = new BoardPosition(0, 0);
+
+    public struct AdjacentTiles
+    {
+        public TowerTile up;
+        public TowerTile down;
+        public TowerTile left;
+        public TowerTile right;
+    }
+    public AdjacentTiles adjTiles;
 
     void Awake()
     {
@@ -113,7 +126,7 @@ public class TowerTile : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (GUIManager.instance.MoveCounter == 0) return;
+        //if (GUIManager.instance.MoveCounter == 0) return;
 
         if (tower == null || BoardManager.instance.IsShifting)
         {
@@ -137,11 +150,11 @@ public class TowerTile : MonoBehaviour
                 previousSelected.FindMatch();
                 FindMatch();
 
-                GUIManager.instance.MoveCounter--;
-                if (GUIManager.instance.MoveCounter == 0)
-                {
-                    BoardManager.instance.TriggerNextPhase();
-                }
+                //GUIManager.instance.MoveCounter--;
+                //if (GUIManager.instance.MoveCounter == 0)
+                //{
+                //    BoardManager.instance.TriggerNextPhase();
+                //}
 
                 previousSelected.Deselect();
             }
