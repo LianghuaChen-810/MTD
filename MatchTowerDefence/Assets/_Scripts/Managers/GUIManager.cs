@@ -12,6 +12,7 @@ public class GUIManager : MonoBehaviour {
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private Image backGround;
     [SerializeField] private GameObject gamePanel;
+    [SerializeField] public GameObject pauseMenu;
 
     private int score;
     private int moveCounter;

@@ -6,16 +6,12 @@ namespace GameCore.GameStates
     public class PauseState : GameCore.System.State
     {
         GameStateController gameStateController;
-        State previousState;
-
 
         public PauseState(GameStateController owner) : base(owner)
         {
             Time.timeScale = 0;
             gameStateController = owner;
-
-
-
+            GUIManager.instance.pauseMenu.SetActive(true);
             Debug.Log("Game is paused");
         }
 
@@ -25,7 +21,17 @@ namespace GameCore.GameStates
                  // Android code goes here
             #elif UNITY_IOS
                  // IOS Code goes here
+            #elif UNITY_STANDALONE_WIN
+            if (Input.GetKeyUp(KeyCode.Escape))
+            {
+                InitiateNewState();
+            }
             #endif
+        }
+
+        private void InitiateNewState()
+        {
+            owner.State = new PlayingState(gameStateController);
         }
     }
 }
