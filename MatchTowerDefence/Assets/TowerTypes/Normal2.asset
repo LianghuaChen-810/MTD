@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   attackType: 0
-  baseDamage: 0
+  baseDamage: 35
   range: 2
   sprite: {fileID: 3209868034358598023, guid: d406cd27aee895442be53270fec2fcf2, type: 3}
   freezeTime: 0

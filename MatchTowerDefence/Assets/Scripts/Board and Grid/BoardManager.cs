@@ -148,7 +148,10 @@ public class BoardManager : MonoBehaviour
                     previousLeft[row] = newTowerObject;
                     previousBelow = newTowerObject;
                 }
-
+                else
+                {
+                    tilemap.SetTile(tilePos, null);
+                }
             }
 
         }

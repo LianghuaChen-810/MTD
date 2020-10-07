@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   attackType: 0
-  nextLevelTower: {fileID: 11400000, guid: 5423e55e0626f114d928cad6a795f31b, type: 2}
+  baseDamage: 45
+  range: 3
   sprite: {fileID: 3209868034358598023, guid: d406cd27aee895442be53270fec2fcf2, type: 3}
   freezeTime: 0
-  damage: 33
   color: {r: 0.13333334, g: 0.33333334, b: 0.33333334, a: 0}
-  range: 3
+  hasUpgrade: 0
+  nextLevelTower: {fileID: 11400000, guid: 5423e55e0626f114d928cad6a795f31b, type: 2}

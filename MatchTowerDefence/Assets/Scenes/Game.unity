@@ -290,6 +290,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1997821718917597250, guid: 97e4c8f2845b62f4a8b232d750a070b5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5795186107566553946, guid: 97e4c8f2845b62f4a8b232d750a070b5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3
@@ -391,7 +395,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &359287473
 Transform:
   m_ObjectHideFlags: 0
