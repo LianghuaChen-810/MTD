@@ -40,21 +40,35 @@ public class ShapeMatch
             List<TowerTile> matchingTilesDir = new List<TowerTile>();
             matchingTilesDir.Add(currentTile);
 
+
+
             // Find all same towers in UP
-            RaycastHit2D hit = Physics2D.Raycast(currentTile.transform.position, Vector2.up);
-            while (hit.collider != null && hit.collider.GetComponent<TowerTile>().tower == towerType)
+            TowerTile adjacentTile = currentTile.adjTiles.up;
+            while (adjacentTile != null && adjacentTile.tower == towerType)
             {
-                matchingTilesDir.Add(hit.collider.gameObject.GetComponent<TowerTile>());
-                hit = Physics2D.Raycast(hit.collider.transform.position, Vector2.up);
+                matchingTilesDir.Add(adjacentTile);
+                adjacentTile = adjacentTile.adjTiles.up;
             }
+            //RaycastHit2D hit = Physics2D.Raycast(currentTile.transform.position, Vector2.up);
+            //while (hit.collider != null && hit.collider.GetComponent<TowerTile>().tower == towerType)
+            //{
+            //    matchingTilesDir.Add(hit.collider.gameObject.GetComponent<TowerTile>());
+            //    hit = Physics2D.Raycast(hit.collider.transform.position, Vector2.up);
+            //}
 
             // Find all same towers in DOWN
-            hit = Physics2D.Raycast(currentTile.transform.position, Vector2.down);
-            while (hit.collider != null && hit.collider.GetComponent<TowerTile>().tower == towerType)
+            adjacentTile = currentTile.adjTiles.down;
+            while (adjacentTile != null && adjacentTile.tower == towerType)
             {
-                matchingTilesDir.Add(hit.collider.gameObject.GetComponent<TowerTile>());
-                hit = Physics2D.Raycast(hit.collider.transform.position, Vector2.down);
+                matchingTilesDir.Add(adjacentTile);
+                adjacentTile = adjacentTile.adjTiles.down;
             }
+            //hit = Physics2D.Raycast(currentTile.transform.position, Vector2.down);
+            //while (hit.collider != null && hit.collider.GetComponent<TowerTile>().tower == towerType)
+            //{
+            //    matchingTilesDir.Add(hit.collider.gameObject.GetComponent<TowerTile>());
+            //    hit = Physics2D.Raycast(hit.collider.transform.position, Vector2.down);
+            //}
 
             // Check if there is a match of three or more
             if (matchingTilesDir.Count >= 3)
@@ -77,20 +91,33 @@ public class ShapeMatch
 
 
             // Find all same towers in LEFT
-            hit = Physics2D.Raycast(currentTile.transform.position, Vector2.left);
-            while (hit.collider != null && hit.collider.GetComponent<TowerTile>().tower == towerType)
+            adjacentTile = currentTile.adjTiles.left;
+            while (adjacentTile != null && adjacentTile.tower == towerType)
             {
-                matchingTilesDir.Add(hit.collider.gameObject.GetComponent<TowerTile>());
-                hit = Physics2D.Raycast(hit.collider.transform.position, Vector2.left);
+                matchingTilesDir.Add(adjacentTile);
+                adjacentTile = adjacentTile.adjTiles.left;
             }
 
+            //hit = Physics2D.Raycast(currentTile.transform.position, Vector2.left);
+            //while (hit.collider != null && hit.collider.GetComponent<TowerTile>().tower == towerType)
+            //{
+            //    matchingTilesDir.Add(hit.collider.gameObject.GetComponent<TowerTile>());
+            //    hit = Physics2D.Raycast(hit.collider.transform.position, Vector2.left);
+            //}
+
             // Find all same towers in RIGHT
-            hit = Physics2D.Raycast(currentTile.transform.position, Vector2.right);
-            while (hit.collider != null && hit.collider.GetComponent<TowerTile>().tower == towerType)
+            adjacentTile = currentTile.adjTiles.right;
+            while (adjacentTile != null && adjacentTile.tower == towerType)
             {
-                matchingTilesDir.Add(hit.collider.gameObject.GetComponent<TowerTile>());
-                hit = Physics2D.Raycast(hit.collider.transform.position, Vector2.right);
+                matchingTilesDir.Add(adjacentTile);
+                adjacentTile = adjacentTile.adjTiles.right;
             }
+            //hit = Physics2D.Raycast(currentTile.transform.position, Vector2.right);
+            //while (hit.collider != null && hit.collider.GetComponent<TowerTile>().tower == towerType)
+            //{
+            //    matchingTilesDir.Add(hit.collider.gameObject.GetComponent<TowerTile>());
+            //    hit = Physics2D.Raycast(hit.collider.transform.position, Vector2.right);
+            //}
 
             // Check if there is a match of three or more
             if (matchingTilesDir.Count >= 3)
