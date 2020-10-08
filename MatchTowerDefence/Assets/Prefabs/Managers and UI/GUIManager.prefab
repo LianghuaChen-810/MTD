@@ -3584,7 +3584,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7881069704527072293}
         m_TargetAssemblyTypeName: GUIManager, Assembly-CSharp
-        m_MethodName: FastForward
+        m_MethodName: FastForwardToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

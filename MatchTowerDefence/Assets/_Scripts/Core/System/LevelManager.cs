@@ -7,6 +7,8 @@ namespace GameCore.System
     {
         public static LevelManager instance = null;
 
+        private TutorialManager tutorialManager;
+        private int hasTutored = 0;
         private int enemyRemaining = 99999;
 
         public static LevelManager Instance
@@ -23,8 +25,13 @@ namespace GameCore.System
 
         private void Awake()
         {
-            var bm = FindObjectOfType<BoardManager>();
-            bm.Initialise();
+            BoardManager boardManager = FindObjectOfType<BoardManager>();
+            tutorialManager = FindObjectOfType<TutorialManager>();
+            if (boardManager != null) { boardManager.Initialise(); }
+
+            if (PlayerPrefs.HasKey("Tutored")) { hasTutored = PlayerPrefs.GetInt("Tutored"); }
+
+            if (tutorialManager != null && hasTutored == 1) { /*tutorialManager.gameObject.SetActive(false);*/ }
         }
 
         private void Update()

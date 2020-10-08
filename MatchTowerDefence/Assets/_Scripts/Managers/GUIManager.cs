@@ -130,7 +130,7 @@ public class GUIManager : MonoBehaviour
         fastForwardSwaps[1].gameObject.SetActive(false);
         fastForwardSwaps[0].gameObject.SetActive(true);
         Time.timeScale = 1;
-        --currentSpeed;
+        currentSpeed = 1;
     }
 
     private void DoubleSpeed()
