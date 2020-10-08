@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
                 
             }
         }
-
+         
         if (health <= 0.0f)
         {
             BoardManager.instance.allEnemies.Remove(this);

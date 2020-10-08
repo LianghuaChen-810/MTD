@@ -5,6 +5,8 @@ using UnityEngine.Tilemaps;
 
 public class BoardManager : MonoBehaviour
 {
+    bool minionshavespawned = false;
+
     public bool defencePhase = false; // TODO: REMOVE
     public CameraManager camManager = null;
    // public TileBase testTilePrefab;
@@ -59,6 +61,7 @@ public class BoardManager : MonoBehaviour
 
     public void Initialise()
     {
+        minionshavespawned = false;
         IsShifting = false;
         instance = GetComponent<BoardManager>();
         defencePhase = false;
@@ -299,6 +302,7 @@ public class BoardManager : MonoBehaviour
 
     public void TriggerNextPhase()
     {
+        StartCoroutine(TriggerEndPhase());
         defencePhase = true;
         var allTiles = FindObjectsOfType<TowerTile>();
         foreach (TowerTile tile in allTiles)
@@ -313,6 +317,31 @@ public class BoardManager : MonoBehaviour
         }
 
         GUIManager.instance.phaseTxt.text = "Defense Phase";
+    }
+
+    IEnumerator TriggerEndPhase()
+    {
+        while (minionshavespawned == false && allEnemies.Count <= 0)
+        {
+            Debug.Log(" NOT SPAWNED!");
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        minionshavespawned = true;
+
+        while (minionshavespawned = true && allEnemies.Count > 0)
+        {
+            Debug.Log(" SPAWNED AND ALIVE!" + allEnemies.Count);
+            
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        if (minionshavespawned == true && allEnemies.Count <= 0)
+        {
+            Debug.Log(" LEVEL FINISHED!");
+
+            GUIManager.instance.LevelIsFinished();
+        }
     }
 }
 
