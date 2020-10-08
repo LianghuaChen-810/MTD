@@ -38,6 +38,12 @@ public class GUIManager : MonoBehaviour
 
     public int MoveCounter  { get { return moveCounter; } set { moveCounter = value; moveCounterTxt.text = moveCounter.ToString(); } }
 
+
+    void Start()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        
+    }
     private void Awake()
     {
         instance = GetComponent<GUIManager>();
@@ -45,11 +51,24 @@ public class GUIManager : MonoBehaviour
         enemiesReached = 0;
         moveCounter = 5;
         moveCounterTxt.text = moveCounter.ToString();
+
+        DontDestroyOnLoad(this);
+    }
+
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        mainMenu.SetActive(false);
+        backGround.gameObject.SetActive(false);
+        gamePanel.SetActive(true);
+
+        var bm = FindObjectOfType<BoardManager>();
+        bm.Initialise();
     }
 
     public void Play()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene(1);
     }   
     
     public void BackToMainMenu()
@@ -59,15 +78,13 @@ public class GUIManager : MonoBehaviour
 
     public void InitiateGame()
     {
-        mainMenu.SetActive(false);
-        backGround.gameObject.SetActive(false);
-        gamePanel.SetActive(true);
+
     }
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene(currentLevel);
         levelFinishedMenu.SetActive(false);
+        SceneManager.LoadScene(currentLevel);
     }
 
     public void MainMenuInstance()
@@ -78,6 +95,7 @@ public class GUIManager : MonoBehaviour
 
     public void LevelIsFinished()
     {
+        levelFinishedMenu.SetActive(true);
         SetWinStars();
     }
     
@@ -114,31 +132,27 @@ public class GUIManager : MonoBehaviour
         }
         else
         {
+            winPanel.SetActive(true);
             switch (enemiesReached)
             {
                 case 0:
                     star1 = Color.black;
                     star2 = Color.black;
                     star3 = Color.black;
-                    winPanel.SetActive(true);
+
                     break;
                 case 1:
                     star1 = Color.black;
                     star2 = Color.black;
                     star3 = Color.white;
-                    winPanel.SetActive(true);
                     break;
                 case 2:
                     star1 = Color.black;
                     star2 = Color.white;
                     star3 = Color.white;
-                    winPanel.SetActive(true);
                     break;
             }
         }
     }
-
-
-
 
 }

@@ -5,9 +5,9 @@ using UnityEngine.Tilemaps;
 
 public class BoardManager : MonoBehaviour
 {
-
+    public bool defencePhase = false; // TODO: REMOVE
     public CameraManager camManager = null;
-    public TileBase testTilePrefab;
+   // public TileBase testTilePrefab;
     public static BoardManager instance;
     public List<TowerObject> spawnTowers = new List<TowerObject>();
     public TowerObject AOETower;
@@ -32,9 +32,36 @@ public class BoardManager : MonoBehaviour
     public Tilemap tilemap = null;
     void Start()
     {
+        //IsShifting = false;
+        //instance = GetComponent<BoardManager>();
+
+
+        //tilemap = FindObjectOfType<Tilemap>();
+        //if (tilemap != null)
+        //{
+        //    tilemap.CompressBounds();
+        //    xSize = tilemap.cellBounds.size.x;
+        //    ySize = tilemap.cellBounds.size.y;
+
+        //    camManager.SetDisplay((Mathf.Max(xSize, ySize) / 2.0f ), transform.position);
+        //    //AnalyseTilemap();
+        //    // CreateBoard();
+        //    CreateTowerBoard();
+        //    // CreatePathBoard();
+        //}
+    }
+
+    void Awake()
+    {
         IsShifting = false;
         instance = GetComponent<BoardManager>();
+    }
 
+    public void Initialise()
+    {
+        IsShifting = false;
+        instance = GetComponent<BoardManager>();
+        defencePhase = false;
 
         tilemap = FindObjectOfType<Tilemap>();
         if (tilemap != null)
@@ -43,7 +70,7 @@ public class BoardManager : MonoBehaviour
             xSize = tilemap.cellBounds.size.x;
             ySize = tilemap.cellBounds.size.y;
 
-            camManager.SetDisplay((Mathf.Max(xSize, ySize) / 2.0f ), transform.position);
+            camManager.SetDisplay((Mathf.Max(xSize, ySize) / 2.0f), transform.position);
             //AnalyseTilemap();
             // CreateBoard();
             CreateTowerBoard();
@@ -272,6 +299,7 @@ public class BoardManager : MonoBehaviour
 
     public void TriggerNextPhase()
     {
+        defencePhase = true;
         var allTiles = FindObjectsOfType<TowerTile>();
         foreach (TowerTile tile in allTiles)
         {

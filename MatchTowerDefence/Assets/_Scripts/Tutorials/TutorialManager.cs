@@ -86,7 +86,7 @@ public class TutorialManager : MonoBehaviour
 
     IEnumerator ActivateTutorial()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         pressAnywhereTxt.SetActive(true);
         allowMsgSkip = true;
     }

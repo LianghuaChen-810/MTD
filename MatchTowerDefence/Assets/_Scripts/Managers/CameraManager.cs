@@ -24,7 +24,7 @@ public class CameraManager : MonoBehaviour
     {
         cameraComponent = GetComponent<Camera>();
         cameraComponent.orthographicSize = size;
-        transform.position = new Vector3(focusPoint.x, focusPoint.y, -11.0f);
+        transform.position = new Vector3(focusPoint.x, focusPoint.y - 1.0f, -11.0f);
     }
 
 

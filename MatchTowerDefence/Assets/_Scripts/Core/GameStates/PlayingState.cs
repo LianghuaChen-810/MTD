@@ -7,28 +7,36 @@ namespace GameCore.GameStates
     {
         GameStateController gameStateController;
 
-        private int enemyRemaining = 0;
+        private int enemyRemaining = 9999;
+
 
         public PlayingState(GameStateController owner) : base(owner)
         {
             Time.timeScale = 1;
             gameStateController = owner;
 
-            if (GUIManager.instance != null)
-            {
-                GUIManager.instance.InitiateGame();
-            }
+            enemyRemaining = 9999;
+
+            GUIManager.instance.levelFinishedMenu.SetActive(false);
+
+       
+            //if (GUIManager.instance != null)
+            //{
+            //    GUIManager.instance.InitiateGame();
+            //}
         }
 
         public override void OnUpdate()
         {
-            enemyRemaining = BoardManager.instance.allEnemies.Count;
+            if (BoardManager.instance != null)
+                enemyRemaining = BoardManager.instance.allEnemies.Count;
 
-            if(enemyRemaining == 0 && GUIManager.instance.phaseTxt.text == "Defense Phase")
+            if(BoardManager.instance.defencePhase == true && enemyRemaining == 0)
             {
                 InitiateFinishedState();
             }
 
+            // TODO: Why add listeners every update
             GUIManager.instance.pauseButton.onClick.AddListener(() => InitiatePauseState());
             #if  UNITY_STANDALONE_WIN
             if (Input.GetKeyUp(KeyCode.Escape))

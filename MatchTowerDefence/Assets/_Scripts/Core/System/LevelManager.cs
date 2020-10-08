@@ -7,7 +7,7 @@ namespace GameCore.System
     {
         public static LevelManager instance = null;
 
-        private int enemyRemaining = 0;
+        private int enemyRemaining = 99999;
 
         public static LevelManager Instance
         {
@@ -23,17 +23,19 @@ namespace GameCore.System
 
         private void Update()
         {
-            enemyRemaining = BoardManager.instance.allEnemies.Count;
+            if (BoardManager.instance != null)
+                enemyRemaining = BoardManager.instance.allEnemies.Count;
 
-            if(enemyRemaining == 0 && GUIManager.instance.phaseTxt.text == "Defense Phase")
-            {
-                GUIManager.instance.LevelIsFinished();
-            }
+            //if(enemyRemaining == 0 && GUIManager.instance.phaseTxt.text == "Defense Phase")
+            //{
+            //    Debug.Log("IsLevelFinished");
+            //    GUIManager.instance.LevelIsFinished();
+            //}
 
-            if(SceneManager.GetActiveScene().buildIndex > 0)
-            {
-                GUIManager.instance.InitiateGame();
-            }
+            //if (SceneManager.GetActiveScene().buildIndex > 0)
+            //{
+            //    GUIManager.instance.InitiateGame();
+            //}
         }
 
     }

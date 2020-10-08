@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &291842717 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2062599979654078584, guid: b3cda07b5c9b03e458223f1ae6710590, type: 3}
+  m_PrefabInstance: {fileID: 533374742}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &533374742
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -146,6 +151,10 @@ PrefabInstance:
       propertyPath: gamePanel
       value: 
       objectReference: {fileID: 533374743}
+    - target: {fileID: 7881069704527072293, guid: b3cda07b5c9b03e458223f1ae6710590, type: 3}
+      propertyPath: winPanel
+      value: 
+      objectReference: {fileID: 291842717}
     - target: {fileID: 7881069704532640223, guid: b3cda07b5c9b03e458223f1ae6710590, type: 3}
       propertyPath: m_Name
       value: GUIManager
