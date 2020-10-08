@@ -43,13 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e5bbfb8c13d8f479f8d00fcbc7884e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allEnemies: []
-  bulletPrefab: {fileID: 1225740964822796161, guid: b7c8c9602bdad3a4998b983839254a8e, type: 3}
-  shiftDelay: 0.03
   spawnTowers:
   - {fileID: 11400000, guid: 57065164e63cb9a4d89d4cdcc07851de, type: 2}
   - {fileID: 11400000, guid: 1e3d11b464b5ae44cb62d38685f8fca7, type: 2}
   - {fileID: 11400000, guid: 5423e55e0626f114d928cad6a795f31b, type: 2}
-  tile: {fileID: 1000010131827792, guid: 6417c2a8214b7ab45b35ac5e9e62c2cb, type: 3}
-  xSize: 8
-  ySize: 12
+  allEnemies: []
+  shiftDelay: 0.03
+  towerTilePrefab: {fileID: 1000010131827792, guid: 6417c2a8214b7ab45b35ac5e9e62c2cb, type: 3}
+  xSize: 5
+  ySize: 5
+  tilemap: {fileID: 0}

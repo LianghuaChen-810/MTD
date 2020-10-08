@@ -1,77 +1,172 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Tilemaps;
 
 public class BoardManager : MonoBehaviour
 {
 
-
-    // SHOULD BE REMOVED FROM HERE
-    public List<Enemy> allEnemies = new List<Enemy>();
-    public GameObject bulletPrefab = null;
-
-    // END
-    public float shiftDelay = 0.03f;
+    public CameraManager camManager = null;
+    public TileBase testTilePrefab;
     public static BoardManager instance;
     public List<TowerObject> spawnTowers = new List<TowerObject>();
+    public TowerObject AOETower;
+    public TowerObject NormalTower;
+    public TowerObject FrostTower;
 
-    public GameObject tile;
-    public int xSize, ySize;
+    public List<Enemy> allEnemies = new List<Enemy>();
 
-    private GameObject[,] tiles;
+    public float shiftDelay = 0.03f;
+
+    public GameObject towerTilePrefab;
+    public GameObject pathTilePrefab;
+
+    int xSize, ySize;
+
+    //private GameObject[,] towerTileObjs;
 
     public bool IsShifting { get; set; }
 
+    List<TowerTile>[] towerTileColumns;
+
+    public Tilemap tilemap = null;
     void Start()
     {
         IsShifting = false;
         instance = GetComponent<BoardManager>();
 
-        Vector2 offset = tile.GetComponent<SpriteRenderer>().bounds.size;
-        CreateBoard(offset.x, offset.y);
+
+        tilemap = FindObjectOfType<Tilemap>();
+        if (tilemap != null)
+        {
+            tilemap.CompressBounds();
+            xSize = tilemap.cellBounds.size.x;
+            ySize = tilemap.cellBounds.size.y;
+
+            camManager.SetDisplay((Mathf.Max(xSize, ySize) / 2.0f ), transform.position);
+            //AnalyseTilemap();
+            // CreateBoard();
+            CreateTowerBoard();
+            // CreatePathBoard();
+        }
     }
 
-
-    private void CreateBoard(float xOffset, float yOffset)
+    private void CreateTowerBoard()
     {
-        tiles = new GameObject[xSize, ySize];
+        int minRows = tilemap.cellBounds.yMin;
+        int minCols = tilemap.cellBounds.xMin;
+
+        xSize = tilemap.cellBounds.size.x;
+        ySize = tilemap.cellBounds.size.y;
 
         int halfSizeX = xSize / 2;
         int halfSizeY = ySize / 2;
         float startX = transform.position.x - halfSizeX;
         float startY = transform.position.y - halfSizeY;
 
+        // Columns of Tiles for shifting towers down
+        towerTileColumns = new List<TowerTile>[tilemap.cellBounds.size.x];
 
         TowerObject[] previousLeft = new TowerObject[ySize];
-        TowerObject previousBelow = null;
-
-        for (int x = 0; x < xSize; x++)
+        // Create TowerTiles
+        for (int col = 0; col < xSize; col++)
         {
-            for (int y = 0; y < ySize; y++)
+            towerTileColumns[col] = new List<TowerTile>();
+            TowerObject previousBelow = null;
+
+            for (int row = 0; row < ySize; row++)
             {
-                GameObject newTile = Instantiate(tile, new Vector3(startX + x , startY + y, 0), tile.transform.rotation);
-                newTile.name = "Tile_" + x.ToString() + "_" + y.ToString();
-                tiles[x, y] = newTile;
+                Vector3Int tilePos = new Vector3Int(col + minCols, row + minRows, 0);
 
-                newTile.transform.parent = transform; // 1
+                if (tilemap.GetTile(tilePos) == null) continue;
 
-                List<TowerObject> possibleTowers = new List<TowerObject>(); // 1
-                possibleTowers.AddRange(spawnTowers); // 2
+                string tilename = tilemap.GetTile(tilePos).name;
+                if (tilename == "MapTile" || tilename == "Frost0Tile" || tilename == "AOE0Tile" || tilename == "Normal0Tile")
+                {
+                    // Create new tile object
+                    GameObject newTileObj = Instantiate(towerTilePrefab, new Vector3(startX + col, startY + row, 0), towerTilePrefab.transform.rotation);
+                    newTileObj.name = "Tile_" + col.ToString() + "_" + row.ToString();
+                    newTileObj.transform.parent = transform; // 1
 
-                possibleTowers.Remove(previousLeft[y]); // 3
-                possibleTowers.Remove(previousBelow);
+                    towerTileColumns[col].Add(newTileObj.GetComponent<TowerTile>());
 
-                TowerObject newTowerObject = null;
-                
-               // if (possibleTowers.Count != 0) 
-                    newTowerObject = possibleTowers[Random.Range(0, possibleTowers.Count)];
-                //else
-                //    newTowerObject = spawnTowers[Random.Range(0, spawnTowers.Count)];
+                    TowerObject newTowerObject = null;
+                    if (tilename == "MapTile")
+                    {
+                        // Create list of possible towers
+                        List<TowerObject> possibleTowers = new List<TowerObject>();
+                        possibleTowers.AddRange(spawnTowers);
 
-                newTile.GetComponent<Tile>().SetTower(newTowerObject); // 3
+                        // Remove tower types on the left and bottom from possible
+                        possibleTowers.Remove(previousLeft[row]);
+                        possibleTowers.Remove(previousBelow);
 
-                previousLeft[y] = newTowerObject;
-                previousBelow = newTowerObject;
+                        // Random generation of new tower
+                        newTowerObject = possibleTowers[Random.Range(0, possibleTowers.Count)];
+
+                    }
+                    else if (tilename == "Frost0Tile")
+                    {
+                        newTowerObject = FrostTower;
+                    }
+                    else if (tilename == "Normal0Tile")
+                    {
+                        newTowerObject = NormalTower;
+                    }
+                    else
+                    {
+                        newTowerObject = AOETower;
+                    }
+
+                    Debug.Log(newTileObj.name + " = " + newTowerObject);
+                    // Edit tile info
+                    TowerTile newTile = newTileObj.GetComponent<TowerTile>();
+                    newTile.boardPosition = new BoardPosition(col, row);
+                    newTile.SetTower(newTowerObject);
+
+                    // Add tile as previous object
+                    previousLeft[row] = newTowerObject;
+                    previousBelow = newTowerObject;
+
+                }
+                if (tilename != "PathDown" && tilename != "PathRight" && tilename != "PathUp" && tilename != "PathLeft")
+                {
+                    tilemap.SetTile(tilePos, null);
+                }
+
+            }
+
+        }
+
+
+        // Generate tower tile adjacency struct
+        for (int i = 0; i < towerTileColumns.Length; i++)
+        {
+            foreach (TowerTile tile in towerTileColumns[i])
+            {
+                RaycastHit2D hit = Physics2D.Raycast(tile.transform.position, Vector2.left, 1.0f); // Checking for adjacency in distance of 1.0f
+                if (hit.collider != null && hit.collider.gameObject.GetComponent<TowerTile>() != null)
+                {
+                    tile.adjTiles.left = hit.collider.gameObject.GetComponent<TowerTile>();
+                }
+
+                hit = Physics2D.Raycast(tile.transform.position, Vector2.right, 1.0f); // Checking for adjacency in distance of 1.0f
+                if (hit.collider != null && hit.collider.gameObject.GetComponent<TowerTile>() != null)
+                {
+                    tile.adjTiles.right = hit.collider.gameObject.GetComponent<TowerTile>();
+                }
+
+                hit = Physics2D.Raycast(tile.transform.position, Vector2.up, 1.0f); // Checking for adjacency in distance of 1.0f
+                if (hit.collider != null && hit.collider.gameObject.GetComponent<TowerTile>() != null)
+                {
+                    tile.adjTiles.up = hit.collider.gameObject.GetComponent<TowerTile>();
+                }
+
+                hit = Physics2D.Raycast(tile.transform.position, Vector2.down, 1.0f); // Checking for adjacency in distance of 1.0f
+                if (hit.collider != null && hit.collider.gameObject.GetComponent<TowerTile>() != null)
+                {
+                    tile.adjTiles.down = hit.collider.gameObject.GetComponent<TowerTile>();
+                }
             }
         }
 
@@ -80,11 +175,11 @@ public class BoardManager : MonoBehaviour
 
     public IEnumerator FindNullTiles()
     {
-        for (int x = 0; x < xSize; x++)
+        for (int x = 0; x < towerTileColumns.Length; x++)
         {
-            for (int y = 0; y < ySize; y++)
+            for (int y = 0; y < towerTileColumns[x].Count; y++)
             {
-                if (tiles[x, y].GetComponent<Tile>().tower == null)
+                if (towerTileColumns[x][y].GetComponent<TowerTile>().tower == null)
                 {
                     yield return StartCoroutine(ShiftTowersDown(x, y));
                     break;
@@ -92,11 +187,11 @@ public class BoardManager : MonoBehaviour
             }
         }
 
-        for (int x = 0; x < xSize; x++)
+        for (int x = 0; x < towerTileColumns.Length; x++)
         {
-            for (int y = 0; y < ySize; y++)
+            for (int y = 0; y < towerTileColumns[x].Count; y++)
             {
-                tiles[x, y].GetComponent<Tile>().ClearAllMatches();
+                towerTileColumns[x][y].GetComponent<TowerTile>().FindMatch();
             }
         }
     }
@@ -105,19 +200,19 @@ public class BoardManager : MonoBehaviour
     private IEnumerator ShiftTowersDown(int x, int yStart)
     {
         IsShifting = true;
-        List<Tile> shiftTiles = new List<Tile>();
+        List<TowerTile> shiftTiles = new List<TowerTile>();
 
-        for (int y = yStart; y < ySize; y++)
+        for (int y = yStart; y < towerTileColumns[x].Count; y++)
         {  // 1
-            Tile tile = tiles[x, y].GetComponent<Tile>();
+            TowerTile tile = towerTileColumns[x][y].GetComponent<TowerTile>();
             shiftTiles.Add(tile);
         }
 
-        while (yStart < ySize)
+        while (yStart < towerTileColumns[x].Count)
         {
          //   Debug.Log("For X,Ystart: " + x + " " + yStart);
 
-            var tile = tiles[x, yStart].GetComponent<Tile>();
+            var tile = towerTileColumns[x][yStart].GetComponent<TowerTile>();
             if (tile.tower != null)
             {
                 yStart++;
@@ -131,10 +226,10 @@ public class BoardManager : MonoBehaviour
                 int k = 0;
                 for (k = 0; k < shiftTiles.Count - 1; k++)
                 { // 5
-                    shiftTiles[k].SetTower(shiftTiles[k + 1].tower);
+                    shiftTiles[k].SetTower(shiftTiles[k + 1].tower,shiftTiles[k+1].towerBonusDamage);
                     shiftTiles[k + 1].SetTower(null); // 6
                 }
-                shiftTiles[k].SetTower(GetNewTower(x, ySize - 1));
+                shiftTiles[k].SetTower(GetNewTower(shiftTiles[k]));
             }
             shiftTiles.RemoveAt(0);
             yStart++;
@@ -144,28 +239,29 @@ public class BoardManager : MonoBehaviour
 
     }
 
-    private TowerObject GetNewTower(int x, int y)
+    private TowerObject GetNewTower(TowerTile tile)
     {
         List<TowerObject> possibleTowers = new List<TowerObject>();
         possibleTowers.AddRange(spawnTowers);
 
-        if (x > 0)
+        if (tile.adjTiles.left != null)
         {
-            TowerObject towerObj = tiles[x - 1, y].GetComponent<Tile>().tower;
-            if (possibleTowers.Contains(towerObj))
-            possibleTowers.Remove(towerObj);
+            TowerObject towerObject = tile.adjTiles.left.tower;
+            if (possibleTowers.Contains(towerObject))
+                possibleTowers.Remove(towerObject);
         }
-        if (x < xSize - 1)
+        if (tile.adjTiles.down != null)
         {
-            TowerObject towerObj = tiles[x + 1, y].GetComponent<Tile>().tower;
-            if (possibleTowers.Contains(towerObj))
-                possibleTowers.Remove(towerObj);
+            TowerObject towerObject = tile.adjTiles.down.tower;
+            if (possibleTowers.Contains(towerObject))
+                possibleTowers.Remove(towerObject);
         }
-        if (y > 0)
+
+        if (tile.adjTiles.right != null)
         {
-            TowerObject towerObj = tiles[x, y - 1].GetComponent<Tile>().tower;
-            if (possibleTowers.Contains(towerObj))
-                possibleTowers.Remove(towerObj);
+            TowerObject towerObject = tile.adjTiles.right.tower;
+            if (possibleTowers.Contains(towerObject))
+                possibleTowers.Remove(towerObject);
         }
 
         if (possibleTowers.Count == 0)
@@ -176,16 +272,17 @@ public class BoardManager : MonoBehaviour
 
     public void TriggerNextPhase()
     {
-            var allTiles = FindObjectsOfType<Tile>();
-            foreach (Tile tile in allTiles)
-            {
-                tile.StartShooting();
-            }
-            var allSpawners = FindObjectsOfType<Spawner>();
-            foreach (Spawner spawner in allSpawners)
-            {
-                spawner.StartSpawning();
-            }
+        var allTiles = FindObjectsOfType<TowerTile>();
+        foreach (TowerTile tile in allTiles)
+        {
+            tile.StartShooting();
+        }
+
+        var allSpawners = FindObjectsOfType<Spawner>();
+        foreach (Spawner spawner in allSpawners)
+        {
+            spawner.StartSpawning();
+        }
 
         GUIManager.instance.phaseTxt.text = "Defense Phase";
     }
@@ -193,62 +290,14 @@ public class BoardManager : MonoBehaviour
 
 
 
+public struct BoardPosition
+{
+    public int x;
+    public int y;
 
-/*
- * private IEnumerator ShiftTowersDown(int x, int yStart, float shiftDelay = .03f)
+    public BoardPosition(int _x, int _y)
     {
-        IsShifting = true;
-        List<Tile> shiftTiles = new List<Tile>();
-
-        for (int y = yStart; y < ySize; y++)
-        {  // 1
-            Tile tile = tiles[x, y].GetComponent<Tile>();
-            shiftTiles.Add(tile);
-        }
-
-        while (yStart < ySize)
-        {
-            Debug.Log("For X,Ystart: " + x + " " + yStart);
-
-            var tile = tiles[x, yStart].GetComponent<Tile>();
-            if (tile.tower != null)
-            {
-                yStart++;
-                shiftTiles.RemoveAt(0);
-                continue;
-            }
-
-            while (tile.tower == null)
-            {
-                yield return new WaitForSeconds(shiftDelay);
-                int k = 0;
-                for (k = 0; k < shiftTiles.Count - 1; k++)
-                { // 5
-                    shiftTiles[k].tower = shiftTiles[k + 1].tower;
-                    shiftTiles[k + 1].tower = null; // 6
-                }
-                shiftTiles[k].tower.ChangeTower(GetNewTowerType(x, ySize - 1));
-            }
-            shiftTiles.RemoveAt(0);
-            yStart++;
-
-        }
-        IsShifting = false;
-
-        //Debug.Log("Renders count: " + renders.Count);
-
-        //for (int i = 0; i < nullCount; i++)
-        //{ // 3
-        //    yield return new WaitForSeconds(shiftDelay);// 4
-        //    for (int k = 0; k < renders.Count - 1; k++)
-        //    { // 5
-        //        renders[k].sprite = renders[k + 1].sprite;
-
-        //        renders[k + 1].sprite = null; // 6
-        //    }
-        //}
-
-        //IsShifting = false;
+        x = _x;
+        y = _y;
     }
-
-    */
+}
