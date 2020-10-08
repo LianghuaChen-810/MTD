@@ -2349,6 +2349,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7881069704527072293}
+        m_TargetAssemblyTypeName: GUIManager, Assembly-CSharp
+        m_MethodName: set_TryAgain
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &2062599979654078584
 GameObject:
   m_ObjectHideFlags: 0
@@ -2584,7 +2596,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1258553554948242253}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7881069704527072293}
+        m_TargetAssemblyTypeName: GUIManager, Assembly-CSharp
+        m_MethodName: PauseMenuToggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2814607110590734565
 GameObject:
   m_ObjectHideFlags: 0
@@ -5422,6 +5446,7 @@ MonoBehaviour:
   winPanel: {fileID: 2062599979654078584}
   losePanel: {fileID: 4847139691784814847}
   backGround: {fileID: 7288708309071031044}
+  winStarSprite: {fileID: 21300000, guid: 66d02ab0c73f95f4a8c4654a7dc66f54, type: 3}
   winStars:
   - {fileID: 6425987113862609761}
   - {fileID: 1185819272069881441}
@@ -5963,4 +5988,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8151806400251826510}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7881069704527072293}
+        m_TargetAssemblyTypeName: GUIManager, Assembly-CSharp
+        m_MethodName: PauseMenuToggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

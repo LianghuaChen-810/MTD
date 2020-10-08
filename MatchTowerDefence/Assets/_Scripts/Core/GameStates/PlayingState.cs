@@ -17,8 +17,6 @@ namespace GameCore.GameStates
 
             enemyRemaining = 9999;
 
-            GUIManager.instance.levelFinishedMenu.SetActive(false);
-
        
             //if (GUIManager.instance != null)
             //{
@@ -36,8 +34,7 @@ namespace GameCore.GameStates
                 InitiateFinishedState();
             }
 
-            // TODO: Why add listeners every update
-            GUIManager.instance.pauseButton.onClick.AddListener(() => InitiatePauseState());
+            if (GUIManager.instance.pauseMenu.activeSelf) { InitiatePauseState(); }
             #if  UNITY_STANDALONE_WIN
             if (Input.GetKeyUp(KeyCode.Escape))
             {

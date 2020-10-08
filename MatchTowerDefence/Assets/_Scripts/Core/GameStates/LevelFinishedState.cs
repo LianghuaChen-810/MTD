@@ -19,14 +19,14 @@ namespace GameCore.GameStates
 
         public override void OnUpdate()
         {
-            // Why add on every update instead in construction?
-            GUIManager.instance.restartButton.onClick.AddListener(() => InitiatePlayingState());
+            if(GUIManager.instance.TryAgain)
+            {
+                InitiatePlayingState();
+            }
         }
 
         private void InitiatePlayingState()
         {
-            // First reload the scene
-            GUIManager.instance.Play();
             owner.State = new PlayingState(gameStateController);
         }
     }

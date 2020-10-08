@@ -21,6 +21,12 @@ namespace GameCore.System
             }
         }
 
+        private void Awake()
+        {
+            var bm = FindObjectOfType<BoardManager>();
+            bm.Initialise();
+        }
+
         private void Update()
         {
             if (BoardManager.instance != null)
