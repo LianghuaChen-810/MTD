@@ -1,12 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using GameCore.System;
 
 namespace GameCore.GameStates
 {
-    public class GameStateController : GameCore.System.StateMachine
+    public class GameStateController : StateMachine
     {
-
         private void Awake()
         {
             state = new PlayingState(this);
@@ -21,7 +18,5 @@ namespace GameCore.GameStates
         {
             return typeof(PauseState).IsInstanceOfType(state);
         }
-
-
     }
 }

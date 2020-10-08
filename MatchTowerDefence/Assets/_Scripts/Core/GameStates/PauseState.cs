@@ -28,6 +28,7 @@ namespace GameCore.GameStates
 
         private void InitiateNewState()
         {
+            GUIManager.instance.pauseMenu.SetActive(false);
             owner.State = new PlayingState(gameStateController);
         }
     }

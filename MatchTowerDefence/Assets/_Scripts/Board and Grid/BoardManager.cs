@@ -20,7 +20,7 @@ public class BoardManager : MonoBehaviour
 
     public bool IsShifting { get; set; }
 
-    void Start()
+    private void Start()
     {
         IsShifting = false;
         instance = GetComponent<BoardManager>();

@@ -2,7 +2,7 @@
 
 namespace GameCore.System
 {
-    //Automaton and state are used to implement the State Pattern just to ensure there is no need to have switch cases
+    //StateMachine and state are used to implement the State Pattern just to ensure there is no need to have switch cases
     //This is done by wrapping each state in its own class
 
     public abstract class StateMachine : MonoBehaviour
