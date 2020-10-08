@@ -25,14 +25,9 @@ namespace GameCore.GameStates
 
         private void InitiatePlayingState()
         {
-
             // First reload the scene
             GUIManager.instance.Play();
             owner.State = new PlayingState(gameStateController);
-
-            // Why was this here :D 
-           // GUIManager.instance.LevelIsFinished();
-
         }
     }
 }

@@ -19,14 +19,14 @@ public class TutorialManager : MonoBehaviour
     private TutorialStage nextStage = null;
     private bool allowMsgSkip = false;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         instance = GetComponent<TutorialManager>();
         ExecuteSearchForNextStageRequirement();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (allowMsgSkip && isActive && Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -137,6 +137,9 @@ public class TutorialManager : MonoBehaviour
                  NextTutorialStage();
     }
 
-
+    public void SkipTutorial()
+    {
+        nextStageIndex = 10;
+    }
     // EXECUTION FUNCTIONS
 }
