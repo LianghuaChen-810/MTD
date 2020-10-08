@@ -267,14 +267,16 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 934195624}
-  m_RootOrder: 1
+  m_Children:
+  - {fileID: 181357595}
+  - {fileID: 265550595}
+  m_Father: {fileID: 2129854572}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -227.5}
-  m_SizeDelta: {x: -320, y: -275}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &116521877
 MonoBehaviour:
@@ -466,12 +468,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
+  m_fontSize: 18
   m_fontSizeBase: 20
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 10
+  m_fontSizeMax: 18
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -502,7 +504,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 11.882675, y: 6.3326416, z: 10.692993, w: 45.430965}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -527,13 +529,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 934195624}
-  m_RootOrder: 2
+  m_Father: {fileID: 116521876}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -227.5}
-  m_SizeDelta: {x: -320, y: -275}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &185580633
 PrefabInstance:
@@ -735,6 +737,140 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
+--- !u!1 &265550594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 265550595}
+  - component: {fileID: 265550597}
+  - component: {fileID: 265550596}
+  m_Layer: 5
+  m_Name: PressAnywhereTxt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &265550595
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265550594}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 116521876}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -48}
+  m_SizeDelta: {x: 300, y: 25}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &265550596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265550594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: (Press anywhere to continue)
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4291743441
+  m_fontColor: {r: 0.8207547, g: 0.80836594, b: 0.80836594, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 14
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 10
+  m_fontSizeMax: 14
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &265550597
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265550594}
+  m_CullTransparentMesh: 0
 --- !u!1001 &285896263
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -876,8 +1012,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: 'Defend it from whom? Enemies ofcourse! There is just a limited amount of
     time before enemies spawn from the spawner area (top left). '
+  shouldHideOnFinish: 1
   stageObjects:
   - {fileID: 8546318074649582508}
+  requirement: 0
+  towerToAppear: {fileID: 0}
+  enemyToAppear: {fileID: 0}
+  turns_left: 0
+  isOn: 0
+  wasActivatedSoon: 1
 --- !u!4 &414192022 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2604340904575270504, guid: 6a43b2bfda8e2634ba7f9e123f663a0d, type: 3}
@@ -981,6 +1124,76 @@ Transform:
   m_Father: {fileID: 813446613}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &439317137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 439317138}
+  - component: {fileID: 439317140}
+  - component: {fileID: 439317139}
+  m_Layer: 0
+  m_Name: Blocker (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &439317138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439317137}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 825242156}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &439317139
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439317137}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.039034843, y: 2.748754}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 14.39274, y: 6.642398}
+  m_EdgeRadius: 0
+--- !u!114 &439317140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439317137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9dc4cdbd2218a04f870a58b3691bf3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &496775739 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4669604558431081689, guid: c7ee8aa9c1aa509428309288a349bd54, type: 3}
@@ -1135,6 +1348,76 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7ee8aa9c1aa509428309288a349bd54, type: 3}
+--- !u!1 &532457677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 532457678}
+  - component: {fileID: 532457680}
+  - component: {fileID: 532457679}
+  m_Layer: 0
+  m_Name: Blocker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &532457678
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532457677}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 825242156}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &532457679
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532457677}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 2.341835, y: 0.04737091}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 9.78714, y: 12.045164}
+  m_EdgeRadius: 0
+--- !u!114 &532457680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532457677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9dc4cdbd2218a04f870a58b3691bf3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &563310044
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,6 +1471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: They will follow the pathways to plunder your stronghold! You need to stop
     them! The more they plunder the less score you get!
+  shouldHideOnFinish: 1
   stageObjects:
   - {fileID: 770330111}
   - {fileID: 817843836}
@@ -1197,6 +1481,12 @@ MonoBehaviour:
   - {fileID: 496775741}
   - {fileID: 1767733462}
   - {fileID: 1595577763}
+  requirement: 0
+  towerToAppear: {fileID: 0}
+  enemyToAppear: {fileID: 0}
+  turns_left: 0
+  isOn: 0
+  wasActivatedSoon: 1
 --- !u!1 &592739918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1431,9 +1721,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: On the sides of the spawner you can see how many and of what type will attack
     you! It seems that we will need more defence on the left side!
+  shouldHideOnFinish: 1
   stageObjects:
   - {fileID: 1090217852}
   - {fileID: 1877274205}
+  requirement: 0
+  towerToAppear: {fileID: 0}
+  enemyToAppear: {fileID: 0}
+  turns_left: 0
+  isOn: 0
+  wasActivatedSoon: 1
 --- !u!1001 &722760402
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3033,11 +3330,18 @@ MonoBehaviour:
     It has towers, pathways and inaccessible areas.
 
 '
+  shouldHideOnFinish: 1
   stageObjects:
   - {fileID: 1543404113081755252}
   - {fileID: 4836478410481873865}
   - {fileID: 6343624298569096520}
   - {fileID: 4516304757637728116}
+  requirement: 0
+  towerToAppear: {fileID: 0}
+  enemyToAppear: {fileID: 0}
+  turns_left: 0
+  isOn: 0
+  wasActivatedSoon: 1
 --- !u!1 &813446612
 GameObject:
   m_ObjectHideFlags: 0
@@ -3118,6 +3422,12 @@ Transform:
   m_Children:
   - {fileID: 414192022}
   - {fileID: 1981290885}
+  - {fileID: 532457678}
+  - {fileID: 439317138}
+  - {fileID: 1135773579}
+  - {fileID: 1975889369}
+  - {fileID: 1707918845}
+  - {fileID: 2052615596}
   m_Father: {fileID: 100556614}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3135,9 +3445,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: To match you need to swap. To swap two towers click on one and then click
     on another. These two are a good choice. Why don't you give it a try?
+  shouldHideOnFinish: 0
   stageObjects:
   - {fileID: 414192024}
   - {fileID: 1981290887}
+  - {fileID: 532457680}
+  - {fileID: 439317140}
+  - {fileID: 1135773581}
+  - {fileID: 1975889371}
+  - {fileID: 1707918847}
+  - {fileID: 2052615598}
+  requirement: 0
+  towerToAppear: {fileID: 0}
+  enemyToAppear: {fileID: 0}
+  turns_left: 0
+  isOn: 0
+  wasActivatedSoon: 1
 --- !u!1001 &831545959
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3367,8 +3690,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2129854572}
-  - {fileID: 116521876}
-  - {fileID: 181357595}
   m_Father: {fileID: 255136019}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3918,6 +4239,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9dc4cdbd2218a04f870a58b3691bf3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1135773578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1135773579}
+  - component: {fileID: 1135773581}
+  - component: {fileID: 1135773580}
+  m_Layer: 0
+  m_Name: Blocker (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1135773579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135773578}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 825242156}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1135773580
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135773578}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -2.9802327, y: -1.1474943}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.1228724, y: 2.802082}
+  m_EdgeRadius: 0
+--- !u!114 &1135773581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135773578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9dc4cdbd2218a04f870a58b3691bf3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1259973554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4025,8 +4416,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: Nice match! However, swapping towers costs moves and when they reach zero
     you won't be able to move them. Furthermore, the enemies will start their raid.
+  shouldHideOnFinish: 1
   stageObjects:
   - {fileID: 882537113}
+  requirement: 2
+  towerToAppear: {fileID: 11400000, guid: cb24583ca2718fe4eb544eb32c738dba, type: 2}
+  enemyToAppear: {fileID: 0}
+  turns_left: 0
+  isOn: 0
+  wasActivatedSoon: 1
 --- !u!1001 &1330568943
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4322,8 +4720,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: Defend how? By bulding towers! To build a tower you need to match at least
     3 of the same kind in a line. Matching more in one go makes them stronger!
+  shouldHideOnFinish: 1
   stageObjects:
   - {fileID: 1348486779}
+  requirement: 0
+  towerToAppear: {fileID: 0}
+  enemyToAppear: {fileID: 0}
+  turns_left: 0
+  isOn: 0
+  wasActivatedSoon: 1
 --- !u!1 &1454281158
 GameObject:
   m_ObjectHideFlags: 0
@@ -4526,6 +4931,76 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5795186107566553946, guid: 97e4c8f2845b62f4a8b232d750a070b5, type: 3}
   m_PrefabInstance: {fileID: 9211563341989553695}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1707918844
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1707918845}
+  - component: {fileID: 1707918847}
+  - component: {fileID: 1707918846}
+  m_Layer: 0
+  m_Name: Blocker (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1707918845
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707918844}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 825242156}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1707918846
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707918844}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.18813992, y: -4.942425}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 14.094536, y: 2.934946}
+  m_EdgeRadius: 0
+--- !u!114 &1707918847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707918844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9dc4cdbd2218a04f870a58b3691bf3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1710013114 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7271592209378042739, guid: 6a43b2bfda8e2634ba7f9e123f663a0d, type: 3}
@@ -4587,9 +5062,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a14644bd2ebe05848bb0e015cefb3e5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutCanvas: {fileID: 255136018}
+  pressAnywhereTxt: {fileID: 265550594}
+  tutTextMsg: {fileID: 934195623}
   textPanel: {fileID: 181357593}
-  isActive: 1
   stages:
   - {fileID: 787617186}
   - {fileID: 2107586614}
@@ -4601,6 +5076,7 @@ MonoBehaviour:
   - {fileID: 1310863163}
   - {fileID: 1916927573}
   currentStage: {fileID: 0}
+  isActive: 1
 --- !u!4 &1841316782
 Transform:
   m_ObjectHideFlags: 0
@@ -4942,8 +5418,85 @@ MonoBehaviour:
   text: Hey, last thing! Towers have range. Low level towers in the middle will not
     be able to hit the enemies! You can use your swap moves to place them in better
     positions.
+  shouldHideOnFinish: 1
   stageObjects:
   - {fileID: 7271592208726101026}
+  requirement: 0
+  towerToAppear: {fileID: 0}
+  enemyToAppear: {fileID: 0}
+  turns_left: 0
+  isOn: 0
+  wasActivatedSoon: 1
+--- !u!1 &1975889368
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1975889369}
+  - component: {fileID: 1975889371}
+  - component: {fileID: 1975889370}
+  m_Layer: 0
+  m_Name: Blocker (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1975889369
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975889368}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 825242156}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1975889370
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975889368}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -5.6558933, y: -0.37503147}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.4064689, y: 12.069733}
+  m_EdgeRadius: 0
+--- !u!114 &1975889371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975889368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9dc4cdbd2218a04f870a58b3691bf3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1981290885 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2604340904575270504, guid: 6a43b2bfda8e2634ba7f9e123f663a0d, type: 3}
@@ -5098,6 +5651,76 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a43b2bfda8e2634ba7f9e123f663a0d, type: 3}
+--- !u!1 &2052615595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2052615596}
+  - component: {fileID: 2052615598}
+  - component: {fileID: 2052615597}
+  m_Layer: 0
+  m_Name: Blocker (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2052615596
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052615595}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 825242156}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2052615597
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052615595}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -4.014324, y: -2.5428758}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.0770569, y: 2.1237307}
+  m_EdgeRadius: 0
+--- !u!114 &2052615598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052615595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9dc4cdbd2218a04f870a58b3691bf3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2107586612
 GameObject:
   m_ObjectHideFlags: 0
@@ -5144,8 +5767,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: Your main goal is to defend your strongholds! At the moment there is just
     one on the bottom right.
+  shouldHideOnFinish: 1
   stageObjects:
   - {fileID: 1710013114}
+  requirement: 0
+  towerToAppear: {fileID: 0}
+  enemyToAppear: {fileID: 0}
+  turns_left: 0
+  isOn: 0
+  wasActivatedSoon: 1
 --- !u!1001 &2118613695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5243,14 +5873,15 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 116521876}
   m_Father: {fileID: 934195624}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -227.5}
-  m_SizeDelta: {x: -320, y: -275}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -159}
+  m_SizeDelta: {x: 500, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2129854573
 MonoBehaviour:

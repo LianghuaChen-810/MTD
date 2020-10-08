@@ -78,12 +78,9 @@ public class BoardManager : MonoBehaviour
             {
                 Vector3Int tilePos = new Vector3Int(col + minCols, row + minRows, 0);
 
+                if (tilemap.GetTile(tilePos) == null) continue;
+
                 string tilename = tilemap.GetTile(tilePos).name;
-                if (tilename == "MapTile" || tilename == "Frost0Tile" || tilename == "AOE0Tile" || tilename == "Normal0Tile")
-                {
-
-
-                }
                 if (tilename == "MapTile" || tilename == "Frost0Tile" || tilename == "AOE0Tile" || tilename == "Normal0Tile")
                 {
                     // Create new tile object
@@ -132,8 +129,10 @@ public class BoardManager : MonoBehaviour
                     previousBelow = newTowerObject;
 
                 }
-  
-                tilemap.SetTile(tilePos, null);
+                if (tilename != "PathDown" && tilename != "PathRight" && tilename != "PathUp" && tilename != "PathLeft")
+                {
+                    tilemap.SetTile(tilePos, null);
+                }
 
             }
 

@@ -2,7 +2,4 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialRenderObject : MonoBehaviour
-{
-
-}
+public class TutorialRenderObject : MonoBehaviour {}

@@ -4,37 +4,42 @@ using UnityEngine;
 
 public class TutorialStage : MonoBehaviour
 {
+    public enum TutorialStageRequirement { NONE, ENEMY, TOWER, TURNS_LEFT};
+
+    [Header ("Stage description")]
     [TextArea(3, 10)]
     public string text;
-
+    public bool shouldHideOnFinish = true;
     public List<TutorialRenderObject> stageObjects = new List<TutorialRenderObject>();
 
-    bool isOn = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("Stage requirements")]
+    public TutorialStageRequirement requirement;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (isOn && Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            StopStage();
-            TutorialManager.instance.NextTutorialStage();
-        }
-    }
+    [Header("Description of requirement")]
+    public TowerObject towerToAppear;
+    public EnemyObject enemyToAppear;
+    public int turns_left;
 
-    public void ExecuteStage()
+    public bool isOn = false;
+    public bool wasActivatedSoon = true;
+
+    public bool RenderStage()
     {
+        wasActivatedSoon = true;
+        isOn = true;
         foreach (var tro in stageObjects)
         {
             tro.gameObject.SetActive(true);
         }
-        isOn = true;
+        StartCoroutine(ActivationPause());
+        return shouldHideOnFinish;
     }
 
+    IEnumerator ActivationPause()
+    {
+        yield return new WaitForSeconds(1.5f);
+        wasActivatedSoon = false;
+    }
     public void StopStage()
     {
         isOn = false;
@@ -43,6 +48,6 @@ public class TutorialStage : MonoBehaviour
             tro.gameObject.SetActive(false);
 
         }
-        TutorialManager.instance.tutCanvas.SetActive(true);
+        TutorialManager.instance.tutTextMsg.SetActive(true);
     }
 }
