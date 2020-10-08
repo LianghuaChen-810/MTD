@@ -21,6 +21,7 @@ public class GUIManager : MonoBehaviour {
 
     private int score;
     private int moveCounter;
+    private int enemiesReached = 0;
 
     public int Score
     {
@@ -70,5 +71,19 @@ public class GUIManager : MonoBehaviour {
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().ToString());
+    }
+
+
+    public void SetWinStars()
+    {
+        switch(enemiesReached)
+        {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 3:
+                break;
+        }
     }
 }

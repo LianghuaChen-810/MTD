@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
 
 
     // Update is called once per frame
-    void Awake()
+    private void Awake()
     {
         render = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
         speed = enemyType.speed;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (unfreezeTime > 0.0f)
         {
@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
         if (patrolPoints == null) return;
 
@@ -60,7 +60,9 @@ public class Enemy : MonoBehaviour
             {
                 // remove counter for win!
                 BoardManager.instance.allEnemies.Remove(this);
+                ++GUIManager.instance.EnemiesReached;
                 Destroy(gameObject);
+                
             }
         }
 

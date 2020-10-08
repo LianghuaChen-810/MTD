@@ -14,7 +14,7 @@ public class Spawner : MonoBehaviour
 
     int enemyCount = 0;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         enemyCount = allEnemies.Count;
     }
@@ -25,7 +25,7 @@ public class Spawner : MonoBehaviour
         StartCoroutine(SpawnMonster());
     }
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
 
     }

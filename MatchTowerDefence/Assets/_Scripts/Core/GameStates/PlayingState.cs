@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GameCore.GameStates
 {
-    public class PlayingState : GameCore.System.State
+    public class PlayingState : State
     {
         GameStateController gameStateController;
 
@@ -14,7 +14,6 @@ namespace GameCore.GameStates
             gameStateController = owner;
 
             GUIManager.instance.InitiateGame();
-            Debug.Log("Game is playing");
         }
 
         public override void OnUpdate()

@@ -2,15 +2,15 @@
 {
     public abstract class State
     {
-        protected Automaton owner;
+        protected StateMachine owner;
 
-        public State(Automaton _owner)
+        public State(StateMachine _owner)
         {
             owner = _owner;
         }
 
         public abstract void OnUpdate();
 
-        public virtual void OnFixedUpdate() { }
+        //public virtual void OnFixedUpdate() { }
     }
 }

@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour 
+{
 	public static GameManager instance;
 
-    void Awake()
+    private void Awake()
     {
         // Only 1 Game Manager can exist at a time
         if (instance == null)
@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    void Update()
+    private void Update()
     {
 
     }

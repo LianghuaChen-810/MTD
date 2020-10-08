@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GameCore.GameStates
 {
-    public class GameStateController : GameCore.System.Automaton
+    public class GameStateController : GameCore.System.StateMachine
     {
 
         private void Awake()

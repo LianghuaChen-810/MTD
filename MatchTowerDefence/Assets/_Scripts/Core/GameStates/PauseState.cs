@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GameCore.GameStates
 {
-    public class PauseState : GameCore.System.State
+    public class PauseState : State
     {
         GameStateController gameStateController;
 

@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public class BoardManager : MonoBehaviour
 {
-
-
     // SHOULD BE REMOVED FROM HERE
     public List<Enemy> allEnemies = new List<Enemy>();
     public GameObject bulletPrefab = null;

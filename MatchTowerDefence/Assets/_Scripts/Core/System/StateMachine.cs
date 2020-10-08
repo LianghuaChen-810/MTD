@@ -5,7 +5,7 @@ namespace GameCore.System
     //Automaton and state are used to implement the State Pattern just to ensure there is no need to have switch cases
     //This is done by wrapping each state in its own class
 
-    public abstract class Automaton : MonoBehaviour
+    public abstract class StateMachine : MonoBehaviour
     {
         protected State state = null;
 
@@ -20,12 +20,12 @@ namespace GameCore.System
             }
         }
 
-        protected virtual void FixedUpdate()
-        {
-            if(state != null)
-            {
-                state.OnFixedUpdate();
-            }
-        }
+        //protected virtual void FixedUpdate()
+        //{
+        //    if(state != null)
+        //    {
+        //        state.OnFixedUpdate();
+        //    }
+        //}
     }
 }
