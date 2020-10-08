@@ -20,6 +20,7 @@ public class GUIManager : MonoBehaviour
     [SerializeField] private GameObject losePanel;
     [SerializeField] private Image backGround;
     [SerializeField] private Sprite winStarSprite;
+    [SerializeField] private Sprite whiteSprite;
     [SerializeField] private Image[] winStars;
     [SerializeField] private Image[] fastForwardSwaps;
 
@@ -62,12 +63,22 @@ public class GUIManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        enemiesReached = 0;
+        moveCounter = 5;
+        moveCounterTxt.text = moveCounter.ToString();
         mainMenu.SetActive(false);
         backGround.gameObject.SetActive(false);
         gamePanel.SetActive(true);
         pauseMenu.SetActive(false);
+        losePanel.SetActive(false);
+        winPanel.SetActive(false);
         RestoreSpeed();
         tryAgain = false;
+
+        for (int i = 0; i < 3; ++i)
+        {
+            winStars[i].sprite = whiteSprite;
+        }
     }
 
     public void Play()
@@ -78,11 +89,6 @@ public class GUIManager : MonoBehaviour
     public void BackToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
-    }
-
-    public void InitiateGame()
-    {
-
     }
 
     public void PauseMenuToggle()

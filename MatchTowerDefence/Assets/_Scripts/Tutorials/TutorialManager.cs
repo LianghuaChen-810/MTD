@@ -30,7 +30,8 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (allowMsgSkip && isActive && Input.GetKeyDown(KeyCode.Mouse0) )
+        //Touch needs to be handled here as well
+        if (allowMsgSkip && isActive && Input.GetKeyDown(KeyCode.Mouse0))
         {
             isActive = false;
             allowMsgSkip = false;

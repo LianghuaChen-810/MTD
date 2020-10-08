@@ -5447,6 +5447,7 @@ MonoBehaviour:
   losePanel: {fileID: 4847139691784814847}
   backGround: {fileID: 7288708309071031044}
   winStarSprite: {fileID: 21300000, guid: 66d02ab0c73f95f4a8c4654a7dc66f54, type: 3}
+  whiteSprite: {fileID: 21300000, guid: b6a757f6793cb0148a905bea74154284, type: 3}
   winStars:
   - {fileID: 6425987113862609761}
   - {fileID: 1185819272069881441}
