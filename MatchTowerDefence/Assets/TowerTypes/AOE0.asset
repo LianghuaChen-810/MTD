@@ -16,7 +16,7 @@ MonoBehaviour:
   attackType: 1
   baseDamage: 0
   range: 0
-  sprite: {fileID: -7629020499374084025, guid: d406cd27aee895442be53270fec2fcf2, type: 3}
+  sprite: {fileID: 21300000, guid: 6716dcc36be643545b24e40751f29cf5, type: 3}
   freezeTime: 0
   color: {r: 0, g: 0, b: 0, a: 1}
   hasUpgrade: 1
