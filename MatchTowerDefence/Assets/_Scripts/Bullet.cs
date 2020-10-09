@@ -50,5 +50,6 @@ public class Bullet : MonoBehaviour
         render.color = to.color;
         enemy = en;
         isShot = true;
+        SFXManager.instance.PlaySFX(SFXManager.AudioClip.TowerAttack);
     }
 }
