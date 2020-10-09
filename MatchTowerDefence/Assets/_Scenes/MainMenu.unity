@@ -554,6 +554,34 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 85682896455391609, guid: b3cda07b5c9b03e458223f1ae6710590, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 304186291631032238, guid: b3cda07b5c9b03e458223f1ae6710590, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 591700159074771577, guid: b3cda07b5c9b03e458223f1ae6710590, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109155626309794531, guid: b3cda07b5c9b03e458223f1ae6710590, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761605582165415618, guid: b3cda07b5c9b03e458223f1ae6710590, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5050428727055838297, guid: b3cda07b5c9b03e458223f1ae6710590, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673491378371802943, guid: b3cda07b5c9b03e458223f1ae6710590, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7881069704527072293, guid: b3cda07b5c9b03e458223f1ae6710590, type: 3}
       propertyPath: GamePanel
       value: 
@@ -662,6 +690,14 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8720982984108596828, guid: b3cda07b5c9b03e458223f1ae6710590, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8804160286357510853, guid: b3cda07b5c9b03e458223f1ae6710590, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3cda07b5c9b03e458223f1ae6710590, type: 3}
 --- !u!1 &533374743 stripped
