@@ -13,6 +13,7 @@ public class Spawner : MonoBehaviour
     public GameObject enemyPrefab;
 
     int enemyCount = 0;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -24,6 +25,7 @@ public class Spawner : MonoBehaviour
         _waitTime = new WaitForSecondsRealtime(spawnDelay);
         StartCoroutine(SpawnMonster());
     }
+
     // Update is called once per frame
     private void Update()
     {
@@ -32,7 +34,6 @@ public class Spawner : MonoBehaviour
 
     IEnumerator SpawnMonster()
     {
-
         int enemyCount = 0;
         while (enemyCount < allEnemies.Count)
         {

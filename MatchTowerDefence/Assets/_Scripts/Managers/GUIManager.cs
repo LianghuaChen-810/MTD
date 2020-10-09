@@ -19,6 +19,8 @@ public class GUIManager : MonoBehaviour
     [SerializeField] private GameObject winPanel;
     [SerializeField] private GameObject losePanel;
     [SerializeField] private Image backGround;
+    [SerializeField] private Sprite winStarSprite;
+    [SerializeField] private Sprite whiteSprite;
     [SerializeField] private Image[] winStars;
     [SerializeField] private Image[] fastForwardSwaps;
 
@@ -31,19 +33,22 @@ public class GUIManager : MonoBehaviour
     private int enemiesReached = 0;
     private int currentLevel = 1;
     private int currentSpeed = 1;
+    private bool tryAgain = false;
 
     public int EnemiesReached { get { return enemiesReached; } set { enemiesReached = value; } }
+
+    public bool TryAgain { get { return tryAgain; } set { tryAgain = value; } }
 
     public int Score { get { return score; } set { score = value; phaseTxt.text = score.ToString(); } }
 
     public int MoveCounter  { get { return moveCounter; } set { moveCounter = value; moveCounterTxt.text = moveCounter.ToString(); } }
 
 
-    void Start()
+    private void Start()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-        
     }
+
     private void Awake()
     {
         instance = GetComponent<GUIManager>();
@@ -56,14 +61,24 @@ public class GUIManager : MonoBehaviour
     }
 
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        enemiesReached = 0;
+        moveCounter = 5;
+        moveCounterTxt.text = moveCounter.ToString();
         mainMenu.SetActive(false);
         backGround.gameObject.SetActive(false);
         gamePanel.SetActive(true);
+        pauseMenu.SetActive(false);
+        losePanel.SetActive(false);
+        winPanel.SetActive(false);
+        RestoreSpeed();
+        tryAgain = false;
 
-        var bm = FindObjectOfType<BoardManager>();
-        bm.Initialise();
+        for (int i = 0; i < 3; ++i)
+        {
+            winStars[i].sprite = whiteSprite;
+        }
     }
 
     public void Play()
@@ -76,9 +91,14 @@ public class GUIManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void InitiateGame()
+    public void PauseMenuToggle()
     {
-
+        if (pauseMenu.gameObject.activeSelf)
+        {
+            pauseMenu.SetActive(false);
+            return;
+        }
+        pauseMenu.SetActive(true);
     }
 
     public void RestartLevel()
@@ -97,60 +117,48 @@ public class GUIManager : MonoBehaviour
     {
         levelFinishedMenu.SetActive(true);
         SetWinStars();
-    }
+    }    
     
-    public void FastForward()
+    public void FastForwardToggle()
     {
         if(currentSpeed == 1)
         {
-            fastForwardSwaps[0].gameObject.SetActive(false);
-            fastForwardSwaps[1].gameObject.SetActive(true);
-            Time.timeScale = 2;
-            ++currentSpeed;
+            DoubleSpeed();
         }
         else
         {
-            fastForwardSwaps[1].gameObject.SetActive(false);
-            fastForwardSwaps[0].gameObject.SetActive(true);
-            Time.timeScale = 1;
-            --currentSpeed;
+            RestoreSpeed();
         }
+    }
+
+    private void RestoreSpeed()
+    {
+        fastForwardSwaps[1].gameObject.SetActive(false);
+        fastForwardSwaps[0].gameObject.SetActive(true);
+        Time.timeScale = 1;
+        currentSpeed = 1;
+    }
+
+    private void DoubleSpeed()
+    {
+        fastForwardSwaps[0].gameObject.SetActive(false);
+        fastForwardSwaps[1].gameObject.SetActive(true);
+        Time.timeScale = 2;
+        ++currentSpeed;
     }
 
     private void SetWinStars()
     {
-        Color star1 = winStars[0].color;
-        Color star2 = winStars[1].color;
-        Color star3 = winStars[2].color;
-
         if (enemiesReached >= 3)
         {
-            star1 = Color.white;
-            star2 = Color.white;
-            star3 = Color.white;
             losePanel.SetActive(true);
         }
         else
         {
             winPanel.SetActive(true);
-            switch (enemiesReached)
+            for(int i = 0; i < Mathf.Abs(enemiesReached - 3); ++i)
             {
-                case 0:
-                    star1 = Color.black;
-                    star2 = Color.black;
-                    star3 = Color.black;
-
-                    break;
-                case 1:
-                    star1 = Color.black;
-                    star2 = Color.black;
-                    star3 = Color.white;
-                    break;
-                case 2:
-                    star1 = Color.black;
-                    star2 = Color.white;
-                    star3 = Color.white;
-                    break;
+                winStars[i].sprite = winStarSprite;
             }
         }
     }

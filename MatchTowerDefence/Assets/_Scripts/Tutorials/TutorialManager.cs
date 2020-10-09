@@ -7,27 +7,30 @@ public class TutorialManager : MonoBehaviour
 {
     public GameObject pressAnywhereTxt;
     public GameObject tutTextMsg;
+    [SerializeField] private GameObject skipButton;
     public static TutorialManager instance;
     public TMP_Text textPanel;
     public List<TutorialStage> stages = new List<TutorialStage>();
     public TutorialStage currentStage = null;
 
-
-    int nextStageIndex = 0;
     public bool isActive = false;
-    bool shouldHideStage = false;
+    private int nextStageIndex = 0;
+    private bool shouldHideStage = false;
     private TutorialStage nextStage = null;
     private bool allowMsgSkip = false;
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         instance = GetComponent<TutorialManager>();
         ExecuteSearchForNextStageRequirement();
+        skipButton.SetActive(true);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        //Touch needs to be handled here as well
         if (allowMsgSkip && isActive && Input.GetKeyDown(KeyCode.Mouse0))
         {
             isActive = false;
@@ -37,7 +40,6 @@ public class TutorialManager : MonoBehaviour
 
             if (shouldHideStage)
                 currentStage.StopStage();
-
 
             // Invoke the function to wait for the next stage
             ExecuteSearchForNextStageRequirement();
@@ -79,8 +81,11 @@ public class TutorialManager : MonoBehaviour
         }
         else
         {
+            PlayerPrefs.SetInt("Tutored", 1);
             isActive = false;
             tutTextMsg.SetActive(false);
+            skipButton.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 
@@ -137,6 +142,9 @@ public class TutorialManager : MonoBehaviour
                  NextTutorialStage();
     }
 
-
+    public void SkipTutorial()
+    {
+        nextStageIndex = 10;
+    }
     // EXECUTION FUNCTIONS
 }

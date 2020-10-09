@@ -32,28 +32,8 @@ public class BoardManager : MonoBehaviour
     List<TowerTile>[] towerTileColumns;
 
     public Tilemap tilemap = null;
-    void Start()
-    {
-        //IsShifting = false;
-        //instance = GetComponent<BoardManager>();
 
-
-        //tilemap = FindObjectOfType<Tilemap>();
-        //if (tilemap != null)
-        //{
-        //    tilemap.CompressBounds();
-        //    xSize = tilemap.cellBounds.size.x;
-        //    ySize = tilemap.cellBounds.size.y;
-
-        //    camManager.SetDisplay((Mathf.Max(xSize, ySize) / 2.0f ), transform.position);
-        //    //AnalyseTilemap();
-        //    // CreateBoard();
-        //    CreateTowerBoard();
-        //    // CreatePathBoard();
-        //}
-    }
-
-    void Awake()
+    private void Awake()
     {
         IsShifting = false;
         instance = GetComponent<BoardManager>();

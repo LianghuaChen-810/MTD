@@ -16,9 +16,9 @@ namespace GameCore.GameStates
         }
 
         public override void OnUpdate()
-        { 
-            GUIManager.instance.resumeButton.onClick.AddListener(() => InitiateNewState());
-            #if  UNITY_STANDALONE_WIN
+        {
+            if(GUIManager.instance.pauseMenu.activeSelf) { InitiateNewState(); }   
+            #if UNITY_STANDALONE_WIN
             if (Input.GetKeyUp(KeyCode.Escape))
             {
                 InitiateNewState();
@@ -28,7 +28,6 @@ namespace GameCore.GameStates
 
         private void InitiateNewState()
         {
-            GUIManager.instance.pauseMenu.SetActive(false);
             owner.State = new PlayingState(gameStateController);
         }
     }
