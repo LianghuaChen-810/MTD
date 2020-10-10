@@ -4339,7 +4339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a08809ddc0e2b544aac79265cd92787e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Defend how? By bulding towers! To build a tower you need to match at least
+  text: Defend how? By building towers! To build a tower you need to match at least
     3 of the same kind in a line. Matching more in one go makes them stronger!
   shouldHideOnFinish: 1
   stageObjects:

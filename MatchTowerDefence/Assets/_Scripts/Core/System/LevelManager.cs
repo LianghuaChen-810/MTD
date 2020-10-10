@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace GameCore.System
@@ -51,5 +52,9 @@ namespace GameCore.System
             //}
         }
 
+        public int GetStarsForLevel(string id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

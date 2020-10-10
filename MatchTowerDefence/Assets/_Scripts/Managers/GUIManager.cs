@@ -72,6 +72,7 @@ public class GUIManager : MonoBehaviour
         enemiesReached = 0;
         moveCounter = 5;
         moveCounterTxt.text = moveCounter.ToString();
+
         if (scene.buildIndex > 0)
         {
             mainMenu.SetActive(false);
@@ -81,6 +82,16 @@ public class GUIManager : MonoBehaviour
             losePanel.SetActive(false);
             winPanel.SetActive(false);
         }
+        else
+        {
+            mainMenu.SetActive(true);
+            backGround.gameObject.SetActive(true);
+            gamePanel.SetActive(false);
+            pauseMenu.SetActive(false);
+            losePanel.SetActive(false);
+            winPanel.SetActive(false);
+        }
+
         RestoreSpeed();
         tryAgain = false;
 
@@ -97,12 +108,7 @@ public class GUIManager : MonoBehaviour
     
     public void BackToMainMenu()
     {
-        mainMenu.SetActive(true);
-        backGround.gameObject.SetActive(true);
-        gamePanel.SetActive(false);
-        pauseMenu.SetActive(false);
-        losePanel.SetActive(false);
-        winPanel.SetActive(false);
+       
         SceneManager.LoadScene("MainMenu");
     } 
     
