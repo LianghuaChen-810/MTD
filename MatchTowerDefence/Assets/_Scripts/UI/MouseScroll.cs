@@ -24,12 +24,12 @@ namespace MatchTowerDefence.UI
         private void Start()
         {
             #if UNITY_STANDALONE
-            scrollRect = GetComponent<ScrollRect>();
-            scrollRect.enabled = false;
-            overrideScrolling = true;
-            rectTransform = (RectTransform)scrollRect.transform;
+                scrollRect = GetComponent<ScrollRect>();
+                scrollRect.enabled = false;
+                overrideScrolling = true;
+                rectTransform = (RectTransform)scrollRect.transform;
             #else
-            overrideScrolling = true;
+                overrideScrolling = true;
             #endif
         }
 
