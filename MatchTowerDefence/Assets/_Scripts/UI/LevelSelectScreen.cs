@@ -18,9 +18,9 @@ namespace MatchTowerDefence.UI
         protected List<Button> buttons = new List<Button>();
 
         // Start is called before the first frame update
-        protected virtual void Start()
+        private void Start()
         {
-            if(LevelManager.instance == null) { return;  }
+            if(LevelManager.instance == null) { return; }
 
             levelList = LevelManager.instance.levelList;
             if (layout == null || selectionPrefab == null || levelList == null)

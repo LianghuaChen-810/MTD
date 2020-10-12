@@ -1,4 +1,5 @@
 ﻿using MatchTowerDefence.Level;
+using MatchTowerDefence.UI;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,54 +10,83 @@ namespace GameCore.System
     {
         public static LevelManager instance = null;
 
+        public LevelList levelList;
+
         private TutorialManager tutorialManager;
         private int hasTutored = 0;
         private int enemyRemaining = 99999;
-        public LevelList levelList;
 
-        public static LevelManager Instance
+        public void Initialise()
         {
-            get
+            if (instance == null)
             {
-                if(instance == null)
-                {
-                    instance = new LevelManager();
-                }
-                return instance;
+                instance = GetComponent<LevelManager>();
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (scene.buildIndex > 0)
+            {
+                BoardManager boardManager = FindObjectOfType<BoardManager>();
+                tutorialManager = FindObjectOfType<TutorialManager>();
+
+                if (boardManager != null) { boardManager.Initialise(); }
+
+                if (PlayerPrefs.HasKey("Tutored")) { hasTutored = PlayerPrefs.GetInt("Tutored"); }
+
+                if (tutorialManager != null && hasTutored == 1) { /*tutorialManager.gameObject.SetActive(false);*/ }
+
+                
+            }
+            else
+            {
+                GUIManager.instance.MainMenuInstance();
+            }
+
+            GUIManager.instance.SetOnSceneLoaded();
+        }
+
+
+        public void CompleteLevel(string levelId, int starsEarned)
+        {
+            if(!levelList.ContainsKey(levelId))
+            { 
+                Debug.LogWarningFormat("Cannot complete level with id = {0}, Not in level list", levelId);
+                return;
             }
         }
 
-        private void Awake()
+        public LevelItem LevelItemCurrentScene()
         {
-            BoardManager boardManager = FindObjectOfType<BoardManager>();
-            tutorialManager = FindObjectOfType<TutorialManager>();
-            if (boardManager != null) { boardManager.Initialise(); }
-
-            if (PlayerPrefs.HasKey("Tutored")) { hasTutored = PlayerPrefs.GetInt("Tutored"); }
-
-            if (tutorialManager != null && hasTutored == 1) { /*tutorialManager.gameObject.SetActive(false);*/ }
+            string sceneName = SceneManager.GetActiveScene().name;
+            return levelList.GetLevelByScene(sceneName);
         }
 
-        private void Update()
+        public bool IsLevelCompleted(string levelId)
         {
-            if (BoardManager.instance != null)
-                enemyRemaining = BoardManager.instance.allEnemies.Count;
-
-            //if(enemyRemaining == 0 && GUIManager.instance.phaseTxt.text == "Defense Phase")
-            //{
-            //    Debug.Log("IsLevelFinished");
-            //    GUIManager.instance.LevelIsFinished();
-            //}
-
-            //if (SceneManager.GetActiveScene().buildIndex > 0)
-            //{
-            //    GUIManager.instance.InitiateGame();
-            //}
+            if (!levelList.ContainsKey(levelId))
+            {
+                Debug.LogWarningFormat("Cannot check if level with id = {0} is completed , Not in level list", levelId);
+                return false;
+            }
+            return true; //DataStore.IsLevelCompleted(levelId);
         }
 
-        public int GetStarsForLevel(string id)
+        public int GetStarsForLevel(string levelId)
         {
-            throw new NotImplementedException();
+            if (!levelList.ContainsKey(levelId))
+            {
+                Debug.LogWarningFormat("Cannot check if level is completed , Not in level list", levelId);
+                return 0;
+            }
+            return 3; //DataStore.GetNumberofStarForLevel(levelId);
         }
     }
 }
