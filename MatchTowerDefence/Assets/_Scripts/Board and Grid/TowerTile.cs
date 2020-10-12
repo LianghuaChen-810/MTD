@@ -192,7 +192,7 @@ public class TowerTile : MonoBehaviour
         {
             //shape.PrintShape();
             shape.UpdateTowerFromMatch();
-
+            SFXManager.instance.PlaySFX(SFXManager.AudioClip.Match);
             StopCoroutine(BoardManager.instance.FindNullTiles());
             StartCoroutine(BoardManager.instance.FindNullTiles());
         }

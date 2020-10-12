@@ -51,13 +51,19 @@ public class GUIManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = GetComponent<GUIManager>();
-
+        if (instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = GetComponent<GUIManager>();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         enemiesReached = 0;
         moveCounter = 5;
         moveCounterTxt.text = moveCounter.ToString();
 
-        DontDestroyOnLoad(this);
     }
 
 
@@ -66,12 +72,26 @@ public class GUIManager : MonoBehaviour
         enemiesReached = 0;
         moveCounter = 5;
         moveCounterTxt.text = moveCounter.ToString();
-        mainMenu.SetActive(false);
-        backGround.gameObject.SetActive(false);
-        gamePanel.SetActive(true);
-        pauseMenu.SetActive(false);
-        losePanel.SetActive(false);
-        winPanel.SetActive(false);
+
+        if (scene.buildIndex > 0)
+        {
+            mainMenu.SetActive(false);
+            backGround.gameObject.SetActive(false);
+            gamePanel.SetActive(true);
+            pauseMenu.SetActive(false);
+            losePanel.SetActive(false);
+            winPanel.SetActive(false);
+        }
+        else
+        {
+            mainMenu.SetActive(true);
+            backGround.gameObject.SetActive(true);
+            gamePanel.SetActive(false);
+            pauseMenu.SetActive(false);
+            losePanel.SetActive(false);
+            winPanel.SetActive(false);
+        }
+
         RestoreSpeed();
         tryAgain = false;
 
@@ -88,7 +108,13 @@ public class GUIManager : MonoBehaviour
     
     public void BackToMainMenu()
     {
+       
         SceneManager.LoadScene("MainMenu");
+    } 
+    
+    public void Quit()
+    {
+        Application.Quit();
     }
 
     public void PauseMenuToggle()

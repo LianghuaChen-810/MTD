@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "Assets/TowerObject")]
 public class TowerObject : ScriptableObject
 {
-
     public enum TowerType { NORMAL0, NORMAL1, NORMAL2, NORMAL3, AOE0, AOE1, AOE2, AOE3, FROST0, FROST1, FROST2, FROST3};
     public enum TowerAttackType { NORMAL, AOE, FROST };
 
@@ -23,6 +20,4 @@ public class TowerObject : ScriptableObject
     [Header ("Tower Upgrades")]
     public bool hasUpgrade;
     public TowerObject nextLevelTower;
-
-
 }

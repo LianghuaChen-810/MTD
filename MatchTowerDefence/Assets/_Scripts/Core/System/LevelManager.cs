@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using MatchTowerDefence.Level;
+using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace GameCore.System
@@ -10,6 +12,7 @@ namespace GameCore.System
         private TutorialManager tutorialManager;
         private int hasTutored = 0;
         private int enemyRemaining = 99999;
+        public LevelList levelList;
 
         public static LevelManager Instance
         {
@@ -51,5 +54,9 @@ namespace GameCore.System
             //}
         }
 
+        public int GetStarsForLevel(string id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
