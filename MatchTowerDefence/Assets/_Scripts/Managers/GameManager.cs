@@ -1,26 +1,46 @@
-﻿using UnityEngine;
+﻿using GameCore.System;
+using System;
+using UnityEngine;
 
-public class GameManager : MonoBehaviour 
+namespace MatchTowerDefence.Managers
 {
-	public static GameManager instance;
-
-    private void Awake()
+    public class GameManager : MonoBehaviour
     {
-        // Only 1 Game Manager can exist at a time
-        if (instance == null)
+        public static GameManager instance;
+
+        private LevelManager levelManager;
+        private GUIManager guiManager;
+
+        private void Awake()
         {
-            DontDestroyOnLoad(gameObject);
-            instance = GetComponent<GameManager>();
+            // Only 1 Game Manager can exist at a time
+            if (instance == null)
+            {
+                DontDestroyOnLoad(gameObject);
+                instance = GetComponent<GameManager>();
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+
+            if (LevelManager.instance == null)
+            {
+                levelManager = FindObjectOfType<LevelManager>();
+            }  
+            
+            if (GUIManager.instance == null)
+            {
+                guiManager = FindObjectOfType<GUIManager>();
+            }
+
+            InitiliaseAllManagers();
         }
-        else
+
+        private void InitiliaseAllManagers()
         {
-            Destroy(gameObject);
+            levelManager.Initialise();
+            guiManager.Initialise();
         }
     }
-
-    private void Update()
-    {
-
-    }
-
 }

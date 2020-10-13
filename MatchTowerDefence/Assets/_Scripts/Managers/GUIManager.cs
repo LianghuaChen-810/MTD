@@ -18,6 +18,7 @@ public class GUIManager : MonoBehaviour
     [SerializeField] private GameObject gamePanel;
     [SerializeField] private GameObject winPanel;
     [SerializeField] private GameObject losePanel;
+    [SerializeField] private GameObject levelSelectScreen;
     [SerializeField] private Image backGround;
     [SerializeField] private Sprite winStarSprite;
     [SerializeField] private Sprite whiteSprite;
@@ -43,43 +44,54 @@ public class GUIManager : MonoBehaviour
 
     public int MoveCounter  { get { return moveCounter; } set { moveCounter = value; moveCounterTxt.text = moveCounter.ToString(); } }
 
-
-    private void Start()
+    public void Initialise()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void Awake()
-    {
-        instance = GetComponent<GUIManager>();
-
-        enemiesReached = 0;
-        moveCounter = 5;
-        moveCounterTxt.text = moveCounter.ToString();
-
-        DontDestroyOnLoad(this);
+        if (instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = GetComponent<GUIManager>();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void SetOnSceneLoaded()
     {
         enemiesReached = 0;
         moveCounter = 5;
         moveCounterTxt.text = moveCounter.ToString();
+        RestoreSpeed();
+        tryAgain = false;
+        for (int i = 0; i < 3; ++i)
+        {
+            winStars[i].sprite = whiteSprite;
+        }
+    }
+
+    public void LevelSceneInstance()
+    {
         mainMenu.SetActive(false);
         backGround.gameObject.SetActive(false);
         gamePanel.SetActive(true);
         pauseMenu.SetActive(false);
         losePanel.SetActive(false);
         winPanel.SetActive(false);
-        RestoreSpeed();
-        tryAgain = false;
-
-        for (int i = 0; i < 3; ++i)
-        {
-            winStars[i].sprite = whiteSprite;
-        }
+        levelSelectScreen.SetActive(false);
     }
+
+    public void MainMenuInstance()
+    {
+        mainMenu.SetActive(true);
+        backGround.gameObject.SetActive(true);
+        gamePanel.SetActive(false);
+        pauseMenu.SetActive(false);
+        losePanel.SetActive(false);
+        winPanel.SetActive(false);
+    }
+
 
     public void Play()
     {
@@ -89,6 +101,11 @@ public class GUIManager : MonoBehaviour
     public void BackToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    } 
+    
+    public void Quit()
+    {
+        Application.Quit();
     }
 
     public void PauseMenuToggle()
@@ -105,12 +122,6 @@ public class GUIManager : MonoBehaviour
     {
         levelFinishedMenu.SetActive(false);
         SceneManager.LoadScene(currentLevel);
-    }
-
-    public void MainMenuInstance()
-    {
-        mainMenu.SetActive(true);
-        backGround.gameObject.SetActive(true);
     }
 
     public void LevelIsFinished()

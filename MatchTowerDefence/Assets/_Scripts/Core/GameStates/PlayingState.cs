@@ -17,17 +17,12 @@ namespace GameCore.GameStates
 
             enemyRemaining = 9999;
 
-       
-            //if (GUIManager.instance != null)
-            //{
-            //    GUIManager.instance.InitiateGame();
-            //}
+            GUIManager.instance.LevelSceneInstance();
         }
 
         public override void OnUpdate()
         {
-            if (BoardManager.instance != null)
-                enemyRemaining = BoardManager.instance.allEnemies.Count;
+            if (BoardManager.instance != null) { enemyRemaining = BoardManager.instance.allEnemies.Count; }
 
             if(BoardManager.instance.defencePhase == true && enemyRemaining == 0)
             {

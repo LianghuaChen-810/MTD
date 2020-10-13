@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a99faa72a4696c488627b9c408bd6ad, type: 3}
+  m_Name: LevelList
+  m_EditorClassIdentifier: 
+  levels:
+  - id: 1
+    name: Easy Peesy
+    description: Tutorial Level
+    sceneName: GameWithTutorialAnimesh
+  - id: 2
+    name: Easy Peesy
+    description: Tutorial Level 1
+    sceneName: GameWithTutorialAnimesh
+  - id: 3
+    name: Easy Peesy
+    description: Tutorial Level 2
+    sceneName: GameWithTutorialAnimesh
+  - id: 4
+    name: Easy Peesy
+    description: 'Tutorial Level 3 '
+    sceneName: GameWithTutorialAnimesh
+  - id: 5
+    name: Easy Peesy
+    description: 'Tutorial Level 4 '
+    sceneName: GameWithTutorialAnimesh
