@@ -7,13 +7,14 @@ public class BoardManager : MonoBehaviour
 {
     public List<TowerTile> allTiles = null;
     public CameraManager camManager = null;
+
+
     public static BoardManager instance;
     public List<TowerObject> spawnTowers = new List<TowerObject>();
     public TowerObject AOETower;
     public TowerObject NormalTower;
     public TowerObject FrostTower;
 
-    public List<Enemy> allEnemies = new List<Enemy>();
 
     public float shiftDelay = 0.03f;
 

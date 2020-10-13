@@ -82,7 +82,7 @@ public class TowerTile : MonoBehaviour
 
         float closest = 100.0f;
         Enemy closestEnemy = null;
-        foreach (Enemy enemy in BoardManager.instance.allEnemies)
+        foreach (Enemy enemy in LevelControl.enemiesInWave)
         {
             float dist = Vector3.Distance(transform.position, enemy.transform.position);
             if (dist < closest)

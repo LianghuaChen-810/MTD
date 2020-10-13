@@ -7,22 +7,17 @@ namespace GameCore.GameStates
     {
         GameStateController gameStateController;
 
-        private int enemyRemaining = 9999;
-
-
         public PlayingState(GameStateController owner) : base(owner)
         {
             Time.timeScale = 1;
             gameStateController = owner;
 
-            enemyRemaining = 9999;
 
             GUIManager.instance.LevelSceneInstance();
         }
 
         public override void OnUpdate()
         {
-            if (BoardManager.instance != null) { enemyRemaining = BoardManager.instance.allEnemies.Count; }
 
             if(LevelControl.phase == LevelPhase.FINISHED)
             {

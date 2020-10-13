@@ -8,6 +8,8 @@ public static class LevelControl
     public static int currentWave;
 
     public static int enemiesLeftInWave;
+    public static List<Enemy> enemiesInWave;
+
     public static int enemiesPassed;
 
     public static LevelPhase phase;
@@ -46,6 +48,27 @@ public static class LevelControl
         currentWave = 0;
         phase = LevelPhase.POSTDEFENCE;
     }
+
+
+    public static void OnEnemyDied(Enemy enemy)
+    {
+        enemiesInWave.Remove(enemy);
+        enemiesLeftInWave--;
+    }
+
+    public static void OnEnemySpawned(Enemy enemy)
+    {
+        enemiesInWave.Add(enemy);
+    }
+
+    public static void OnEnemyReachedGoal(Enemy enemy)
+    {
+        enemiesInWave.Remove(enemy);
+        enemiesLeftInWave--;
+        enemiesPassed++;
+    }
+
+
 
     public static void OnUpdate()
     {
@@ -95,14 +118,15 @@ public static class LevelControl
     {
         currentWave++;
         // Make spawners spawn depending on wave
-        int enemiesInWave = 0;
+        enemiesLeftInWave = 0;
         currentWaveSpawners = waveSpawners[currentWave];
 
         foreach (Spawner spawner in currentWaveSpawners)
         {
-            enemiesInWave += spawner.allEnemies.Count;
+            enemiesLeftInWave += spawner.allEnemies.Count;
         }
-        enemiesLeftInWave = enemiesInWave;
+
+        enemiesInWave = new List<Enemy>();
 
         // Set phase
         phase = LevelPhase.PREPARATION;
@@ -113,11 +137,12 @@ public static class LevelControl
     // Trigger the defence phase and start spawning
     public static void TriggerDefencePhase()
     {
+
         // Set Phase
         phase = LevelPhase.DEFENCE;
         GUIManager.instance.phaseTxt.text = "Defence";
 
-        // Make towers SHoot
+        // Make towers Shoot
         foreach (TowerTile tile in BoardManager.instance.allTiles)
         {
             tile.StartShooting();
