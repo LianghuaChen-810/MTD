@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using System;
 using MatchTowerDefence.SaveSystem;
 using GameCore.System;
+using MatchTowerDefence.UI;
 
 namespace MatchTowerDefence.Managers
 {
@@ -136,11 +137,12 @@ namespace MatchTowerDefence.Managers
 
         public void LevelIsFinished()
         {
+            LevelItem level = LevelManager.instance.LevelItemCurrentScene();
+
             levelFinishedMenu.SetActive(true);
             SetWinStars();
-            string currentLevel = SceneManager.GetActiveScene().name;
             score = Mathf.Abs(enemiesReached - 3);
-            LevelManager.instance.CompleteLevel(currentLevel, score);
+            LevelManager.instance.CompleteLevel(level.id, score);
         }
 
         public void FastForwardToggle()

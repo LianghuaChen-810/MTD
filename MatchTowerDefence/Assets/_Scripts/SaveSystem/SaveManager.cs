@@ -74,7 +74,7 @@ namespace MatchTowerDefence.SaveSystem
             }
         }
 
-        private void SaveData()
+        public void SaveData()
         {
             dataSaver.Save(saveData);
         } 

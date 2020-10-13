@@ -65,6 +65,7 @@ namespace GameCore.System
             if (SaveManager.instance != null)
             {
                 SaveManager.instance.saveData.CompleteLevel(levelId, starsEarned);
+                SaveManager.instance.SaveData();
             }
         }
 
@@ -84,7 +85,7 @@ namespace GameCore.System
 
             if (SaveManager.instance != null)
             {
-                SaveManager.instance.saveData.IsLevelCompleted(levelId);
+                return SaveManager.instance.saveData.IsLevelCompleted(levelId);
             }
             return false;
         }
@@ -98,7 +99,7 @@ namespace GameCore.System
             }
             if (SaveManager.instance != null)
             {
-                SaveManager.instance.saveData.IsLevelCompleted(levelId);
+                return SaveManager.instance.saveData.GetNoOfStarsForLevel(levelId);
             }
             return 0;
         }
