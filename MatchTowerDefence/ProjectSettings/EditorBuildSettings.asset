@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/_Scenes/MainMenu.unity
     guid: 0cc8bec93d6b9e741afba0940e799f22
   - enabled: 1
-    path: Assets/_Scenes/GameWithTutorialAnimesh.unity
-    guid: 2e11396d407ed8f40a74749aa64cd964
-  - enabled: 0
     path: Assets/_Scenes/GameWithTutorial.unity
     guid: 630ee135f0e8f99408752f6d1a882c55
+  - enabled: 0
+    path: Assets/_Scenes/GameWithTutorialAnimesh.unity
+    guid: 2e11396d407ed8f40a74749aa64cd964
   - enabled: 0
     path: Assets/_Scenes/Game.unity
     guid: 13c4b9a25e714484db0951847e444521

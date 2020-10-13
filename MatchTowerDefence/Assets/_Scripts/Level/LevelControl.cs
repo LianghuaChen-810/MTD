@@ -22,7 +22,7 @@ public static class LevelControl
     public static void Initialise(List<Spawner> spawnersInLevel)
     {
         phase = LevelPhase.PREPARATION;
-
+        Debug.Log(spawnersInLevel.Count);
         waveSpawners = new Dictionary<int, List<Spawner>>();
 
         // Set wave-spawners dictionary
@@ -31,7 +31,7 @@ public static class LevelControl
             var spawner = spawnersInLevel[i];
 
             // When first time seeing the wave number add a new empty list
-            if (waveSpawners[spawner.wave] == null)
+            if (!waveSpawners.ContainsKey(spawner.wave))
             {
                 waveSpawners.Add(spawner.wave, new List<Spawner>());
             }
@@ -45,7 +45,6 @@ public static class LevelControl
         currentWave = 0;
         enemiesLeftInWave = 0;
         enemiesPassed = 0;  
-        currentWave = 0;
         phase = LevelPhase.POSTDEFENCE;
     }
 
@@ -97,18 +96,22 @@ public static class LevelControl
 
     public static void TriggerFinishedPhase()
     {
+        Debug.Log("LevelControl: Triggered Finish Phase");
         phase = LevelPhase.FINISHED;
         GUIManager.instance.LevelIsFinished();
     }
 
     public static void TriggerPostDefencePhase()
     {
+        Debug.Log("LevelControl: Triggered Post Defence Phase");
+
         // Stop towers from attacking
         foreach (TowerTile tile in BoardManager.instance.allTiles)
         {
             tile.StopShooting();
         }
 
+        GUIManager.instance.MoveCounter = 5; // TODO: REMOVE HARD CODED PART
         // Set phase
         phase = LevelPhase.POSTDEFENCE;
     }
@@ -116,6 +119,8 @@ public static class LevelControl
     // Set up data for the next wave and begin preparation phase;
     public static void TriggerPreparationPhase()
     {
+        Debug.Log("LevelControl: Triggered Preparation Phase");
+
         currentWave++;
         // Make spawners spawn depending on wave
         enemiesLeftInWave = 0;
@@ -137,6 +142,7 @@ public static class LevelControl
     // Trigger the defence phase and start spawning
     public static void TriggerDefencePhase()
     {
+        Debug.Log("LevelControl: Triggered Denfence Phase");
 
         // Set Phase
         phase = LevelPhase.DEFENCE;

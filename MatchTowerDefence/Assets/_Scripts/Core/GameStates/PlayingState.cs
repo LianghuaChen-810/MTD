@@ -21,6 +21,7 @@ namespace GameCore.GameStates
 
             if(LevelControl.phase == LevelPhase.FINISHED)
             {
+                Debug.Log("Finished State Load");
                 InitiateFinishedState();
             }
 

@@ -124,7 +124,7 @@ public class BoardManager : MonoBehaviour
                         newTowerObject = AOETower;
                     }
 
-                    Debug.Log(newTileObj.name + " = " + newTowerObject);
+                    //Debug.Log(newTileObj.name + " = " + newTowerObject);
                     // Edit tile info
                     TowerTile newTile = newTileObj.GetComponent<TowerTile>();
                     newTile.boardPosition = new BoardPosition(col, row);

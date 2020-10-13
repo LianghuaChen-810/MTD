@@ -16,10 +16,16 @@ namespace GameCore.System
         private TutorialManager tutorialManager;
         private int hasTutored = 0;
 
+        void Awake()
+        {
+            DontDestroyOnLoad(this);
+        }
+
         void Update()
         {
             LevelControl.OnUpdate();
         }
+
         public void Initialise()
         {
             if (instance == null)
@@ -38,21 +44,11 @@ namespace GameCore.System
         {
             if (scene.buildIndex > 0)
             {
-                Debug.Log("INITIALISING AFTER SCENE IS LOADED");
-                Debug.Log(FindObjectsOfType<Spawner>());
-                List<GameObject> objects = new List<GameObject>();
-                objects.AddRange(scene.GetRootGameObjects());
-
-                List<Spawner> spawners = new List<Spawner>();
-                foreach (var obj in objects)
-                {
-                    if (obj.GetComponent<Spawner>() != null)
-                    {
-                        spawners.Add(obj.GetComponent<Spawner>());
-                    }
-                }
+                // Finds spawners needs to be "true" to search in children of root objects because they are inactive on SceneLoad
+                List<Spawner> spawners = new List<Spawner>(FindObjectsOfType<Spawner>(true));
                 LevelControl.Initialise(spawners);
 
+                // Initialise Board Manager
                 BoardManager boardManager = FindObjectOfType<BoardManager>();
                 tutorialManager = FindObjectOfType<TutorialManager>();
 
