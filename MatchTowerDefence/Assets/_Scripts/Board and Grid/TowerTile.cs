@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
+using MatchTowerDefence.Managers;
 
 public class TowerTile : MonoBehaviour
 {

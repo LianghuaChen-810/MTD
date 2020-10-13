@@ -1,4 +1,5 @@
 ﻿using GameCore.System;
+using MatchTowerDefence.SaveSystem;
 using System;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ namespace MatchTowerDefence.Managers
 
         private LevelManager levelManager;
         private GUIManager guiManager;
+        private SFXManager sfxManager;
+        private SaveManager saveManager;
 
         private void Awake()
         {
@@ -32,6 +35,16 @@ namespace MatchTowerDefence.Managers
             if (GUIManager.instance == null)
             {
                 guiManager = FindObjectOfType<GUIManager>();
+            }  
+            
+            if (SFXManager.instance == null)
+            {
+                sfxManager = FindObjectOfType<SFXManager>();
+            }
+            
+            if (SaveManager.instance == null)
+            {
+                saveManager = FindObjectOfType<SaveManager>();
             }
 
             InitiliaseAllManagers();
@@ -41,6 +54,8 @@ namespace MatchTowerDefence.Managers
         {
             levelManager.Initialise();
             guiManager.Initialise();
+            sfxManager.Initialise();
+            saveManager.Initialise();
         }
     }
 }
