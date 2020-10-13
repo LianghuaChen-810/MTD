@@ -500,8 +500,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: BLAHBLAH TUTORIAL
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b6e892835446e5046aaf4cc0af90eb8d, type: 2}
-  m_sharedMaterial: {fileID: -2523120548054407151, guid: b6e892835446e5046aaf4cc0af90eb8d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -525,12 +525,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 20
+  m_fontSize: 43.15
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 6
-  m_fontSizeMax: 16
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -693,6 +693,10 @@ PrefabInstance:
       propertyPath: patrolPoints.Array.data[1]
       value: 
       objectReference: {fileID: 1872269729}
+    - target: {fileID: 8726923391003124804, guid: 97e4c8f2845b62f4a8b232d750a070b5, type: 3}
+      propertyPath: wave
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97e4c8f2845b62f4a8b232d750a070b5, type: 3}
 --- !u!1 &255136018
@@ -853,8 +857,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: (Press anywhere to continue)
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b6e892835446e5046aaf4cc0af90eb8d, type: 2}
-  m_sharedMaterial: {fileID: -2523120548054407151, guid: b6e892835446e5046aaf4cc0af90eb8d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -878,12 +882,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
+  m_fontSize: 22.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 6
-  m_fontSizeMax: 12
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -4468,6 +4472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pressAnywhereTxt: {fileID: 265550594}
   tutTextMsg: {fileID: 934195623}
+  skipButton: {fileID: 0}
   textPanel: {fileID: 181357593}
   stages:
   - {fileID: 787617186}
@@ -4930,7 +4935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e62529ad85b5b4d4f939b689d97e24b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defencePhase: 0
+  allTiles: []
   camManager: {fileID: 155782907}
   spawnTowers:
   - {fileID: 11400000, guid: 57065164e63cb9a4d89d4cdcc07851de, type: 2}

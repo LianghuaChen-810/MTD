@@ -24,7 +24,7 @@ namespace GameCore.GameStates
         {
             if (BoardManager.instance != null) { enemyRemaining = BoardManager.instance.allEnemies.Count; }
 
-            if(BoardManager.instance.defencePhase == true && enemyRemaining == 0)
+            if(LevelControl.phase == LevelPhase.FINISHED)
             {
                 InitiateFinishedState();
             }

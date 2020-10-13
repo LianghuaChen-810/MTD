@@ -1,6 +1,7 @@
 ﻿using MatchTowerDefence.Level;
 using MatchTowerDefence.UI;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,8 +15,11 @@ namespace GameCore.System
 
         private TutorialManager tutorialManager;
         private int hasTutored = 0;
-        private int enemyRemaining = 99999;
 
+        void Update()
+        {
+            LevelControl.OnUpdate();
+        }
         public void Initialise()
         {
             if (instance == null)
@@ -34,6 +38,21 @@ namespace GameCore.System
         {
             if (scene.buildIndex > 0)
             {
+                Debug.Log("INITIALISING AFTER SCENE IS LOADED");
+                Debug.Log(FindObjectsOfType<Spawner>());
+                List<GameObject> objects = new List<GameObject>();
+                objects.AddRange(scene.GetRootGameObjects());
+
+                List<Spawner> spawners = new List<Spawner>();
+                foreach (var obj in objects)
+                {
+                    if (obj.GetComponent<Spawner>() != null)
+                    {
+                        spawners.Add(obj.GetComponent<Spawner>());
+                    }
+                }
+                LevelControl.Initialise(spawners);
+
                 BoardManager boardManager = FindObjectOfType<BoardManager>();
                 tutorialManager = FindObjectOfType<TutorialManager>();
 

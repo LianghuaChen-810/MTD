@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public int wave = 1;
     [SerializeField] float spawnDelay = 1.0f;
     private WaitForSecondsRealtime _waitTime;
 
