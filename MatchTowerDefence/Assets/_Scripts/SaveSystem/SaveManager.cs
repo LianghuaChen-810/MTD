@@ -15,11 +15,12 @@ namespace MatchTowerDefence.SaveSystem
         [SerializeField] private string musicVolume;
         [SerializeField] private string sfxVolume;
 
-        private JSONSave<GameDataStoreBase> dataSaver;
-        private GameDataStoreBase saveData;
+        private JSONSave<SaveGameDataStore> dataSaver;
+        public SaveGameDataStore saveData;
 
-        public void Initialise()
+        public void Awake()
         {
+            DontDestroyOnLoad(gameObject);
             if (instance == null)
             {
                 instance = GetComponent<SaveManager>();
@@ -36,6 +37,14 @@ namespace MatchTowerDefence.SaveSystem
         {
             SetVolumes(saveData.masterVolume, saveData.musicVolume, saveData.musicVolume, false);
         }
+
+        public void GetVolumes(out float master, out float music, out float sfx)
+        {
+            master = saveData.masterVolume;
+            music = saveData.musicVolume;
+            sfx = saveData.sfxVolume;
+        }
+
 
         public void SetVolumes(float master, float music, float sfx, bool save)
         {
@@ -73,9 +82,9 @@ namespace MatchTowerDefence.SaveSystem
         private void LoadData()
         {
             #if UNITY_EDITOR
-                dataSaver = new JSONSave<GameDataStoreBase>(saveFile);
+                dataSaver = new JSONSave<SaveGameDataStore>(saveFile);
             #else
-                dataSaver = new EncryptedJSON<GameDataStoreBase>(saveFile);
+                dataSaver = new EncryptedJSON<SaveGameDataStore>(saveFile);
             #endif
 
             try

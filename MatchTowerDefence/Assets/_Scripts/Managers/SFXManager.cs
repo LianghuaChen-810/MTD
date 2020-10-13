@@ -12,11 +12,11 @@ namespace MatchTowerDefence.Managers
 		private AudioSource[] audioSource;
 
 		// Use this for initialization
-		public void Initialise()
+		public void Awake()
 		{
+			DontDestroyOnLoad(gameObject);
 			if (instance == null)
 			{
-				DontDestroyOnLoad(gameObject);
 				instance = GetComponent<SFXManager>();
 			}
 			else

@@ -22,9 +22,9 @@ namespace MatchTowerDefence.SaveSystem
 
         public override void Save(Data data)
         {
-            string jsonFile = JsonUtility.ToJson(data);
-
-            using(StreamWriter writer = WriteStream()) { writer.Write(jsonFile); }
+            string json = JsonUtility.ToJson(data);
+            Debug.Log(json);
+            using(StreamWriter writer = WriteStream()) { writer.Write(json); }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using MatchTowerDefence.Level;
 using MatchTowerDefence.Managers;
+using MatchTowerDefence.SaveSystem;
 using MatchTowerDefence.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,10 +15,10 @@ namespace GameCore.System
 
         private TutorialManager tutorialManager;
         private int hasTutored = 0;
-        private int enemyRemaining = 99999;
 
-        public void Initialise()
+        public void Awake()
         {
+            DontDestroyOnLoad(gameObject);
             if (instance == null)
             {
                 instance = GetComponent<LevelManager>();
@@ -61,6 +62,10 @@ namespace GameCore.System
                 Debug.LogWarningFormat("Cannot complete level with id = {0}, Not in level list", levelId);
                 return;
             }
+            if (SaveManager.instance != null)
+            {
+                SaveManager.instance.saveData.CompleteLevel(levelId, starsEarned);
+            }
         }
 
         public LevelItem LevelItemCurrentScene()
@@ -76,7 +81,12 @@ namespace GameCore.System
                 Debug.LogWarningFormat("Cannot check if level with id = {0} is completed , Not in level list", levelId);
                 return false;
             }
-            return true; //DataStore.IsLevelCompleted(levelId);
+
+            if (SaveManager.instance != null)
+            {
+                SaveManager.instance.saveData.IsLevelCompleted(levelId);
+            }
+            return false;
         }
 
         public int GetStarsForLevel(string levelId)
@@ -86,7 +96,11 @@ namespace GameCore.System
                 Debug.LogWarningFormat("Cannot check if level is completed , Not in level list", levelId);
                 return 0;
             }
-            return 3; //DataStore.GetNumberofStarForLevel(levelId);
+            if (SaveManager.instance != null)
+            {
+                SaveManager.instance.saveData.IsLevelCompleted(levelId);
+            }
+            return 0;
         }
     }
 }

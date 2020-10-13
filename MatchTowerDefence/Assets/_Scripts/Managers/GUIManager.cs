@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using System;
 using MatchTowerDefence.SaveSystem;
+using GameCore.System;
 
 namespace MatchTowerDefence.Managers
 {
@@ -53,11 +54,11 @@ namespace MatchTowerDefence.Managers
 
         public int MoveCounter { get { return moveCounter; } set { moveCounter = value; moveCounterTxt.text = moveCounter.ToString(); } }
 
-        public void Initialise()
+        public void Awake()
         {
+            DontDestroyOnLoad(gameObject);
             if (instance == null)
             {
-                DontDestroyOnLoad(gameObject);
                 instance = GetComponent<GUIManager>();
             }
             else
@@ -137,6 +138,9 @@ namespace MatchTowerDefence.Managers
         {
             levelFinishedMenu.SetActive(true);
             SetWinStars();
+            string currentLevel = SceneManager.GetActiveScene().name;
+            score = Mathf.Abs(enemiesReached - 3);
+            LevelManager.instance.CompleteLevel(currentLevel, score);
         }
 
         public void FastForwardToggle()
@@ -199,6 +203,40 @@ namespace MatchTowerDefence.Managers
             masterVolume = masterSlider != null ? masterSlider.value : 1;
             musicVolume = musicSlider != null ? musicSlider.value : 1;
             sfxVolume = sfxSlider != null ? sfxSlider.value : 1;
+        }
+
+        public void LoadSliders()
+        {
+            if (SaveManager.instance != null)
+            {
+                float master, music, sfx;
+                SaveManager.instance.GetVolumes(out master, out music, out sfx);
+
+                if (masterSlider != null)
+                {
+                    masterSlider.value = master;
+                }
+                if (musicSlider != null)
+                {
+                    musicSlider.value = music;
+                }
+                if (sfxSlider != null)
+                {
+                    sfxSlider.value = sfx;
+                }
+            }
+        }
+
+        public void SaveSliders()
+        {
+            float masterVolume, musicVolume, sfxVolume;
+            GetSliderVolumes(out masterVolume, out musicVolume, out sfxVolume);
+
+            if (SaveManager.instance != null)
+            {
+                SaveManager.instance.SetVolumes(masterVolume, musicVolume, sfxVolume, true);
+            }
+
         }
     }
 }

@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameAudioMixer: {fileID: 24100000, guid: 7c701b847cba30940acabebbdcf65cb2, type: 2}
-  masterVolume: 
-  musicVolume: 
-  sfxVolume: 
+  masterVolume: MasterVolume
+  musicVolume: MusicVolume
+  sfxVolume: SFXVolume
