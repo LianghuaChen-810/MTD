@@ -7,31 +7,36 @@ using System.Collections.Generic;
 /// </summary>
 public class TowerTile : MonoBehaviour
 {
+    private const float UNSCALE = 2.0f;
+    private const float TO_RADIUS = 2.0f;
+    private const float FAKE_MULTIPLIER = 1.0f;
+    private const float REDUCER = 0.0f;
 
     // All tiles have access to same previous selected tile
     private static TowerTile previousSelected = null;
     private bool isSelected = false;
 
-
     [SerializeField]
-    private GameObject bulletPrefab;
+    private GameObject bulletPrefab = null;
     [SerializeField]
     private float shootDelayTime = 2.0f;
     [SerializeField]
     private Color bulletSelectedColor = new Color(.5f, .5f, .5f, 1.0f);
 
-
+    // Collider info
+    [SerializeField]
+    private BoxCollider2D collider2d = null;
 
     // Tower info
     public TowerObject tower = null;
     private SpriteRenderer render;
-    [HideInInspector]
     public int towerBonusDamage = 0;
 
     // Board info
-    [HideInInspector]
     public BoardPosition boardPosition = new BoardPosition(0, 0);
 
+    public List<Enemy> enemiesInRange = null;
+    public Enemy currentEnemyInRange = null;
 
     // Adjacency info
     public struct AdjacentTiles
@@ -50,8 +55,40 @@ public class TowerTile : MonoBehaviour
     {
         shootCourotine = null;
         render = GetComponent<SpriteRenderer>();
+        collider2d = GetComponent<BoxCollider2D>();
     }
 
+    /// <summary>
+    /// Adds enemies when they get in range
+    /// </summary>
+    /// <param name="collider"></param>
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.GetComponent<Enemy>() != null)
+        {
+            Enemy enemy = collider.gameObject.GetComponent<Enemy>();
+            if (!enemiesInRange.Contains(enemy))
+            {
+                enemiesInRange.Add(enemy);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Removes enemies when they get in range
+    /// </summary>
+    /// <param name="collider"></param>
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.GetComponent<Enemy>() != null)
+        {
+            Enemy enemy = collider.gameObject.GetComponent<Enemy>();
+            if (enemiesInRange.Contains(enemy))
+            {
+                enemiesInRange.Remove(enemy);
+            }
+        }
+    }
 
     // TODO: Move  START and STOP to the LEVEL CONTROL for optimisation.
     /// <summary>
@@ -60,14 +97,20 @@ public class TowerTile : MonoBehaviour
     /// </summary>
     public void StartShooting()
     {
+
+        if (tower == null || tower.range == 0) return;
+
+        collider2d = gameObject.GetComponent<BoxCollider2D>();
+        
         if (shootCourotine == null)
         {
             shootCourotine = RepeatingShoot();
         }
-        if (tower != null && tower.range > 0)
-        {
-            StartCoroutine(shootCourotine);
-        }
+        enemiesInRange = new List<Enemy>();
+        currentEnemyInRange = null;
+        collider2d.size = new Vector2(tower.range * UNSCALE * TO_RADIUS * FAKE_MULTIPLIER - REDUCER, tower.range * UNSCALE * TO_RADIUS * FAKE_MULTIPLIER - REDUCER);
+
+        StartCoroutine(shootCourotine);
     }
 
     /// <summary>
@@ -76,10 +119,13 @@ public class TowerTile : MonoBehaviour
     /// </summary>
     public void StopShooting()
     {
-        if (tower != null && tower.range > 0)
-        {
-            StopCoroutine(shootCourotine);
-        }
+        if (tower == null || tower.range == 0) return;
+
+        collider2d.size = new Vector2(1.95f, 1.95f);
+        enemiesInRange = new List<Enemy>();
+        currentEnemyInRange = null;
+
+        StopCoroutine(shootCourotine);
     }
 
     /// <summary>
@@ -90,12 +136,62 @@ public class TowerTile : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(shootDelayTime);
-            Enemy enemy = FindEnemyInReach();
-            if (enemy != null)
+            // If no enemy search for enemy 
+            if (currentEnemyInRange == null)
             {
-                Shoot(enemy);
+                Enemy closestEnemy = null;
+                int minDistFromBase = 10000;
+
+                // Find closest enemy to base from enemies in range
+                for (int i = 0; i < enemiesInRange.Count; i++)
+                {
+                    if (enemiesInRange[i].tileToMoveTo.distFromBase < minDistFromBase)
+                    {
+                        minDistFromBase = enemiesInRange[i].tileToMoveTo.distFromBase;
+                        closestEnemy = enemiesInRange[i];
+                    }
+                }
+
+                // If no enemy was found wait for little time and try to find again.
+                if (closestEnemy == null)
+                {
+                    yield return new WaitForSeconds(0.3f); // NEED TO SCALE WITH GAME TIME SCALE
+                    continue;
+                }
+                currentEnemyInRange = closestEnemy;
             }
+
+            // if enemy went outside of range
+            else if (!enemiesInRange.Contains(currentEnemyInRange))
+            {
+                currentEnemyInRange = null;
+                continue;
+            }
+            else
+            {
+                Enemy closestEnemy = null;
+                int minDistFromBase = 10000;
+
+                // Find closest enemy to base from enemies in range
+                for (int i = 0; i < enemiesInRange.Count; i++)
+                {
+                    if (enemiesInRange[i].tileToMoveTo.distFromBase < minDistFromBase)
+                    {
+                        minDistFromBase = enemiesInRange[i].tileToMoveTo.distFromBase;
+                        closestEnemy = enemiesInRange[i];
+                    }
+                }
+                currentEnemyInRange = closestEnemy;
+
+                if (closestEnemy == null)
+                {
+                    continue;
+                }
+                Shoot(currentEnemyInRange);
+                yield return new WaitForSeconds(shootDelayTime); // NEED TO SCALE WITH GAME TIME SCALE
+            }
+
+           
         }
     }
 
@@ -109,36 +205,6 @@ public class TowerTile : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         bullet.GetComponent<Bullet>().Shoot(tower, towerBonusDamage, enemy);
 
-    }
-
-    /// <summary>
-    /// Function that searches for a possible enemy target to shoot at.
-    /// </summary>
-    /// <returns> The enemy object to shoot at.</returns>
-    public Enemy FindEnemyInReach()
-    {
-
-        float closest = 100.0f;
-        Enemy closestEnemy = null;
-        foreach (Enemy enemy in LevelControl.enemiesInWave)
-        {
-            float dist = Vector3.Distance(transform.position, enemy.transform.position);
-            if (dist < closest)
-            {
-                closest = dist;
-                closestEnemy = enemy;
-            }
-        }
-
-        if (closest > tower.range * 3.0f)
-        {
-            //Debug.Log(tower.name + "  of  " + this.name + "Did not find a close enemy");
-            return null;
-        }
-
-        return closestEnemy;
-
-        // instantiate bullet with target closest enemy in range
     }
 
     /// <summary>
