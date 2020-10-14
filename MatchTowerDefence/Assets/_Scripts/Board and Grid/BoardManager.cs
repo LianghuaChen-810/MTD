@@ -3,33 +3,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 
+
+/// <summary>
+/// A manager class for the board on each level
+/// </summary>
 public class BoardManager : MonoBehaviour
 {
-    public List<TowerTile> allTiles = null;
+    // TODO: REMOVE CONTROL FROM HERE
     public CameraManager camManager = null;
 
-
+    // Singleton instance
     public static BoardManager instance;
-    public List<TowerObject> spawnTowers = new List<TowerObject>();
-    public TowerObject AOETower;
-    public TowerObject NormalTower;
-    public TowerObject FrostTower;
 
+    // Types of towers to spawn 
+    [Header("Tower objects available for spawning")]
+    [SerializeField]
+    private List<TowerObject> spawnTowers = new List<TowerObject>();
+    [SerializeField]
+    private TowerObject AOETower = null;
+    [SerializeField]
+    private TowerObject NormalTower = null;
+    [SerializeField]
+    private TowerObject FrostTower = null;
+    [SerializeField]
+    private GameObject towerTilePrefab = null;
 
-    public float shiftDelay = 0.03f;
+    // Tilemap info
+    private Tilemap tilemap = null;
+    private int xSize, ySize;
 
-    public GameObject towerTilePrefab;
-    public GameObject pathTilePrefab;
+    // List of all tower tiles in game
+    public List<TowerTile> allTowerTiles = null;
 
-    int xSize, ySize;
+    // Shifting info
 
-    //private GameObject[,] towerTileObjs;
-
+    [SerializeField]
+    private float shiftDelay = 0.03f;
     public bool IsShifting { get; set; }
-
-    List<TowerTile>[] towerTileColumns;
-
-    public Tilemap tilemap = null;
+    private List<TowerTile>[] towerTileColumns; // Holds tiles in columns for shifting
 
     private void Awake()
     {
@@ -37,6 +48,9 @@ public class BoardManager : MonoBehaviour
         instance = GetComponent<BoardManager>();
     }
 
+    /// <summary>
+    ///  Initialises the board manager state, instance, tile board and tower list.
+    /// </summary>
     public void Initialise()
     {
         IsShifting = false;
@@ -45,18 +59,25 @@ public class BoardManager : MonoBehaviour
         tilemap = FindObjectOfType<Tilemap>();
         if (tilemap != null)
         {
+            // Obtain board bounds.
             tilemap.CompressBounds();
             xSize = tilemap.cellBounds.size.x;
             ySize = tilemap.cellBounds.size.y;
 
+            // TODO: remove camera control from here
             camManager.SetDisplay((Mathf.Max(xSize, ySize) / 2.0f), transform.position);
+
             CreateTowerBoard();
         }
 
-        allTiles = new List<TowerTile>();
-        allTiles.AddRange(FindObjectsOfType<TowerTile>());
+        // Link the list of all tower tiles on the board for exteral use
+        allTowerTiles = new List<TowerTile>();
+        allTowerTiles.AddRange(FindObjectsOfType<TowerTile>());
     }
 
+    /// <summary>
+    /// Generates the board from the tilemap.
+    /// </summary>
     private void CreateTowerBoard()
     {
         int minRows = tilemap.cellBounds.yMin;
@@ -178,7 +199,11 @@ public class BoardManager : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Finds empty tiles (after tile clearing) to begin shifting of towers.
+    /// Afterwards find if any new matches occur.
+    /// </summary>
+    // TODO: Possible bug from Coroutine(ShiftTowerDown) and next for loop
     public IEnumerator FindNullTiles()
     {
         for (int x = 0; x < towerTileColumns.Length; x++)
@@ -202,7 +227,13 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Shifts towers down in the X column board. Starts from the YSTART
+    /// and goes up to shift everything down.
+    /// </summary>
+    /// <param name="x"> The column board coordinate of the tower.</param>
+    /// <param name="yStart">The start row board coordinate of the tower.</param>
+    /// <returns></returns>
     private IEnumerator ShiftTowersDown(int x, int yStart)
     {
         IsShifting = true;
@@ -216,7 +247,7 @@ public class BoardManager : MonoBehaviour
 
         while (yStart < towerTileColumns[x].Count)
         {
-         //   Debug.Log("For X,Ystart: " + x + " " + yStart);
+            //   Debug.Log("For X,Ystart: " + x + " " + yStart);
 
             var tile = towerTileColumns[x][yStart].GetComponent<TowerTile>();
             if (tile.tower != null)
@@ -232,7 +263,7 @@ public class BoardManager : MonoBehaviour
                 int k = 0;
                 for (k = 0; k < shiftTiles.Count - 1; k++)
                 { // 5
-                    shiftTiles[k].SetTower(shiftTiles[k + 1].tower,shiftTiles[k+1].towerBonusDamage);
+                    shiftTiles[k].SetTower(shiftTiles[k + 1].tower, shiftTiles[k + 1].towerBonusDamage);
                     shiftTiles[k + 1].SetTower(null); // 6
                 }
                 shiftTiles[k].SetTower(GetNewTower(shiftTiles[k]));
@@ -245,6 +276,12 @@ public class BoardManager : MonoBehaviour
 
     }
 
+
+    /// <summary>
+    /// Generates a new tower at the given tile position.
+    /// </summary>
+    /// <param name="tile">The tile where to generate a new tower</param>
+    /// <returns> New tower from possible tower list </returns>
     private TowerObject GetNewTower(TowerTile tile)
     {
         List<TowerObject> possibleTowers = new List<TowerObject>();

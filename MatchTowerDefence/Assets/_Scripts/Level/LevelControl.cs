@@ -44,23 +44,35 @@ public static class LevelControl
         waves = waveSpawners.Keys.Count;
         currentWave = 0;
         enemiesLeftInWave = 0;
-        enemiesPassed = 0;  
+        enemiesPassed = 0;
         phase = LevelPhase.POSTDEFENCE;
     }
 
 
+    /// <summary>
+    /// Called by an enemy when it dies. Removes the enemy.
+    /// </summary>
+    /// <param name="enemy"> The enemy to remove from spawned list</param>
     public static void OnEnemyDied(Enemy enemy)
     {
         enemiesInWave.Remove(enemy);
         enemiesLeftInWave--;
     }
 
+    /// <summary>
+    /// Called by an enemy when it spawns. Adds new enemy for towers to shoot.
+    /// </summary>
+    /// <param name="enemy"> The enemy to add to the spawned list</param>
     public static void OnEnemySpawned(Enemy enemy)
     {
         enemiesInWave.Add(enemy);
     }
 
-    public static void OnEnemyReachedGoal(Enemy enemy)
+    /// <summary>
+    /// Called by an enemy when it reaches the base. Removes enemy and does dmg to base.
+    /// </summary>
+    /// <param name="enemy"> The enemy to remove from the spawned list</param>
+    public static void OnEnemyReachedBase(Enemy enemy)
     {
         enemiesInWave.Remove(enemy);
         enemiesLeftInWave--;
@@ -68,9 +80,13 @@ public static class LevelControl
     }
 
 
-
+    /// <summary>
+    /// Update function to use in LevelManager. It controls which phase
+    /// and wave of the current level it is.
+    /// </summary>
     public static void OnUpdate()
     {
+        // TODO: SEPARE MOVE COUNTER WAY FROM GUI MANAGER
         if (phase == LevelPhase.PREPARATION && GUIManager.instance.MoveCounter == 0)
         {
             TriggerDefencePhase();
@@ -94,19 +110,28 @@ public static class LevelControl
         }
     }
 
-    public static void TriggerFinishedPhase()
+
+    /// <summary>
+    /// Starts the last phase (unknown to player) where it 
+    /// notifies that the level has finished
+    /// </summary>
+    private static void TriggerFinishedPhase()
     {
         Debug.Log("LevelControl: Triggered Finish Phase");
         phase = LevelPhase.FINISHED;
-        GUIManager.instance.LevelIsFinished();
     }
 
-    public static void TriggerPostDefencePhase()
+    /// <summary>
+    /// Starts the post-defence phase (unknown to player), which
+    /// helps reset other stuff and it is the initial phase when
+    /// new level appears. (start of OnUpdate control loop)
+    /// </summary>
+    private static void TriggerPostDefencePhase()
     {
         Debug.Log("LevelControl: Triggered Post Defence Phase");
 
         // Stop towers from attacking
-        foreach (TowerTile tile in BoardManager.instance.allTiles)
+        foreach (TowerTile tile in BoardManager.instance.allTowerTiles)
         {
             tile.StopShooting();
         }
@@ -116,8 +141,11 @@ public static class LevelControl
         phase = LevelPhase.POSTDEFENCE;
     }
 
-    // Set up data for the next wave and begin preparation phase;
-    public static void TriggerPreparationPhase()
+    /// <summary>
+    /// Set up the data for the next wave and begin preparation phase
+    /// by allowing the player to move.
+    /// </summary>
+    private static void TriggerPreparationPhase()
     {
         Debug.Log("LevelControl: Triggered Preparation Phase");
 
@@ -138,9 +166,10 @@ public static class LevelControl
         GUIManager.instance.phaseTxt.text = "Preparation";
     }
 
-
-    // Trigger the defence phase and start spawning
-    public static void TriggerDefencePhase()
+    /// <summary>
+    /// Triggers the defence phase, makes towers shoot and spawners spawn.
+    /// </summary>
+    private static void TriggerDefencePhase()
     {
         Debug.Log("LevelControl: Triggered Denfence Phase");
 
@@ -149,7 +178,7 @@ public static class LevelControl
         GUIManager.instance.phaseTxt.text = "Defence";
 
         // Make towers Shoot
-        foreach (TowerTile tile in BoardManager.instance.allTiles)
+        foreach (TowerTile tile in BoardManager.instance.allTowerTiles)
         {
             tile.StartShooting();
         }
@@ -163,5 +192,7 @@ public static class LevelControl
     }
 }
 
-
+/// <summary>
+/// Enumerator for the four possible phases of each level: preparation, defence, post-defence, finished.
+/// </summary>
 public enum LevelPhase { PREPARATION, DEFENCE, POSTDEFENCE, FINISHED }

@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour
             if (currentPatrolPoint >= patrolPoints.Count)
             {
                 // remove counter for win!
-                LevelControl.OnEnemyReachedGoal(this);
+                LevelControl.OnEnemyReachedBase(this);
                 ++GUIManager.instance.EnemiesReached;
                 Destroy(gameObject);
                 
