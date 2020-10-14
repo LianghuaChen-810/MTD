@@ -9,8 +9,8 @@ public class TowerTile : MonoBehaviour
 {
     private const float UNSCALE = 2.0f;
     private const float TO_RADIUS = 2.0f;
-    private const float FAKE_MULTIPLIER = 3.0f;
-    private const float REDUCER = 1.0f;
+    private const float FAKE_MULTIPLIER = 1.0f;
+    private const float REDUCER = 0.0f;
 
     // All tiles have access to same previous selected tile
     private static TowerTile previousSelected = null;
@@ -30,16 +30,14 @@ public class TowerTile : MonoBehaviour
     // Tower info
     public TowerObject tower = null;
     private SpriteRenderer render;
-    [HideInInspector]
     public int towerBonusDamage = 0;
 
     // Board info
-    [HideInInspector]
     public BoardPosition boardPosition = new BoardPosition(0, 0);
-
 
     public List<Enemy> enemiesInRange = null;
     public Enemy currentEnemyInRange = null;
+
     // Adjacency info
     public struct AdjacentTiles
     {

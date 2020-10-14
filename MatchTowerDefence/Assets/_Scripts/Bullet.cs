@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour
                 lastTargetPosition = enemy.transform.position;
             }
             Vector3 direction = (lastTargetPosition - this.transform.position).normalized;
-            transform.Translate(1.0f * direction * Time.deltaTime);
+            transform.Translate(1.5f * direction * Time.deltaTime);
 
             if (Vector3.Distance(transform.position, lastTargetPosition) <= 0.01f)
             {

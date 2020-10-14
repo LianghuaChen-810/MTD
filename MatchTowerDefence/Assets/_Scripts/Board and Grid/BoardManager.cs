@@ -49,8 +49,6 @@ public class BoardManager : MonoBehaviour
     [SerializeField]
     private GameObject pathTilePrefab = null;
 
-
-
     private void Awake()
     {
         IsShifting = false;
@@ -81,7 +79,7 @@ public class BoardManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Generates the board from the tilemap.
+    /// Creates the board from the tilemap.
     /// </summary>
     private void CreateTowerBoard()
     {
@@ -105,6 +103,9 @@ public class BoardManager : MonoBehaviour
         allTowerTiles.AddRange(FindObjectsOfType<TowerTile>());
     }
 
+    /// <summary>
+    /// Instantiates new tile objects (Path/Tower).
+    /// </summary>
     private void GenerateTiles()
     {
         // Set-up data
@@ -251,6 +252,9 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets the adjacency links of all tower tiles.
+    /// </summary>
     private void GenerateTowerAdjacency()
     {
         // Generate tower tile adjacency struct
@@ -286,6 +290,9 @@ public class BoardManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Sets the adjacency links of all path, goal, spawn tiles.
+    /// </summary>
     private void GeneratePathTilesAdjacency()
     {
         foreach (PathTile tile in allPathTiles)
@@ -411,6 +418,9 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Calculates and sets all path tiles' distance from the bases they lead to.
+    /// </summary>
     private void SetPathTileDistance()
     {
 
@@ -435,6 +445,10 @@ public class BoardManager : MonoBehaviour
         }
 
     }
+
+    /// <summary>
+    /// Connects all spawners with the spawn tiles.
+    /// </summary>
     private void SetSpawnerPathways()
     {
         List<Spawner> spawners = new List<Spawner>(FindObjectsOfType<Spawner>(true));
@@ -451,6 +465,7 @@ public class BoardManager : MonoBehaviour
         }
 
     }
+
     /// <summary>
     /// Finds empty tiles (after tile clearing) to begin shifting of towers.
     /// Afterwards find if any new matches occur.
