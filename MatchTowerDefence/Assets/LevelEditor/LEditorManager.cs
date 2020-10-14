@@ -44,8 +44,54 @@ namespace LevelEditor
         }
 
         public ElementType[,] map;
-        public LRoute[] routes;
+        public List<LRoute> routes = new List<LRoute>();
 
-        public ElementType usingelement;
+        public ElementType usingelement = ElementType.Base;
+
+        public void InitBoard()
+        {
+            map = new ElementType[LEdgeSpawner.horizontalcapacity, LEdgeSpawner.verticalcapacity];
+        }
+
+        //abandoned -- stack overflow
+        public bool DepthFirstSearchRouteCheck(int x, int y)
+        {
+
+            if (map[x, y] == ElementType.Empty) return false; // cut branches
+            
+            else if (map[x, y] == ElementType.Spawner)
+            {
+                if (x >= 0 && y >= 0)
+                {
+                    if (x < LEdgeSpawner.horizontalcapacity && y < LEdgeSpawner.verticalcapacity)
+                    {
+                        //in the map
+                        return true;
+                    }
+                    else return false;
+
+                }
+                else return false;
+            }
+            else if (map[x, y] == ElementType.Pathway || map[x, y] == ElementType.Base)
+            {
+                //not spawner, so go ahead
+                if (DepthFirstSearchRouteCheck(x, y + 1)) return true;
+                if (DepthFirstSearchRouteCheck(x - 1, y)) return true;
+                if (DepthFirstSearchRouteCheck(x, y - 1)) return true;
+                if (DepthFirstSearchRouteCheck(x + 1, y)) return true;
+
+                return false;
+            }
+
+            else
+            {
+                //not on any pathways, so no further search
+                return false;
+            }
+
+
+
+        }
     }
 }

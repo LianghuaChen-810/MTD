@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace LevelEditor
 {
-    public class LSelectTowerBtn : MonoBehaviour
+    public class LSelectPathwayBtn : MonoBehaviour
     {
-
         void Start()
         {
             Button btn = GetComponent<Button>();
@@ -15,21 +14,12 @@ namespace LevelEditor
 
         private void OnClick()
         {
+            LEditorManager.GetInstance().usingelement = LEditorManager.ElementType.Pathway;
             highlightblock.position = transform.position;
-            // choose level of the tower
-            optioncanvas.SetActive(true);
         }
 
 
-        void Update()
-        {
-
-        }
-
-        public LEditorManager.ElementType towertype;
-        public GameObject[] prefabs;
 
         public RectTransform highlightblock;
-        public GameObject optioncanvas;
     }
 }

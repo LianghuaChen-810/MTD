@@ -29,5 +29,24 @@ public class LevelData : ScriptableObject
     /// </summary>
     public int levelNo;
 
+    /// <summary>
+    /// if this level inherit last level board, put that level here
+    /// </summary>
+    public LevelData lastlevel;
+
+    /// <summary>
+    /// health point for all waves
+    /// </summary>
+    public int basehp;
+
+    /// <summary>
+    /// threshold of star1 and star2
+    /// </summary>
+    public int conditionthreshold;
+
+    /// <summary>
+    /// LevelData for latter waves
+    /// </summary>
+    public LevelData[] latterwaves;
 
 }

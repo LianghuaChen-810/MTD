@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+
+
 namespace LevelEditor
 {
-    public class LSelectTowerBtn : MonoBehaviour
+    public class LSelectElementBtn : MonoBehaviour
     {
-
         void Start()
         {
             Button btn = GetComponent<Button>();
@@ -15,21 +17,12 @@ namespace LevelEditor
 
         private void OnClick()
         {
+            LEditorManager.GetInstance().usingelement = elementType;
             highlightblock.position = transform.position;
-            // choose level of the tower
-            optioncanvas.SetActive(true);
         }
 
 
-        void Update()
-        {
-
-        }
-
-        public LEditorManager.ElementType towertype;
-        public GameObject[] prefabs;
-
+        public LEditorManager.ElementType elementType;
         public RectTransform highlightblock;
-        public GameObject optioncanvas;
     }
 }

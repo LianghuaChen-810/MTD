@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using UnityEngine.UI;
 namespace LevelEditor
 {
-    public class LSelectBaseBtn : MonoBehaviour
+    public class LStep2NextBtn : MonoBehaviour
     {
+
         void Start()
         {
             Button btn = GetComponent<Button>();
@@ -14,18 +16,11 @@ namespace LevelEditor
 
         private void OnClick()
         {
-            LEditorManager.GetInstance().usingelement = LEditorManager.ElementType.Base;
-            highlightblock.position = transform.position;
+            step2.SetActive(false);
+            step3.SetActive(true);
+            LEditorManager.step = 3;
         }
-
-
-        void Update()
-        {
-
-        }
-
-
-
-        public RectTransform highlightblock;
+        public GameObject step2;
+        public GameObject step3;
     }
 }
