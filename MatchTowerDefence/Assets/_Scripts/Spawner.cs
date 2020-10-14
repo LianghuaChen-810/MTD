@@ -9,7 +9,7 @@ public class Spawner : MonoBehaviour
     private WaitForSecondsRealtime _waitTime;
 
     public List<EnemyObject> allEnemies = new List<EnemyObject>();
-    public List<Transform> patrolPoints = new List<Transform>();
+    public PathTile spawnPathTile = null;
 
     public GameObject enemyPrefab;
 
@@ -41,10 +41,10 @@ public class Spawner : MonoBehaviour
             //var pointSelected = Random.Range(0, 3); //To use as index for reaching array of spawn points.
             //var pointToSpawn = SpawnPoints[pointSelected].position;
 
-            var clonePrefab = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+            var clonePrefab = Instantiate(enemyPrefab, spawnPathTile.transform.position, Quaternion.identity);
             Enemy enemy = clonePrefab.GetComponent<Enemy>();
             enemy.SetEnemy(allEnemies[enemyCount]);
-            enemy.patrolPoints = patrolPoints;
+            enemy.tileToMoveTo = spawnPathTile;
             enemyCount++;
 
             yield return _waitTime;

@@ -15,8 +15,7 @@ public class Enemy : MonoBehaviour
     public float unfreezeTime = 0.0f;
 
 
-    public List<Transform> patrolPoints = null;
-    public int currentPatrolPoint = 0;
+    public PathTile tileToMoveTo = null;
 
     private Vector3 direction;
 
@@ -49,24 +48,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (patrolPoints == null) return;
-
-        direction = (patrolPoints[currentPatrolPoint].position - this.transform.position).normalized;
-        transform.Translate(speed * direction * Time.deltaTime);
-
-        if (Vector3.Distance(transform.position, patrolPoints[currentPatrolPoint].position) <= 0.01f)
-        {
-            currentPatrolPoint++;
-            if (currentPatrolPoint >= patrolPoints.Count)
-            {
-                // remove counter for win!
-                LevelControl.OnEnemyReachedBase(this);
-                ++GUIManager.instance.EnemiesReached;
-                Destroy(gameObject);
-                
-            }
-        }
-         
+        Move();
         if (health <= 0.0f)
         {
             LevelControl.OnEnemyDied(this);
@@ -75,6 +57,35 @@ public class Enemy : MonoBehaviour
         // Script To Move
     }
 
+    public void Move()
+    {
+        if (tileToMoveTo == null) return;
+
+        direction = (tileToMoveTo.transform.position - this.transform.position).normalized;
+        transform.Translate(speed * direction * Time.deltaTime);
+
+        if (Vector3.Distance(transform.position, tileToMoveTo.transform.position) <= 0.01f)
+        {
+            if (tileToMoveTo.nextTile == null)
+            {
+                if (!BoardManager.instance.allBases.Contains(tileToMoveTo))
+                {
+                    Debug.LogError(" Enemy: " + gameObject.name + " has reached an end of pathway but it was not a base");
+                }
+                else
+                {
+                    LevelControl.OnEnemyReachedBase(this);
+                    ++GUIManager.instance.EnemiesReached;
+                    Destroy(gameObject);
+                }
+            }
+            else
+            {
+                tileToMoveTo = tileToMoveTo.nextTile;
+            }
+
+        }
+    }
     public void Freeze(float freezeTime)
     {
         if (freezeTime == 0.0f) return;

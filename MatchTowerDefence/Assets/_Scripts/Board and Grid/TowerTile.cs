@@ -14,7 +14,7 @@ public class TowerTile : MonoBehaviour
 
 
     [SerializeField]
-    private GameObject bulletPrefab;
+    private GameObject bulletPrefab = null;
     [SerializeField]
     private float shootDelayTime = 2.0f;
     [SerializeField]
