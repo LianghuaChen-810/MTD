@@ -9,11 +9,12 @@ namespace MatchTowerDefence.UI
 {
     public class LevelSelectScreen : MonoBehaviour
     {
-        [SerializeField] private LevelSelectButton selectionPrefab;
-        [SerializeField] private LayoutGroup layout;
-        [SerializeField] private Transform rightBuffer;
-        [SerializeField] private MouseScroll mouseScroll;
-        [SerializeField] private Button backButton;
+        [SerializeField] private LevelSelectButton selectionPrefab = null;
+        [SerializeField] private LayoutGroup layout = null;
+        [SerializeField] private Transform rightBuffer = null;
+        [SerializeField] private MouseScroll mouseScroll = null;
+        [SerializeField] private Button backButton = null;
+        [SerializeField] private LevelInfoPanel levelInfoPanel = null;
 
         protected LevelList levelList;
         protected List<Button> buttons = new List<Button>();
@@ -56,7 +57,7 @@ namespace MatchTowerDefence.UI
         protected LevelSelectButton CreateButton(LevelItem item)
         {
             LevelSelectButton button = Instantiate(selectionPrefab);
-            button.Initialize(item, mouseScroll);
+            button.Initialize(item, mouseScroll, levelInfoPanel);
             GUIManager.instance.levelButtons.Add(button);
             return button;
         }

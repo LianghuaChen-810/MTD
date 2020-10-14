@@ -10,23 +10,24 @@ namespace MatchTowerDefence.UI
     [RequireComponent(typeof(Button))]
     public class LevelSelectButton : MonoBehaviour, ISelectHandler
     {
-        public ScorePanel scorePanel;
+        public ScorePanel scorePanel = null;
 
-        protected Button button;
-        protected MouseScroll mouseScroll;
-        protected LevelItem item;
+        protected Button button = null;
+        protected MouseScroll mouseScroll = null;
+        protected LevelItem item = null;
 
-        [SerializeField] private TMP_Text titleDisplay;
-        [SerializeField] private TMP_Text description;
-        [SerializeField] private Sprite starsAchieved;
-        [SerializeField] private Image[] stars;
+        [SerializeField] private TMP_Text titleDisplay = null;
+        [SerializeField] private TMP_Text description = null;
+        [SerializeField] private Sprite starsAchieved = null;
+        [SerializeField] private Image[] stars = null;
+        [SerializeField] private LevelInfoPanel levelInfoPanel = null;
 
         public void ButtonClicked()
         {
-            ChangeScenes();
+            OpenLevelInfo();
         }
 
-        public void Initialize(LevelItem _item, MouseScroll _mouseScroll)
+        public void Initialize(LevelItem _item, MouseScroll _mouseScroll, LevelInfoPanel _levelInfoPanel)
         {
             LazyLoad();
             if(titleDisplay == null) { return; }
@@ -35,6 +36,7 @@ namespace MatchTowerDefence.UI
             description.text = item.description;
             HasPlayedState();
             mouseScroll = _mouseScroll;
+            levelInfoPanel = _levelInfoPanel;
         }
 
         private void HasPlayedState()
@@ -53,8 +55,19 @@ namespace MatchTowerDefence.UI
            if(button == null) { button = GetComponent<Button>(); }
         }
 
+        private void OpenLevelInfo()
+        {
+            mouseScroll.enabled = false;
+            levelInfoPanel.gameObject.SetActive(true);
+            levelInfoPanel.levelName.text = item.name;
+            levelInfoPanel.playButton.onClick.AddListener(ChangeScenes);
+        }
+
+
         protected void ChangeScenes()
         {
+            mouseScroll.enabled = true;
+            levelInfoPanel.gameObject.SetActive(false);
             SceneManager.LoadScene(item.sceneName);
         }
 

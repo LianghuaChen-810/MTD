@@ -66,6 +66,8 @@ namespace GameCore.System
             {
                 SaveManager.instance.saveData.CompleteLevel(levelId, starsEarned);
                 SaveManager.instance.SaveData();
+                
+                Debug.Log(JsonUtility.ToJson(SaveManager.instance.saveData));
             }
         }
 
