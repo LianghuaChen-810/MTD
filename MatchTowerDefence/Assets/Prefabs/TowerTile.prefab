@@ -122,23 +122,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c484c8756ef7c78488679fb9c86fb255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventForTutorial:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11500000, guid: a14644bd2ebe05848bb0e015cefb3e5c, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   bulletPrefab: {fileID: 1225740964822796161, guid: b7c8c9602bdad3a4998b983839254a8e, type: 3}
   shootDelayTime: 2
-  selectedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  bulletSelectedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  collider2d: {fileID: 61000013103663072}
   tower: {fileID: 0}
   towerBonusDamage: 0
+  enemiesInRange: []

@@ -14,11 +14,9 @@ public class Enemy : MonoBehaviour
 
     public float unfreezeTime = 0.0f;
 
-
     public PathTile tileToMoveTo = null;
 
     private Vector3 direction;
-
 
     // Update is called once per frame
     private void Awake()
@@ -26,6 +24,7 @@ public class Enemy : MonoBehaviour
         render = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
     }
+
 
     public void SetEnemy (EnemyObject _enemyType)
     {

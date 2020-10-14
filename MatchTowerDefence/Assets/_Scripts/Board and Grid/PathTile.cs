@@ -8,7 +8,7 @@ public class PathTile : MonoBehaviour
     public List<PathTile> previousTiles = new List<PathTile>();
     public PathTile nextTile = null;
     public PathTileOrientation orientation = PathTileOrientation.NONE;
-
+    public int distFromBase = -1;
     // Start is called before the first frame update
     void Start()
     {
