@@ -2,10 +2,10 @@
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-using System;
 using MatchTowerDefence.SaveSystem;
 using GameCore.System;
 using MatchTowerDefence.UI;
+using System.Collections.Generic;
 
 namespace MatchTowerDefence.Managers
 {
@@ -36,9 +36,11 @@ namespace MatchTowerDefence.Managers
         [SerializeField] private Slider musicSlider = null;
         [SerializeField] private Slider sfxSlider = null;
 
+        [Header("Buttons")]
         public Button resumeButton = null;
         public Button pauseButton = null;
         public Button restartButton = null;
+        public List<LevelSelectButton> levelButtons = null;
 
         private int score;
         private int moveCounter;
@@ -138,10 +140,11 @@ namespace MatchTowerDefence.Managers
         public void LevelIsFinished()
         {
             LevelItem level = LevelManager.instance.LevelItemCurrentScene();
-
             levelFinishedMenu.SetActive(true);
             SetWinStars();
             score = Mathf.Abs(enemiesReached - 3);
+            levelButtons[int.Parse(level.id) - 1].scorePanel.SetStars(score);
+            Debug.Log(levelButtons[int.Parse(level.id) - 1]);
             LevelManager.instance.CompleteLevel(level.id, score);
         }
 
@@ -196,7 +199,7 @@ namespace MatchTowerDefence.Managers
 
             if(SaveManager.instance != null)
             {
-                SaveManager.instance.SetVolumes(masterVolume, musicVolume, sfxVolume, false);
+                SaveManager.instance.SetVolumes(masterVolume, musicVolume, sfxVolume, true);
             }
         }
 

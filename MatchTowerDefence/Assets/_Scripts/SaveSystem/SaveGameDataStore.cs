@@ -11,12 +11,12 @@ namespace MatchTowerDefence.SaveSystem
 
         public override void PostLoad()
         {
-            Debug.Log("Saving Game");
+            Debug.Log("Loaded Game");
         }
 
         public override void PreSave()
         {
-            Debug.Log("Loading Game");
+            Debug.Log("Saving Game");
         }
 
         public void CompleteLevel(string levelId, int starEarned)
@@ -26,9 +26,10 @@ namespace MatchTowerDefence.SaveSystem
                 if (levelSaveData.levelId == levelId)
                 {
                     levelSaveData.numberOfStars = Mathf.Max(levelSaveData.numberOfStars, starEarned);
+                    return;
                 }
-                completedLevels.Add(new LevelSaveData(levelId, starEarned));
             }
+            completedLevels.Add(new LevelSaveData(levelId, starEarned));
         }
 
         public bool IsLevelCompleted(string levelId)

@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 188.3}
-  m_SizeDelta: {x: 0, y: -376.5061}
+  m_AnchoredPosition: {x: 0, y: 150.8}
+  m_SizeDelta: {x: 0, y: -301.43115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2451394342079712491
 CanvasRenderer:
@@ -249,8 +249,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 426, y: 527}
-  m_SizeDelta: {x: 494.83765, y: 515.77313}
+  m_AnchoredPosition: {x: 364, y: 591.6}
+  m_SizeDelta: {x: 370.9215, y: 386.61438}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &772657499132788805
 CanvasRenderer:
@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -465,6 +465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeddf742ae259b04281837897c88e91f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scorePanel: {fileID: 5102874784252041139}
   titleDisplay: {fileID: 7056880717556725253}
   description: {fileID: 6587193381308698550}
   starsAchieved: {fileID: 21300000, guid: e9555e1f9d0084b4bb54d643521cacda, type: 3}

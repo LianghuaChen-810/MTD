@@ -1,5 +1,6 @@
 ﻿using GameCore.System;
 using MatchTowerDefence.Level;
+using MatchTowerDefence.Managers;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -56,6 +57,7 @@ namespace MatchTowerDefence.UI
         {
             LevelSelectButton button = Instantiate(selectionPrefab);
             button.Initialize(item, mouseScroll);
+            GUIManager.instance.levelButtons.Add(button);
             return button;
         }
 

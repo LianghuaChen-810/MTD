@@ -10,14 +10,16 @@ namespace MatchTowerDefence.UI
     [RequireComponent(typeof(Button))]
     public class LevelSelectButton : MonoBehaviour, ISelectHandler
     {
+        public ScorePanel scorePanel;
+
         protected Button button;
         protected MouseScroll mouseScroll;
         protected LevelItem item;
 
-        public TMP_Text titleDisplay;
-        public TMP_Text description;
-        public Sprite starsAchieved;
-        public Image[] stars;
+        [SerializeField] private TMP_Text titleDisplay;
+        [SerializeField] private TMP_Text description;
+        [SerializeField] private Sprite starsAchieved;
+        [SerializeField] private Image[] stars;
 
         public void ButtonClicked()
         {
