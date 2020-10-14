@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public int wave = 1;
     [SerializeField] float spawnDelay = 1.0f;
     private WaitForSecondsRealtime _waitTime;
 
@@ -44,8 +45,6 @@ public class Spawner : MonoBehaviour
             Enemy enemy = clonePrefab.GetComponent<Enemy>();
             enemy.SetEnemy(allEnemies[enemyCount]);
             enemy.patrolPoints = patrolPoints;
-            BoardManager.instance.allEnemies.Add(enemy);
-
             enemyCount++;
 
             yield return _waitTime;

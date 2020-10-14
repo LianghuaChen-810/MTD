@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour
         render.sprite = enemyType.sprite;
         health = enemyType.health;
         speed = enemyType.speed;
+        LevelControl.OnEnemySpawned(this);
     }
 
     private void FixedUpdate()
@@ -59,7 +60,7 @@ public class Enemy : MonoBehaviour
             if (currentPatrolPoint >= patrolPoints.Count)
             {
                 // remove counter for win!
-                BoardManager.instance.allEnemies.Remove(this);
+                LevelControl.OnEnemyReachedGoal(this);
                 ++GUIManager.instance.EnemiesReached;
                 Destroy(gameObject);
                 
@@ -68,7 +69,7 @@ public class Enemy : MonoBehaviour
          
         if (health <= 0.0f)
         {
-            BoardManager.instance.allEnemies.Remove(this);
+            LevelControl.OnEnemyDied(this);
             Destroy(gameObject);
         }
         // Script To Move

@@ -42,6 +42,14 @@ public class TowerTile : MonoBehaviour
         }
     }
 
+    public void StopShooting()
+    {
+        if (tower != null && tower.range > 0)
+        {
+           StopCoroutine(this.RepeatingShoot());
+        }
+    }
+
     IEnumerator RepeatingShoot()
     {
         while (true)
@@ -57,15 +65,15 @@ public class TowerTile : MonoBehaviour
 
         if (enemyToshoot != null)
         {
-            Debug.Log(tower.name + " is shooting at " + enemyToshoot.gameObject.name);
+            //Debug.Log(tower.name + " is shooting at " + enemyToshoot.gameObject.name);
             GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             bullet.GetComponent<Bullet>().Shoot(tower, towerBonusDamage, enemyToshoot);
         } else
         {
-            Debug.Log("No enemy to shoot");
+            //Debug.Log("No enemy to shoot");
         }
 
-        Debug.Log(Time.time);
+        //Debug.Log(Time.time);
     }
 
 
@@ -74,7 +82,7 @@ public class TowerTile : MonoBehaviour
 
         float closest = 100.0f;
         Enemy closestEnemy = null;
-        foreach (Enemy enemy in BoardManager.instance.allEnemies)
+        foreach (Enemy enemy in LevelControl.enemiesInWave)
         {
             float dist = Vector3.Distance(transform.position, enemy.transform.position);
             if (dist < closest)
@@ -86,7 +94,7 @@ public class TowerTile : MonoBehaviour
 
         if (closest > tower.range * 3.0f)
         {
-            Debug.Log(tower.name + "  of  " + this.name + "Did not find a close enemy");
+            //Debug.Log(tower.name + "  of  " + this.name + "Did not find a close enemy");
             return null;
         }
 
@@ -128,7 +136,7 @@ public class TowerTile : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (GUIManager.instance.MoveCounter == 0) return;
+        if (LevelControl.phase != LevelPhase.PREPARATION) return;
 
         if (tower == null || BoardManager.instance.IsShifting)
         {
@@ -155,10 +163,6 @@ public class TowerTile : MonoBehaviour
 
                 // SHOULD MOVE THIS TO GENERAL LEVEL DATA
                 GUIManager.instance.MoveCounter--;
-                if (GUIManager.instance.MoveCounter == 0)
-                {
-                    BoardManager.instance.TriggerNextPhase();
-                }
 
                 previousSelected.Deselect();
             }

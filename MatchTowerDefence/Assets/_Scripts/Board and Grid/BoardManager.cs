@@ -5,18 +5,16 @@ using UnityEngine.Tilemaps;
 
 public class BoardManager : MonoBehaviour
 {
-    bool minionshavespawned = false;
-
-    public bool defencePhase = false; // TODO: REMOVE
+    public List<TowerTile> allTiles = null;
     public CameraManager camManager = null;
-   // public TileBase testTilePrefab;
+
+
     public static BoardManager instance;
     public List<TowerObject> spawnTowers = new List<TowerObject>();
     public TowerObject AOETower;
     public TowerObject NormalTower;
     public TowerObject FrostTower;
 
-    public List<Enemy> allEnemies = new List<Enemy>();
 
     public float shiftDelay = 0.03f;
 
@@ -41,10 +39,8 @@ public class BoardManager : MonoBehaviour
 
     public void Initialise()
     {
-        minionshavespawned = false;
         IsShifting = false;
         instance = GetComponent<BoardManager>();
-        defencePhase = false;
 
         tilemap = FindObjectOfType<Tilemap>();
         if (tilemap != null)
@@ -54,11 +50,11 @@ public class BoardManager : MonoBehaviour
             ySize = tilemap.cellBounds.size.y;
 
             camManager.SetDisplay((Mathf.Max(xSize, ySize) / 2.0f), transform.position);
-            //AnalyseTilemap();
-            // CreateBoard();
             CreateTowerBoard();
-            // CreatePathBoard();
         }
+
+        allTiles = new List<TowerTile>();
+        allTiles.AddRange(FindObjectsOfType<TowerTile>());
     }
 
     private void CreateTowerBoard()
@@ -128,7 +124,7 @@ public class BoardManager : MonoBehaviour
                         newTowerObject = AOETower;
                     }
 
-                    Debug.Log(newTileObj.name + " = " + newTowerObject);
+                    //Debug.Log(newTileObj.name + " = " + newTowerObject);
                     // Edit tile info
                     TowerTile newTile = newTileObj.GetComponent<TowerTile>();
                     newTile.boardPosition = new BoardPosition(col, row);
@@ -277,51 +273,6 @@ public class BoardManager : MonoBehaviour
         if (possibleTowers.Count == 0)
             return spawnTowers[Random.Range(0, spawnTowers.Count)];
         return possibleTowers[Random.Range(0, possibleTowers.Count)];
-    }
-
-
-    public void TriggerNextPhase()
-    {
-        StartCoroutine(TriggerEndPhase());
-        defencePhase = true;
-        var allTiles = FindObjectsOfType<TowerTile>();
-        foreach (TowerTile tile in allTiles)
-        {
-            tile.StartShooting();
-        }
-
-        var allSpawners = FindObjectsOfType<Spawner>();
-        foreach (Spawner spawner in allSpawners)
-        {
-            spawner.StartSpawning();
-        }
-
-        GUIManager.instance.phaseTxt.text = "Defense Phase";
-    }
-
-    IEnumerator TriggerEndPhase()
-    {
-        while (minionshavespawned == false && allEnemies.Count <= 0)
-        {
-            Debug.Log(" NOT SPAWNED!");
-            yield return new WaitForSeconds(0.1f);
-        }
-
-        minionshavespawned = true;
-
-        while (minionshavespawned = true && allEnemies.Count > 0)
-        {
-            Debug.Log(" SPAWNED AND ALIVE!" + allEnemies.Count);
-            
-            yield return new WaitForSeconds(0.1f);
-        }
-
-        if (minionshavespawned == true && allEnemies.Count <= 0)
-        {
-            Debug.Log(" LEVEL FINISHED!");
-
-            GUIManager.instance.LevelIsFinished();
-        }
     }
 }
 

@@ -57,7 +57,7 @@ public class TutorialManager : MonoBehaviour
         {
             isActive = true;
 
-            Debug.Log("Next stage activating: " + stages[nextStageIndex]);
+            ////Debug.Log("Next stage activating: " + stages[nextStageIndex]);
             // Always stop current stage before getting new one
             if(currentStage != null)
                 currentStage.StopStage();
@@ -76,7 +76,7 @@ public class TutorialManager : MonoBehaviour
 
             // Activate stage and render objects of stage
             shouldHideStage = currentStage.RenderStage();
-            Debug.Log("Next stage index = " + nextStageIndex);
+            //Debug.Log("Next stage index = " + nextStageIndex);
 
         }
         else
@@ -97,14 +97,14 @@ public class TutorialManager : MonoBehaviour
     }
     public void ExecuteSearchForNextStageRequirement()
     {
-        Debug.Log("SearchNextStage");
+        //Debug.Log("SearchNextStage");
         // SWITCH FOR THE EXECUTION
         if (nextStageIndex < stages.Count)
             nextStage = stages[nextStageIndex];
 
         if (nextStage.requirement == TutorialStage.TutorialStageRequirement.NONE)
         {
-            Debug.Log("NONE");
+            //Debug.Log("NONE");
             NextTutorialStage();
         }
     }

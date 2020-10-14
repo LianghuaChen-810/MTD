@@ -1,6 +1,7 @@
 ﻿using MatchTowerDefence.Level;
 using MatchTowerDefence.UI;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,7 +15,16 @@ namespace GameCore.System
 
         private TutorialManager tutorialManager;
         private int hasTutored = 0;
-        private int enemyRemaining = 99999;
+
+        void Awake()
+        {
+            DontDestroyOnLoad(this);
+        }
+
+        void Update()
+        {
+            LevelControl.OnUpdate();
+        }
 
         public void Initialise()
         {
@@ -34,6 +44,11 @@ namespace GameCore.System
         {
             if (scene.buildIndex > 0)
             {
+                // Finds spawners needs to be "true" to search in children of root objects because they are inactive on SceneLoad
+                List<Spawner> spawners = new List<Spawner>(FindObjectsOfType<Spawner>(true));
+                LevelControl.Initialise(spawners);
+
+                // Initialise Board Manager
                 BoardManager boardManager = FindObjectOfType<BoardManager>();
                 tutorialManager = FindObjectOfType<TutorialManager>();
 
