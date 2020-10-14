@@ -45,6 +45,7 @@ public class BoardManager : MonoBehaviour
     public List<PathTile> allPathTiles = null;
     public List<PathTile> allBases = null;
     public List<PathTile> allSpawns = null;
+
     [SerializeField]
     private GameObject pathTilePrefab = null;
 
@@ -99,6 +100,7 @@ public class BoardManager : MonoBehaviour
         GenerateTowerAdjacency();
         GeneratePathTilesAdjacency();
         SetSpawnerPathways();
+        SetPathTileDistance();
 
         allTowerTiles.AddRange(FindObjectsOfType<TowerTile>());
     }
@@ -288,7 +290,6 @@ public class BoardManager : MonoBehaviour
     {
         foreach (PathTile tile in allPathTiles)
         {
-            Debug.Log("For path tile " + tile.gameObject.name + ": ");
             // LEFT
             if (tile.orientation == PathTileOrientation.LEFT)
             {
@@ -410,6 +411,30 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    private void SetPathTileDistance()
+    {
+
+        foreach (PathTile basetile in allBases)
+        {
+            basetile.distFromBase = 0;
+
+            Queue<PathTile> tilesToCalculate = new Queue<PathTile>();
+            tilesToCalculate.Enqueue(basetile);
+
+            while (tilesToCalculate.Count > 0)
+            {
+                PathTile curPT = tilesToCalculate.Dequeue();
+
+                for (int i = 0; i < curPT.previousTiles.Count; i++)
+                {
+                    PathTile prevPT = curPT.previousTiles[i];
+                    tilesToCalculate.Enqueue(prevPT);
+                    prevPT.distFromBase = curPT.distFromBase + 1;
+                }
+            }
+        }
+
+    }
     private void SetSpawnerPathways()
     {
         List<Spawner> spawners = new List<Spawner>(FindObjectsOfType<Spawner>(true));

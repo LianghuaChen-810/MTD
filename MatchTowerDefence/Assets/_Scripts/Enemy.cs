@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
+    public List<TowerTile> towersThatAreInRange = new List<TowerTile>();
     public EnemyObject enemyType;
     public SpriteRenderer render;
     public Rigidbody2D rb;
@@ -25,7 +25,10 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-
+    /// <summary>
+    /// Sets the enemies type and attributes to enemyType
+    /// </summary>
+    /// <param name="_enemyType"></param>
     public void SetEnemy (EnemyObject _enemyType)
     {
         enemyType = _enemyType;
@@ -45,17 +48,72 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Adds towers that can shoot at this enemy.
+    /// Created list is used when enemy dies.
+    /// </summary>
+    /// <param name="collider"></param>
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        Debug.Log("ON TRIGGER ENTER 2D from tower");
+        if (collider.gameObject.GetComponent<TowerTile>() != null)
+        {
+            TowerTile tower = collider.gameObject.GetComponent<TowerTile>();
+            if (!towersThatAreInRange.Contains(tower))
+            {
+                towersThatAreInRange.Add(tower);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Removes towers that cannot shoot at this enemy.
+    /// Created list is used when enemy dies.
+    /// </summary>
+    /// <param name="collider"></param>
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.GetComponent<TowerTile>() != null)
+        {
+            TowerTile tower = collider.gameObject.GetComponent<TowerTile>();
+            if (towersThatAreInRange.Contains(tower))
+            {
+                towersThatAreInRange.Remove(tower);
+            }
+        }
+    }
+
+
     private void Update()
     {
         Move();
-        if (health <= 0.0f)
-        {
-            LevelControl.OnEnemyDied(this);
-            Destroy(gameObject);
-        }
+
+        CheckIfDies();
+
         // Script To Move
     }
 
+    /// <summary>
+    /// Checks if enemy dies. If so removes it from tower's attack
+    /// lists and notifies the Level Control
+    /// </summary>
+    public void CheckIfDies()
+    {
+        if (health <= 0.0f)
+        {
+            foreach (TowerTile tower in towersThatAreInRange)
+            {
+                tower.enemiesInRange.Remove(this);
+            }
+
+            LevelControl.OnEnemyDied(this);
+            Destroy(gameObject);
+        }
+    }
+
+    /// <summary>
+    /// Moves the enemy some distance forward its pathway
+    /// </summary>
     public void Move()
     {
         if (tileToMoveTo == null) return;
@@ -85,6 +143,11 @@ public class Enemy : MonoBehaviour
 
         }
     }
+
+    /// <summary>
+    /// Add the freeze effect onto the enemy for an freezeTime time.
+    /// </summary>
+    /// <param name="freezeTime"></param>
     public void Freeze(float freezeTime)
     {
         if (freezeTime == 0.0f) return;
@@ -93,6 +156,9 @@ public class Enemy : MonoBehaviour
         unfreezeTime = freezeTime;
     }
 
+    /// <summary>
+    /// Removes the freeze effect from the enemy
+    /// </summary>
     public void UnFreeze()
     {
         render.color = Color.white;

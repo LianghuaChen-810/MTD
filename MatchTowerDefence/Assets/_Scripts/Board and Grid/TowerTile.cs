@@ -60,10 +60,12 @@ public class TowerTile : MonoBehaviour
         collider2d = GetComponent<BoxCollider2D>();
     }
 
-
+    /// <summary>
+    /// Adds enemies when they get in range
+    /// </summary>
+    /// <param name="collider"></param>
     void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log("ON TRIGGER ENTER 2D from tower");
         if (collider.gameObject.GetComponent<Enemy>() != null)
         {
             Enemy enemy = collider.gameObject.GetComponent<Enemy>();
@@ -74,6 +76,10 @@ public class TowerTile : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Removes enemies when they get in range
+    /// </summary>
+    /// <param name="collider"></param>
     void OnTriggerExit2D(Collider2D collider)
     {
         if (collider.gameObject.GetComponent<Enemy>() != null)
@@ -93,8 +99,10 @@ public class TowerTile : MonoBehaviour
     /// </summary>
     public void StartShooting()
     {
+
+        if (tower == null || tower.range == 0) return;
+
         collider2d = gameObject.GetComponent<BoxCollider2D>();
-        Debug.Log(gameObject.name + " has collider " + collider2d);
         
         if (shootCourotine == null)
         {
@@ -113,7 +121,11 @@ public class TowerTile : MonoBehaviour
     /// </summary>
     public void StopShooting()
     {
+        if (tower == null || tower.range == 0) return;
+
         collider2d.size = new Vector2(1.95f, 1.95f);
+        enemiesInRange = new List<Enemy>();
+        currentEnemyInRange = null;
 
         StopCoroutine(shootCourotine);
     }
@@ -145,11 +157,9 @@ public class TowerTile : MonoBehaviour
                 // If no enemy was found wait for little time and try to find again.
                 if (closestEnemy == null)
                 {
-                    Debug.Log("DID NOT FIND CLOSEST ENEMY");
                     yield return new WaitForSeconds(0.3f); // NEED TO SCALE WITH GAME TIME SCALE
                     continue;
                 }
-                Debug.Log("FOUND CLOSES ENEMY");
                 currentEnemyInRange = closestEnemy;
             }
 
