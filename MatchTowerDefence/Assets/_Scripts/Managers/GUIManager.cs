@@ -42,6 +42,7 @@ namespace MatchTowerDefence.Managers
         public Button restartButton = null;
         public List<LevelSelectButton> levelButtons = null;
 
+        private LevelSelectScreen levelSelect = null; 
         private int score;
         private int moveCounter;
         private int enemiesReached = 0;
@@ -68,6 +69,7 @@ namespace MatchTowerDefence.Managers
             {
                 Destroy(gameObject);
             }
+            levelSelect = levelSelectScreen.GetComponent<LevelSelectScreen>();
         }
 
 
@@ -144,8 +146,8 @@ namespace MatchTowerDefence.Managers
             SetWinStars();
             score = Mathf.Abs(enemiesReached - 3);
             levelButtons[int.Parse(level.id) - 1].scorePanel.SetStars(score);
-            Debug.Log(levelButtons[int.Parse(level.id) - 1]);
             LevelManager.instance.CompleteLevel(level.id, score);
+            levelSelect.UpdateTotalStars();
         }
 
         public void FastForwardToggle()

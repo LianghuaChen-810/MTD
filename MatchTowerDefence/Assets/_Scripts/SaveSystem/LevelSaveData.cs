@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MatchTowerDefence.SaveSystem
 {
-    [Serializable]
+    [System.Serializable]
     public class LevelSaveData
     {
         public string levelId;

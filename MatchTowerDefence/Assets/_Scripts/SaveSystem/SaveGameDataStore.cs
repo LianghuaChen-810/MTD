@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using static MatchTowerDefence.SaveSystem.LevelSaveData;
 
 namespace MatchTowerDefence.SaveSystem
 {
@@ -7,6 +8,7 @@ namespace MatchTowerDefence.SaveSystem
     {
         private const string saveFile = "SaveFile";
 
+        public int totalStars = 0;
         public List<LevelSaveData> completedLevels = new List<LevelSaveData>();
 
         public override void PostLoad()
@@ -25,11 +27,16 @@ namespace MatchTowerDefence.SaveSystem
             {
                 if (levelSaveData.levelId == levelId)
                 {
+                    if (starEarned > levelSaveData.numberOfStars)
+                    {
+                        totalStars += starEarned - levelSaveData.numberOfStars;
+                    }
                     levelSaveData.numberOfStars = Mathf.Max(levelSaveData.numberOfStars, starEarned);
                     return;
                 }
             }
             completedLevels.Add(new LevelSaveData(levelId, starEarned));
+            totalStars += starEarned;
         }
 
         public bool IsLevelCompleted(string levelId)
