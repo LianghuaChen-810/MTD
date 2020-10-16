@@ -143,6 +143,10 @@ public static class LevelControl
             tile.StopShooting();
         }
 
+        //// TODO: MAKE DYNAMIC
+        //GUIManager.instance.SetSpawner1Panel(false);
+        //GUIManager.instance.SetSpawner2Panel(false);
+
         GUIManager.instance.MoveCounter = 5; // TODO: REMOVE HARD CODED PART
         // Set phase
         phase = LevelPhase.POSTDEFENCE;
@@ -157,6 +161,9 @@ public static class LevelControl
         Debug.Log("LevelControl: Triggered Preparation Phase");
 
         currentWave++;
+        GUIManager.instance.SetLevelInfoUI(true);
+        GUIManager.instance.SetWaveNumber(currentWave, waves);
+
         // Make spawners spawn depending on wave
         enemiesLeftInWave = 0;
         currentWaveSpawners = waveSpawners[currentWave];
@@ -168,6 +175,15 @@ public static class LevelControl
 
         enemiesInWave = new List<Enemy>();
 
+        //// TODO: MAKE DYNAMIC
+        //for (int i = 0; i < currentWaveSpawners.Count; i++)
+        //{
+        //    if (i == 0)
+        //    {
+        //        GUIManager.instance.SetSpawner1Panel(true);
+        //        GUIManager.instance.Set
+        //    }
+        //}
         // Set phase
         phase = LevelPhase.PREPARATION;
         GUIManager.instance.phaseTxt.text = "Preparation";

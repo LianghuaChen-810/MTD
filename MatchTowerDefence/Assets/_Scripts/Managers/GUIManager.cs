@@ -72,6 +72,32 @@ public class GUIManager : MonoBehaviour
     [SerializeField]
     private Image stUpgradeImage;
 
+
+    [Header("Level Info")]
+    [SerializeField]
+    private GameObject LevelInfoPanel;
+    [SerializeField]
+    private TMP_Text levelNameTxt;
+    [SerializeField]
+    private TMP_Text waveCounterTxt;
+    [SerializeField]
+    private GameObject sp1Panel;
+    [SerializeField]
+    private Image sp1Image;
+    [SerializeField]
+    private TMP_Text sp1LUcounterTxt;
+    [SerializeField]
+    private TMP_Text sp1HUcounterTxt;
+
+    [SerializeField]
+    private GameObject sp2Panel;
+    [SerializeField]
+    private Image sp2Image;
+    [SerializeField]
+    private TMP_Text sp2LUcounterTxt;
+    [SerializeField]
+    private TMP_Text sp2HUcounterTxt;
+
     public void Initialise()
     {
         if (instance == null)
@@ -203,7 +229,7 @@ public class GUIManager : MonoBehaviour
     }
 
 
-
+    // TOWER INFO UPDATE FUCNTIONS
 
     public void UpdateSelectedTower(TowerObject towerObj, int bonusDmg)
     {
@@ -232,5 +258,61 @@ public class GUIManager : MonoBehaviour
     public void CloseSelectedTower()
     {
         stPanel.SetActive(false);
+    }
+
+
+    // LEVEL INFO UPDATE FUNCTIONS
+
+    public void SetLevelInfoUI(bool isOn)
+    {
+        LevelInfoPanel.SetActive(isOn);
+    }
+
+    public void SetSpawner1Panel(bool isOn)
+    {
+        sp1Panel.SetActive(isOn);
+    }
+
+    public void SetSpawner2Panel(bool isOn)
+    {
+        sp2Panel.SetActive(isOn);
+    }
+
+    public void SetWaveNumber (int current, int maxWaves)
+    {
+        waveCounterTxt.text = current.ToString() + " / " + maxWaves.ToString();
+    }
+
+    public void SetSP1Image(Sprite sprite)
+    {
+        sp1Image.sprite = sprite;
+    }
+
+    public void SetSP1LU (int count)
+    {
+        sp1LUcounterTxt.text = "x" + count.ToString();
+    }
+
+    public void SetSP1HU (int count)
+    {
+        sp1HUcounterTxt.text = "x" + count.ToString();
+
+    }
+
+    public void SetSP2LU (int count)
+    {
+        sp2LUcounterTxt.text = "x" + count.ToString();
+
+    }
+
+    public void SetSP2HU (int count)
+    {
+        sp2HUcounterTxt.text = "x" + count.ToString();
+
+    }
+
+    public void SetSP2Image(Sprite sprite)
+    {
+        sp2Image.sprite = sprite;
     }
 }
