@@ -6,6 +6,7 @@ using MatchTowerDefence.SaveSystem;
 using GameCore.System;
 using MatchTowerDefence.UI;
 using System.Collections.Generic;
+using MatchTowerDefence.Level;
 
 namespace MatchTowerDefence.Managers
 {
@@ -112,7 +113,7 @@ namespace MatchTowerDefence.Managers
 
         public int MoveCounter { get { return moveCounter; } set { moveCounter = value; moveCounterTxt.text = moveCounter.ToString(); } }
 
-        public void Awake()
+        private void Awake()
         {
             DontDestroyOnLoad(gameObject);
             if (instance == null)
@@ -204,6 +205,34 @@ namespace MatchTowerDefence.Managers
             levelSelect.UpdateTotalStars();
         }
 
+        public void GoToNextLevel()
+        {
+            if (!LevelManager.instance)
+            {
+                return;
+            }
+            LevelManager levelManager = LevelManager.instance;
+            LevelItem item = levelManager.LevelItemCurrentScene();
+            LevelList list = levelManager.levelList;
+            int levelCount = list.Count;
+            int index = -1;
+            for (int i = 0; i < levelCount; i++)
+            {
+                if (item == list[i])
+                {
+                    index = i + 1;
+                    break;
+                }
+            }
+            if (index < 0 || index >= levelCount)
+            {
+                return;
+            }
+            LevelItem nextLevel = levelManager.levelList[index];
+            levelFinishedMenu.SetActive(false);
+            SceneManager.LoadScene(nextLevel.sceneName);
+        }
+
         public void FastForwardToggle()
         {
             if (currentSpeed == 1)
@@ -255,7 +284,7 @@ namespace MatchTowerDefence.Managers
 
             if (SaveManager.instance != null)
             {
-                SaveManager.instance.SetVolumes(masterVolume, musicVolume, sfxVolume, true);
+                SaveManager.instance.SetVolumes(masterVolume, musicVolume, sfxVolume, false);
             }
         }
 
