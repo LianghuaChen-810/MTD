@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a65da6e5679114c849a4e0fa26b5e3, type: 3}
   m_Name: Normal3
   m_EditorClassIdentifier: 
+  name: Tree Tower
+  description: Most powerful tree tower that shoots a single most powerful buller
+    at an enemu.
+  levelStr: Level Three
   type: 3
   attackType: 0
-  nextLevelTower: {fileID: 11400000, guid: 5423e55e0626f114d928cad6a795f31b, type: 2}
-  sprite: {fileID: 3209868034358598023, guid: d406cd27aee895442be53270fec2fcf2, type: 3}
-  freezeTime: 0
-  damage: 33
-  color: {r: 0.13333334, g: 0.33333334, b: 0.33333334, a: 0}
+  baseDamage: 45
   range: 3
+  sprite: {fileID: 21300000, guid: 7a2a247e6005a7142957d46789852e9c, type: 3}
+  bulletPrefab: {fileID: 8374059285157413538, guid: 097c87e7cc6b52143af3055aa0c4d001, type: 3}
+  hasUpgrade: 0
+  nextLevelTower: {fileID: 11400000, guid: 5423e55e0626f114d928cad6a795f31b, type: 2}
