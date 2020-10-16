@@ -42,7 +42,7 @@ namespace MatchTowerDefence.Managers
         public Button restartButton = null;
         public List<LevelSelectButton> levelButtons = null;
 
-        private LevelSelectScreen levelSelect = null; 
+        private LevelSelectScreen levelSelect = null;
         private int score;
         private int moveCounter;
         private int enemiesReached = 0;
@@ -58,57 +58,57 @@ namespace MatchTowerDefence.Managers
 
 
 
-    [Header("Selected Tower info")]
-    // ST stands for Selected Tower
-    [SerializeField]
-    private GameObject stPanel = null;
-    [SerializeField]
-    private Image stImage = null;
-    [SerializeField]
-    private TMP_Text stNameTxt = null;
-    [SerializeField]
-    private TMP_Text stLevelTxt = null;
-    [SerializeField]
-    private TMP_Text stDescTxt = null;
-    [SerializeField]
-    private TMP_Text stBaseDmgTxt = null;
-    [SerializeField]
-    private TMP_Text stBonusDmgTxt = null;
-    [SerializeField]
-    private TMP_Text stRangeTxt = null;
+        [Header("Selected Tower info")]
+        // ST stands for Selected Tower
+        [SerializeField]
+        private GameObject stPanel = null;
+        [SerializeField]
+        private Image stImage = null;
+        [SerializeField]
+        private TMP_Text stNameTxt = null;
+        [SerializeField]
+        private TMP_Text stLevelTxt = null;
+        [SerializeField]
+        private TMP_Text stDescTxt = null;
+        [SerializeField]
+        private TMP_Text stBaseDmgTxt = null;
+        [SerializeField]
+        private TMP_Text stBonusDmgTxt = null;
+        [SerializeField]
+        private TMP_Text stRangeTxt = null;
 
-    [SerializeField]
-    private GameObject stUpgradePanel = null;
-    [SerializeField]
-    private Image stCurrentImage = null;
-    [SerializeField]
-    private Image stUpgradeImage = null;
+        [SerializeField]
+        private GameObject stUpgradePanel = null;
+        [SerializeField]
+        private Image stCurrentImage = null;
+        [SerializeField]
+        private Image stUpgradeImage = null;
 
 
-    [Header("Level Info")]
-    [SerializeField]
-    private GameObject LevelInfoPanel = null;
-    //[SerializeField]
-    //private TMP_Text levelNameTxt = null;
-    [SerializeField]
-    private TMP_Text waveCounterTxt = null;
-    [SerializeField]
-    private GameObject sp1Panel = null;
-    [SerializeField]
-    private Image sp1Image = null;
-    [SerializeField]
-    private TMP_Text sp1LUcounterTxt = null;
-    [SerializeField]
-    private TMP_Text sp1HUcounterTxt = null;
+        [Header("Level Info")]
+        [SerializeField]
+        private GameObject LevelInfoPanel = null;
+        //[SerializeField]
+        //private TMP_Text levelNameTxt = null;
+        [SerializeField]
+        private TMP_Text waveCounterTxt = null;
+        [SerializeField]
+        private GameObject sp1Panel = null;
+        [SerializeField]
+        private Image sp1Image = null;
+        [SerializeField]
+        private TMP_Text sp1LUcounterTxt = null;
+        [SerializeField]
+        private TMP_Text sp1HUcounterTxt = null;
 
-    [SerializeField]
-    private GameObject sp2Panel = null;
-    [SerializeField]
-    private Image sp2Image = null;
-    [SerializeField]
-    private TMP_Text sp2LUcounterTxt = null;
-    [SerializeField]
-    private TMP_Text sp2HUcounterTxt = null;
+        [SerializeField]
+        private GameObject sp2Panel = null;
+        [SerializeField]
+        private Image sp2Image = null;
+        [SerializeField]
+        private TMP_Text sp2LUcounterTxt = null;
+        [SerializeField]
+        private TMP_Text sp2HUcounterTxt = null;
 
         public int MoveCounter { get { return moveCounter; } set { moveCounter = value; moveCounterTxt.text = moveCounter.ToString(); } }
 
@@ -253,7 +253,7 @@ namespace MatchTowerDefence.Managers
             float masterVolume, musicVolume, sfxVolume;
             GetSliderVolumes(out masterVolume, out musicVolume, out sfxVolume);
 
-            if(SaveManager.instance != null)
+            if (SaveManager.instance != null)
             {
                 SaveManager.instance.SetVolumes(masterVolume, musicVolume, sfxVolume, true);
             }
@@ -299,162 +299,92 @@ namespace MatchTowerDefence.Managers
             }
 
         }
-    
-        
-    // TOWER INFO UPDATE FUCNTIONS
-    public void UpdateSelectedTower(TowerObject towerObj, int bonusDmg)
-    {
-        stImage.sprite = towerObj.sprite;
-        stNameTxt.text = towerObj.name;
-        stLevelTxt.text = towerObj.levelStr;
-        stDescTxt.text = towerObj.description;
-        stBaseDmgTxt.text = towerObj.baseDamage.ToString();
-        stBonusDmgTxt.text = bonusDmg.ToString();
-        stRangeTxt.text = towerObj.range.ToString();
-        if (!towerObj.hasUpgrade)
+
+        // TOWER INFO UPDATE FUCNTIONS
+
+        public void UpdateSelectedTower(TowerObject towerObj, int bonusDmg)
         {
-            stUpgradePanel.SetActive(false);
-        } 
-        else
-        {
-            stCurrentImage.sprite = towerObj.sprite;
-            stUpgradeImage.sprite = towerObj.nextLevelTower.sprite;
-            stUpgradePanel.SetActive(true);
+
+            stImage.sprite = towerObj.sprite;
+            stNameTxt.text = towerObj.name;
+            stLevelTxt.text = towerObj.levelStr;
+            stDescTxt.text = towerObj.description;
+            stBaseDmgTxt.text = towerObj.baseDamage.ToString();
+            stBonusDmgTxt.text = bonusDmg.ToString();
+            stRangeTxt.text = towerObj.range.ToString();
+
+            if (!towerObj.hasUpgrade)
+            {
+                stUpgradePanel.SetActive(false);
+            }
+            else
+            {
+                stCurrentImage.sprite = towerObj.sprite;
+                stUpgradeImage.sprite = towerObj.nextLevelTower.sprite;
+                stUpgradePanel.SetActive(true);
+            }
+            stPanel.SetActive(true);
         }
-        stPanel.SetActive(true);
-    }
-    public void CloseSelectedTower()
-    {
-        stPanel.SetActive(false);
-    }
-    // LEVEL INFO UPDATE FUNCTIONS
-    public void SetLevelInfoUI(bool isOn)
-    {
-        LevelInfoPanel.SetActive(isOn);
-    }
-    public void SetSpawner1Panel(bool isOn)
-    {
-        sp1Panel.SetActive(isOn);
-    }
-    public void SetSpawner2Panel(bool isOn)
-    {
-        sp2Panel.SetActive(isOn);
-    }
-    public void SetWaveNumber (int current, int maxWaves)
-    {
-        waveCounterTxt.text = current.ToString() + " / " + maxWaves.ToString();
-    }
-    public void SetSP1Image(Sprite sprite)
-    {
-        sp1Image.sprite = sprite;
-    }
-    public void SetSP1LU (int count)
-    {
-        sp1LUcounterTxt.text = "x" + count.ToString();
-    }
-    public void SetSP1HU (int count)
-    {
-        sp1HUcounterTxt.text = "x" + count.ToString();
-    }
-    public void SetSP2LU (int count)
-    {
-        sp2LUcounterTxt.text = "x" + count.ToString();
-    }
-    public void SetSP2HU (int count)
-    {
-        sp2HUcounterTxt.text = "x" + count.ToString();
-    }
-    public void SetSP2Image(Sprite sprite)
+
+        public void CloseSelectedTower()
+        {
+            stPanel.SetActive(false);
+        }
+
+
+        // LEVEL INFO UPDATE FUNCTIONS
+
+        public void SetLevelInfoUI(bool isOn)
+        {
+            LevelInfoPanel.SetActive(isOn);
+        }
+
+        public void SetSpawner1Panel(bool isOn)
+        {
+            sp1Panel.SetActive(isOn);
+        }
+
+        public void SetSpawner2Panel(bool isOn)
+        {
+            sp2Panel.SetActive(isOn);
+        }
+
+        public void SetWaveNumber(int current, int maxWaves)
+        {
+            waveCounterTxt.text = current.ToString() + " / " + maxWaves.ToString();
+        }
+
+        public void SetSP1Image(Sprite sprite)
+        {
+            sp1Image.sprite = sprite;
+        }
+
+        public void SetSP1LU(int count)
+        {
+            sp1LUcounterTxt.text = "x" + count.ToString();
+        }
+
+        public void SetSP1HU(int count)
+        {
+            sp1HUcounterTxt.text = "x" + count.ToString();
+
+        }
+
+        public void SetSP2LU(int count)
+        {
+            sp2LUcounterTxt.text = "x" + count.ToString();
+
+        }
+
+        public void SetSP2HU(int count)
+        {
+            sp2HUcounterTxt.text = "x" + count.ToString();
+
+        }
+
+        public void SetSP2Image(Sprite sprite)
         {
             sp2Image.sprite = sprite;
         }
-    }
-
-
-    // TOWER INFO UPDATE FUCNTIONS
-
-    public void UpdateSelectedTower(TowerObject towerObj, int bonusDmg)
-    {
-
-        stImage.sprite = towerObj.sprite;
-        stNameTxt.text = towerObj.name;
-        stLevelTxt.text = towerObj.levelStr;
-        stDescTxt.text = towerObj.description;
-        stBaseDmgTxt.text = towerObj.baseDamage.ToString();
-        stBonusDmgTxt.text = bonusDmg.ToString();
-        stRangeTxt.text = towerObj.range.ToString();
-
-        if (!towerObj.hasUpgrade)
-        {
-            stUpgradePanel.SetActive(false);
-        } 
-        else
-        {
-            stCurrentImage.sprite = towerObj.sprite;
-            stUpgradeImage.sprite = towerObj.nextLevelTower.sprite;
-            stUpgradePanel.SetActive(true);
-        }
-        stPanel.SetActive(true);
-    }
-
-    public void CloseSelectedTower()
-    {
-        stPanel.SetActive(false);
-    }
-
-
-    // LEVEL INFO UPDATE FUNCTIONS
-
-    public void SetLevelInfoUI(bool isOn)
-    {
-        LevelInfoPanel.SetActive(isOn);
-    }
-
-    public void SetSpawner1Panel(bool isOn)
-    {
-        sp1Panel.SetActive(isOn);
-    }
-
-    public void SetSpawner2Panel(bool isOn)
-    {
-        sp2Panel.SetActive(isOn);
-    }
-
-    public void SetWaveNumber (int current, int maxWaves)
-    {
-        waveCounterTxt.text = current.ToString() + " / " + maxWaves.ToString();
-    }
-
-    public void SetSP1Image(Sprite sprite)
-    {
-        sp1Image.sprite = sprite;
-    }
-
-    public void SetSP1LU (int count)
-    {
-        sp1LUcounterTxt.text = "x" + count.ToString();
-    }
-
-    public void SetSP1HU (int count)
-    {
-        sp1HUcounterTxt.text = "x" + count.ToString();
-
-    }
-
-    public void SetSP2LU (int count)
-    {
-        sp2LUcounterTxt.text = "x" + count.ToString();
-
-    }
-
-    public void SetSP2HU (int count)
-    {
-        sp2HUcounterTxt.text = "x" + count.ToString();
-
-    }
-
-    public void SetSP2Image(Sprite sprite)
-    {
-        sp2Image.sprite = sprite;
     }
 }
