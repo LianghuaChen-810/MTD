@@ -5,6 +5,8 @@ using MatchTowerDefence.Managers;
 
 public static class LevelControl
 {
+    public static PlayTransitions playTransition = PlayTransitions.NONE;
+
     public static int waves;
     public static int currentWave;
 
@@ -89,6 +91,8 @@ public static class LevelControl
     /// </summary>
     public static void OnUpdate()
     {
+        if (playTransition != PlayTransitions.NONE) return;
+
         // TODO: SEPARE MOVE COUNTER WAY FROM GUI MANAGER
         if (phase == LevelPhase.PREPARATION && GUIManager.instance.MoveCounter == 0)
         {
@@ -199,3 +203,18 @@ public static class LevelControl
 /// Enumerator for the four possible phases of each level: preparation, defence, post-defence, finished.
 /// </summary>
 public enum LevelPhase { PREPARATION, DEFENCE, POSTDEFENCE, FINISHED }
+
+/// <summary>
+/// Enumerator for the four possible states of the board play to prevent any other actions: none, towers swapping, match found, board shifting.
+/// </summary>
+public enum PlayTransitions 
+{ 
+    NONE = 0, 
+    TOWERSWAP = 1, 
+    MATCHFOUND = 2, 
+    SWAP_AND_MATCH = 3,
+    BOARDSHIFTING = 4,
+    SWAP_AND_SHIFT = 5,
+    MATCH_AND_SHIFT = 6,
+    ALL = 7 
+}

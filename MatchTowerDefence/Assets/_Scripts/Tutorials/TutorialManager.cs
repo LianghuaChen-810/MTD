@@ -115,7 +115,7 @@ public class TutorialManager : MonoBehaviour
         //Debug.Log("TOWER SPAWNED EVENT: " + tower.type);
         if (!isActive)
         {
-            Debug.Log("TOWER SPAWNED EVENT: " + tower.type);
+            //Debug.Log("TOWER SPAWNED EVENT: " + tower.type);
 
             if (nextStage.requirement == TutorialStage.TutorialStageRequirement.TOWER)
                 if (tower.type == nextStage.towerToAppear.type)

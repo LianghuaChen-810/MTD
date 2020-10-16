@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour
     /// <param name="collider"></param>
     void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log("ON TRIGGER ENTER 2D from tower");
+        //Debug.Log("ON TRIGGER ENTER 2D from tower");
         if (collider.gameObject.GetComponent<TowerTile>() != null)
         {
             TowerTile tower = collider.gameObject.GetComponent<TowerTile>();
