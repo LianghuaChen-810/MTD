@@ -1,21 +1,13 @@
 ﻿using MatchTowerDefence.Managers;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public abstract class Bullet : MonoBehaviour
 {
 
-    TowerObject tower = null;
     Enemy enemy = null;
     bool isShot = false;
-    public float damage = 0;
-    SpriteRenderer render;
-
+    float damage = 0;
     Vector3 lastTargetPosition = Vector3.zero;
-
-    void Awake()
-    {
-        render = GetComponent<SpriteRenderer>();
-    }
 
     // Update is called once per frame
     void Update()
@@ -26,29 +18,46 @@ public class Bullet : MonoBehaviour
             {
                 lastTargetPosition = enemy.transform.position;
             }
+
+            // Move the bullets
             Vector3 direction = (lastTargetPosition - this.transform.position).normalized;
             transform.Translate(1.5f * direction * Time.deltaTime);
 
+            // When reached enemy position
             if (Vector3.Distance(transform.position, lastTargetPosition) <= 0.01f)
             {
-                if (enemy != null)
-                {
-                    enemy.health -= damage;
-                    enemy.Freeze(tower.freezeTime);
-                }
+
+                Effect(enemy, damage);
                 Destroy(gameObject);
             }
         }
     }
 
-    public void Shoot (TowerObject to, float bonusDamage, Enemy en)
+
+    public abstract void Effect(Enemy enemy, float dmg);
+
+    public void ShootAt (Enemy en, float dmg)
     {
-       
-        tower = to;
-        damage = bonusDamage + to.baseDamage;
-        render.color = to.color;
+        damage = dmg;
         enemy = en;
-        isShot = true;
         SFXManager.instance.PlaySFX(SFXManager.AudioClip.TowerAttack);
+        isShot = true;
+    }
+
+
+
+    public static void FrostEffect(Enemy enemy, Bullet bullet)
+    {
+
+    }
+
+    public static void NormalEffect(Enemy enemy, Bullet bullet)
+    {
+
+    }
+
+    public static void AOEEffect (Enemy enemy, Bullet bullet)
+    {
+
     }
 }

@@ -11,16 +11,15 @@ public class TowerObject : ScriptableObject
     [TextArea(3, 10)]
     public string description;
     public string levelStr;
+
     [Header ("Tower Attributes")]
     public TowerType type;
     public TowerAttackType attackType;
     public float baseDamage;
     public float range;
     public Sprite sprite;
-
-    [Header("Tower Effect")]
-    public float freezeTime;
-    public Color color;
+    public GameObject bulletPrefab;
+ 
 
     [Header ("Tower Upgrades")]
     public bool hasUpgrade;
