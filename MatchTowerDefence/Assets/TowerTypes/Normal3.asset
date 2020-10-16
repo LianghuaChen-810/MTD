@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a65da6e5679114c849a4e0fa26b5e3, type: 3}
   m_Name: Normal3
   m_EditorClassIdentifier: 
+  name: Tree Tower
+  description: Most powerful tree tower that shoots a single most powerful buller
+    at an enemu.
+  levelStr: Level Three
   type: 3
   attackType: 0
   baseDamage: 45

@@ -55,6 +55,21 @@ public class BoardManager : MonoBehaviour
         instance = GetComponent<BoardManager>();
     }
 
+    public int ShiftsInProgress = 0;
+
+
+    void Update()
+    {
+
+        if (IsShifting == false && 
+            /* this checks if the BoardShifting bit is set */
+            ((LevelControl.playTransition | PlayTransitions.BOARDSHIFTING) == LevelControl.playTransition))
+        {
+            // Unset the BoardShifting bit
+            LevelControl.playTransition ^= PlayTransitions.BOARDSHIFTING;
+            //Debug.Log("Board Update: " + LevelControl.playTransition);
+        }
+    }
     /// <summary>
     ///  Initialises the board manager state, instance, tile board and tower list.
     /// </summary>
@@ -479,7 +494,9 @@ public class BoardManager : MonoBehaviour
             {
                 if (towerTileColumns[x][y].GetComponent<TowerTile>().tower == null)
                 {
+
                     yield return StartCoroutine(ShiftTowersDown(x, y));
+ 
                     break;
                 }
             }
@@ -540,7 +557,6 @@ public class BoardManager : MonoBehaviour
 
         }
         IsShifting = false;
-
     }
 
 

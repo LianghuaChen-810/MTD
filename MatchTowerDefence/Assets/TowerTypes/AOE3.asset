@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a65da6e5679114c849a4e0fa26b5e3, type: 3}
   m_Name: AOE3
   m_EditorClassIdentifier: 
+  name: Turret Tower
+  description: Most powerful turret that shoots a barrel that explodes on contact
+    dealing AoE damage.
+  levelStr: Level Three
   type: 7
   attackType: 1
   baseDamage: 35

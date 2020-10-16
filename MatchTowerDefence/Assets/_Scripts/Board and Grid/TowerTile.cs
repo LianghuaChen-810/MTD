@@ -238,6 +238,7 @@ public class TowerTile : MonoBehaviour
         isSelected = true;
         render.color = bulletSelectedColor;
         previousSelected = gameObject.GetComponent<TowerTile>();
+        GUIManager.instance.UpdateSelectedTower(tower, towerBonusDamage);
     }
 
     /// <summary>
@@ -248,6 +249,8 @@ public class TowerTile : MonoBehaviour
         isSelected = false;
         render.color = Color.white;
         previousSelected = null;
+        GUIManager.instance.CloseSelectedTower();
+
     }
 
     /// <summary>
@@ -256,6 +259,7 @@ public class TowerTile : MonoBehaviour
     /// </summary>
     void OnMouseDown()
     {
+        if (LevelControl.playTransition != PlayTransitions.NONE) return;
         if (LevelControl.phase != LevelPhase.PREPARATION) return;
 
         // Prevents from selecting tiles if the tutorial is on!
@@ -280,6 +284,9 @@ public class TowerTile : MonoBehaviour
             }
             else
             {
+                LevelControl.playTransition ^= PlayTransitions.TOWERSWAP;
+                //Debug.Log(gameObject.name + " On mouse down (XOR TowerSwap result): " + LevelControl.playTransition);
+
                 bool success = SwapTower(previousSelected);
                 if (success)
                 {
@@ -289,12 +296,18 @@ public class TowerTile : MonoBehaviour
                     // SHOULD MOVE THIS TO GENERAL LEVEL DATA
                     GUIManager.instance.MoveCounter--;
 
+
+  
+
                     previousSelected.Deselect();
                 } else
                 {
                     previousSelected.Deselect();
                     Select();
                 }
+
+                LevelControl.playTransition ^= PlayTransitions.TOWERSWAP;
+                //Debug.Log(gameObject.name + " On mouse down (XOR TowerSwap result): " + LevelControl.playTransition);
             }
         }
     }
@@ -332,11 +345,21 @@ public class TowerTile : MonoBehaviour
         ShapeMatch shape = new ShapeMatch(this, previousSelected != null);
         if (shape.matchFound)
         {
+            LevelControl.playTransition |= PlayTransitions.MATCHFOUND;
+            //Debug.Log(gameObject.name + " Find Match (Or MatchFound result): " + LevelControl.playTransition);
             //shape.PrintShape();
             shape.UpdateTowerFromMatch();
-            SFXManager.instance.PlaySFX(SFXManager.AudioClip.Match);
             StopCoroutine(BoardManager.instance.FindNullTiles());
+
+            LevelControl.playTransition |= PlayTransitions.BOARDSHIFTING;
+            //Debug.Log(gameObject.name + " Find Match (Or Boardshifting result): " + LevelControl.playTransition);
+
+            LevelControl.playTransition ^= PlayTransitions.MATCHFOUND;
+            //Debug.Log(gameObject.name + " Find Match (XOr MatchFound result): " + LevelControl.playTransition);
+
             StartCoroutine(BoardManager.instance.FindNullTiles());
+
+            SFXManager.instance.PlaySFX(SFXManager.AudioClip.Match);
         }
     }
 

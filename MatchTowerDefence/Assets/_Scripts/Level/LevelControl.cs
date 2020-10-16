@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MatchTowerDefence.Managers;
 
 public static class LevelControl
 {
+    public static PlayTransitions playTransition = PlayTransitions.NONE;
+
     public static int waves;
     public static int currentWave;
 
@@ -77,6 +80,8 @@ public static class LevelControl
         enemiesInWave.Remove(enemy);
         enemiesLeftInWave--;
         enemiesPassed++;
+    
+        // Gamedata.Playerdata.Health -= enemy.attackDamage;
     }
 
 
@@ -86,6 +91,8 @@ public static class LevelControl
     /// </summary>
     public static void OnUpdate()
     {
+        if (playTransition != PlayTransitions.NONE) return;
+
         // TODO: SEPARE MOVE COUNTER WAY FROM GUI MANAGER
         if (phase == LevelPhase.PREPARATION && GUIManager.instance.MoveCounter == 0)
         {
@@ -136,6 +143,10 @@ public static class LevelControl
             tile.StopShooting();
         }
 
+        //// TODO: MAKE DYNAMIC
+        //GUIManager.instance.SetSpawner1Panel(false);
+        //GUIManager.instance.SetSpawner2Panel(false);
+
         GUIManager.instance.MoveCounter = 5; // TODO: REMOVE HARD CODED PART
         // Set phase
         phase = LevelPhase.POSTDEFENCE;
@@ -150,6 +161,9 @@ public static class LevelControl
         Debug.Log("LevelControl: Triggered Preparation Phase");
 
         currentWave++;
+        GUIManager.instance.SetLevelInfoUI(true);
+        GUIManager.instance.SetWaveNumber(currentWave, waves);
+
         // Make spawners spawn depending on wave
         enemiesLeftInWave = 0;
         currentWaveSpawners = waveSpawners[currentWave];
@@ -161,6 +175,15 @@ public static class LevelControl
 
         enemiesInWave = new List<Enemy>();
 
+        //// TODO: MAKE DYNAMIC
+        //for (int i = 0; i < currentWaveSpawners.Count; i++)
+        //{
+        //    if (i == 0)
+        //    {
+        //        GUIManager.instance.SetSpawner1Panel(true);
+        //        GUIManager.instance.Set
+        //    }
+        //}
         // Set phase
         phase = LevelPhase.PREPARATION;
         GUIManager.instance.phaseTxt.text = "Preparation";
@@ -196,3 +219,18 @@ public static class LevelControl
 /// Enumerator for the four possible phases of each level: preparation, defence, post-defence, finished.
 /// </summary>
 public enum LevelPhase { PREPARATION, DEFENCE, POSTDEFENCE, FINISHED }
+
+/// <summary>
+/// Enumerator for the four possible states of the board play to prevent any other actions: none, towers swapping, match found, board shifting.
+/// </summary>
+public enum PlayTransitions 
+{ 
+    NONE = 0, 
+    TOWERSWAP = 1, 
+    MATCHFOUND = 2, 
+    SWAP_AND_MATCH = 3,
+    BOARDSHIFTING = 4,
+    SWAP_AND_SHIFT = 5,
+    MATCH_AND_SHIFT = 6,
+    ALL = 7 
+}

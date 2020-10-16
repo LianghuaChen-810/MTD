@@ -115,7 +115,7 @@ public class TutorialManager : MonoBehaviour
         //Debug.Log("TOWER SPAWNED EVENT: " + tower.type);
         if (!isActive)
         {
-            Debug.Log("TOWER SPAWNED EVENT: " + tower.type);
+            //Debug.Log("TOWER SPAWNED EVENT: " + tower.type);
 
             if (nextStage.requirement == TutorialStage.TutorialStageRequirement.TOWER)
                 if (tower.type == nextStage.towerToAppear.type)
@@ -144,7 +144,14 @@ public class TutorialManager : MonoBehaviour
 
     public void SkipTutorial()
     {
-        nextStageIndex = 10;
+        if (currentStage != null)
+            currentStage.StopStage();
+        nextStageIndex = stages.Count;
+        PlayerPrefs.SetInt("Tutored", 1);
+        isActive = false;
+        tutTextMsg.SetActive(false);
+        skipButton.SetActive(false);
+        gameObject.SetActive(false);
     }
     // EXECUTION FUNCTIONS
 }
