@@ -59,7 +59,7 @@ namespace MatchTowerDefence.Managers
 
         public int MoveCounter { get { return moveCounter; } set { moveCounter = value; moveCounterTxt.text = moveCounter.ToString(); } }
 
-        public void Awake()
+        private void Awake()
         {
             DontDestroyOnLoad(gameObject);
             if (instance == null)
@@ -230,7 +230,7 @@ namespace MatchTowerDefence.Managers
 
             if(SaveManager.instance != null)
             {
-                SaveManager.instance.SetVolumes(masterVolume, musicVolume, sfxVolume, true);
+                SaveManager.instance.SetVolumes(masterVolume, musicVolume, sfxVolume, false);
             }
         }
 
