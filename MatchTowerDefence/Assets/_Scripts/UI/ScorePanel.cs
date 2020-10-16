@@ -5,8 +5,8 @@ namespace MatchTowerDefence.UI
 {
     public class ScorePanel : MonoBehaviour
     {
-        [SerializeField] private Image[] starImages;
-        [SerializeField] private Sprite achievedStarSprite;
+        [SerializeField] private Image[] starImages = null;
+        [SerializeField] private Sprite achievedStarSprite = null;
 
 		public void SetStars(int score)
 		{

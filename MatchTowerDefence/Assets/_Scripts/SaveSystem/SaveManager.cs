@@ -10,10 +10,10 @@ namespace MatchTowerDefence.SaveSystem
 
         private const string saveFile = "SaveFile";
 
-        [SerializeField] private AudioMixer gameAudioMixer;
-        [SerializeField] private string masterVolume;
-        [SerializeField] private string musicVolume;
-        [SerializeField] private string sfxVolume;
+        [SerializeField] private AudioMixer gameAudioMixer = null;
+        [SerializeField] private string masterVolume = null;
+        [SerializeField] private string musicVolume = null;
+        [SerializeField] private string sfxVolume = null;
 
         private JSONSave<SaveGameDataStore> dataSaver;
         public SaveGameDataStore saveData;

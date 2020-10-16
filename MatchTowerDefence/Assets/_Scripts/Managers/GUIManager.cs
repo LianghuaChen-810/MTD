@@ -15,7 +15,7 @@ namespace MatchTowerDefence.Managers
 
         [Header("HUD Texts")]
         public TMP_Text phaseTxt;
-        [SerializeField] private TMP_Text moveCounterTxt;
+        [SerializeField] private TMP_Text moveCounterTxt = null;
 
         [Header("Menu Panels")]
         public GameObject pauseMenu = null;

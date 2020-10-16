@@ -7,7 +7,7 @@ public class TutorialManager : MonoBehaviour
 {
     public GameObject pressAnywhereTxt;
     public GameObject tutTextMsg;
-    [SerializeField] private GameObject skipButton;
+    [SerializeField] private GameObject skipButton = null;
     public static TutorialManager instance;
     public TMP_Text textPanel;
     public List<TutorialStage> stages = new List<TutorialStage>();
