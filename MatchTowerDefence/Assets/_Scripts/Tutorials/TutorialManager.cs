@@ -144,7 +144,14 @@ public class TutorialManager : MonoBehaviour
 
     public void SkipTutorial()
     {
-        nextStageIndex = 10;
+        if (currentStage != null)
+            currentStage.StopStage();
+        nextStageIndex = stages.Count;
+        PlayerPrefs.SetInt("Tutored", 1);
+        isActive = false;
+        tutTextMsg.SetActive(false);
+        skipButton.SetActive(false);
+        gameObject.SetActive(false);
     }
     // EXECUTION FUNCTIONS
 }

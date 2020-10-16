@@ -494,7 +494,9 @@ public class BoardManager : MonoBehaviour
             {
                 if (towerTileColumns[x][y].GetComponent<TowerTile>().tower == null)
                 {
+
                     yield return StartCoroutine(ShiftTowersDown(x, y));
+ 
                     break;
                 }
             }
