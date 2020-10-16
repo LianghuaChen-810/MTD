@@ -18,7 +18,7 @@ MonoBehaviour:
     description: Tutorial Level
     sceneName: GameWithTutorialAnimesh
   - id: 2
-    name: Easy Peesy
+    name: Easy
     description: Tutorial Level 1
     sceneName: GameWithTutorialAnimesh
   - id: 3

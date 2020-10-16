@@ -1,5 +1,5 @@
 ﻿using GameCore.System;
-using System;
+using MatchTowerDefence.SaveSystem;
 using UnityEngine;
 
 namespace MatchTowerDefence.Managers
@@ -8,15 +8,19 @@ namespace MatchTowerDefence.Managers
     {
         public static GameManager instance;
 
+        [SerializeField] private GameObject[] managersPrefabs;
+
         private LevelManager levelManager;
         private GUIManager guiManager;
+        private SFXManager sfxManager;
+        private SaveManager saveManager;
 
         private void Awake()
         {
+            DontDestroyOnLoad(gameObject);
             // Only 1 Game Manager can exist at a time
             if (instance == null)
             {
-                DontDestroyOnLoad(gameObject);
                 instance = GetComponent<GameManager>();
             }
             else
@@ -27,20 +31,22 @@ namespace MatchTowerDefence.Managers
             if (LevelManager.instance == null)
             {
                 levelManager = FindObjectOfType<LevelManager>();
-            }  
-            
+            }
+
             if (GUIManager.instance == null)
             {
                 guiManager = FindObjectOfType<GUIManager>();
             }
 
-            InitiliaseAllManagers();
-        }
+            if (SFXManager.instance == null)
+            {
+                sfxManager = FindObjectOfType<SFXManager>();
+            }
 
-        private void InitiliaseAllManagers()
-        {
-            levelManager.Initialise();
-            guiManager.Initialise();
+            if (SaveManager.instance == null)
+            {
+                saveManager = FindObjectOfType<SaveManager>();
+            }
         }
     }
 }

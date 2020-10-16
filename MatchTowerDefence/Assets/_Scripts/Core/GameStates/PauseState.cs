@@ -1,4 +1,5 @@
 ﻿using GameCore.System;
+using MatchTowerDefence.Managers;
 using UnityEngine;
 
 namespace GameCore.GameStates
@@ -17,7 +18,8 @@ namespace GameCore.GameStates
 
         public override void OnUpdate()
         {
-            if(GUIManager.instance.pauseMenu.activeSelf) { InitiateNewState(); }   
+            if(!GUIManager.instance.pauseMenu.activeSelf) { InitiateNewState(); }   
+
             #if UNITY_STANDALONE_WIN
             if (Input.GetKeyUp(KeyCode.Escape))
             {

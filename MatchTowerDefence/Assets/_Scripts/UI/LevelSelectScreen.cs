@@ -1,6 +1,9 @@
 ﻿using GameCore.System;
 using MatchTowerDefence.Level;
+using MatchTowerDefence.Managers;
+using MatchTowerDefence.SaveSystem;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,11 +11,13 @@ namespace MatchTowerDefence.UI
 {
     public class LevelSelectScreen : MonoBehaviour
     {
-        [SerializeField] private LevelSelectButton selectionPrefab;
-        [SerializeField] private LayoutGroup layout;
-        [SerializeField] private Transform rightBuffer;
-        [SerializeField] private MouseScroll mouseScroll;
-        [SerializeField] private Button backButton;
+        [SerializeField] private LevelSelectButton selectionPrefab = null;
+        [SerializeField] private LayoutGroup layout = null;
+        [SerializeField] private Transform rightBuffer = null;
+        [SerializeField] private MouseScroll mouseScroll = null;
+        [SerializeField] private Button backButton = null;
+        [SerializeField] private LevelInfoPanel levelInfoPanel = null;
+        [SerializeField] private TMP_Text totalStars = null;
 
         protected LevelList levelList;
         protected List<Button> buttons = new List<Button>();
@@ -50,12 +55,17 @@ namespace MatchTowerDefence.UI
                 mouseScroll.SetHasRightBuffer(rightBuffer != null);
             }
 
+            if(SaveManager.instance.saveData != null || SaveManager.instance.saveData.totalStars != 0)
+            {
+                totalStars.text = SaveManager.instance.saveData.totalStars + "/15";
+            }
         }
 
         protected LevelSelectButton CreateButton(LevelItem item)
         {
             LevelSelectButton button = Instantiate(selectionPrefab);
-            button.Initialize(item, mouseScroll);
+            button.Initialize(item, mouseScroll, levelInfoPanel);
+            GUIManager.instance.levelButtons.Add(button);
             return button;
         }
 
@@ -65,6 +75,14 @@ namespace MatchTowerDefence.UI
             navigation.selectOnLeft = left;
             navigation.selectOnRight = right;
             selectable.navigation = navigation;
+        }
+
+        public void UpdateTotalStars()
+        {
+            if (SaveManager.instance.saveData != null || SaveManager.instance.saveData.totalStars != 0)
+            {
+                totalStars.text = SaveManager.instance.saveData.totalStars + "/15";
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
+using MatchTowerDefence.Managers;
 
 /// <summary>
 /// Holds the information and functionality of a tile with a tower.

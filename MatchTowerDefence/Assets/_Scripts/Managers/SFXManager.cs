@@ -1,32 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
-public class SFXManager : MonoBehaviour
+namespace MatchTowerDefence.Managers
 {
-    public static SFXManager instance;
-
-	public enum AudioClip { TowerAttack, Match };
-
-	private AudioSource[] audioSource;
-
-	// Use this for initialization
-	private void Start()
+	public class SFXManager : MonoBehaviour
 	{
-		if (instance == null)
+		public static SFXManager instance;
+
+		public enum AudioClip { TowerAttack, Match };
+
+		private AudioSource[] audioSource;
+
+		// Use this for initialization
+		public void Awake()
 		{
 			DontDestroyOnLoad(gameObject);
-			instance = GetComponent<SFXManager>();
+			if (instance == null)
+			{
+				instance = GetComponent<SFXManager>();
+			}
+			else
+			{
+				Destroy(gameObject);
+			}
+			audioSource = GetComponents<AudioSource>();
 		}
-		else
-		{
-			Destroy(gameObject);
-		}
-		audioSource = GetComponents<AudioSource>();
-	}
 
-	public void PlaySFX(AudioClip audioClip)
-	{
-		audioSource[(int)audioClip].Play();
-	}
+		public void PlaySFX(AudioClip audioClip)
+		{
+			audioSource[(int)audioClip].Play();
+		}
+    }
 }
