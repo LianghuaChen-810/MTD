@@ -12548,7 +12548,7 @@ GameObject:
   - component: {fileID: 7881069704527072293}
   - component: {fileID: 3498911847085380180}
   m_Layer: 5
-  m_Name: GUIManager
+  m_Name: GUIManagerDev
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

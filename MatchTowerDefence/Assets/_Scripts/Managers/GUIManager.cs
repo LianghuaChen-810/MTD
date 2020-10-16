@@ -49,54 +49,54 @@ public class GUIManager : MonoBehaviour
     [Header("Selected Tower info")]
     // ST stands for Selected Tower
     [SerializeField]
-    private GameObject stPanel;
+    private GameObject stPanel = null;
     [SerializeField]
-    private Image stImage;
+    private Image stImage = null;
     [SerializeField]
-    private TMP_Text stNameTxt;
+    private TMP_Text stNameTxt = null;
     [SerializeField]
-    private TMP_Text stLevelTxt;
+    private TMP_Text stLevelTxt = null;
     [SerializeField]
-    private TMP_Text stDescTxt;
+    private TMP_Text stDescTxt = null;
     [SerializeField]
-    private TMP_Text stBaseDmgTxt;
+    private TMP_Text stBaseDmgTxt = null;
     [SerializeField]
-    private TMP_Text stBonusDmgTxt;
+    private TMP_Text stBonusDmgTxt = null;
     [SerializeField]
-    private TMP_Text stRangeTxt;
+    private TMP_Text stRangeTxt = null;
 
     [SerializeField]
-    private GameObject stUpgradePanel;
+    private GameObject stUpgradePanel = null;
     [SerializeField]
-    private Image stCurrentImage;
+    private Image stCurrentImage = null;
     [SerializeField]
-    private Image stUpgradeImage;
+    private Image stUpgradeImage = null;
 
 
     [Header("Level Info")]
     [SerializeField]
-    private GameObject LevelInfoPanel;
+    private GameObject LevelInfoPanel = null;
+    //[SerializeField]
+    //private TMP_Text levelNameTxt = null;
     [SerializeField]
-    private TMP_Text levelNameTxt;
+    private TMP_Text waveCounterTxt = null;
     [SerializeField]
-    private TMP_Text waveCounterTxt;
+    private GameObject sp1Panel = null;
     [SerializeField]
-    private GameObject sp1Panel;
+    private Image sp1Image = null;
     [SerializeField]
-    private Image sp1Image;
+    private TMP_Text sp1LUcounterTxt = null;
     [SerializeField]
-    private TMP_Text sp1LUcounterTxt;
-    [SerializeField]
-    private TMP_Text sp1HUcounterTxt;
+    private TMP_Text sp1HUcounterTxt = null;
 
     [SerializeField]
-    private GameObject sp2Panel;
+    private GameObject sp2Panel = null;
     [SerializeField]
-    private Image sp2Image;
+    private Image sp2Image = null;
     [SerializeField]
-    private TMP_Text sp2LUcounterTxt;
+    private TMP_Text sp2LUcounterTxt = null;
     [SerializeField]
-    private TMP_Text sp2HUcounterTxt;
+    private TMP_Text sp2HUcounterTxt = null;
 
     public void Initialise()
     {
