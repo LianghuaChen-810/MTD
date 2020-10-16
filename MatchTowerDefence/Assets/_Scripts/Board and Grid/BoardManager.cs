@@ -50,11 +50,12 @@ public class BoardManager : MonoBehaviour
     [SerializeField]
     private GameObject pathTilePrefab = null;
 
-    private void Awake()
-    {
-        IsShifting = false;
-        instance = GetComponent<BoardManager>();
-    }
+    //private void Awake()
+    //{
+    //    //DontDestroyOnLoad(gameObject);
+    //    IsShifting = false;
+    //    instance = FindObjectOfType<BoardManager>();
+    //}
 
     public int ShiftsInProgress = 0;
 
@@ -76,8 +77,7 @@ public class BoardManager : MonoBehaviour
     /// </summary>
     public void Initialise()
     {
-        IsShifting = false;
-        instance = GetComponent<BoardManager>();
+        instance = FindObjectOfType<BoardManager>();
 
         tilemap = FindObjectOfType<Tilemap>();
         if (tilemap != null)

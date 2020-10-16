@@ -49,9 +49,17 @@ namespace GameCore.System
 
                 // Initialise Board Manager
                 BoardManager boardManager = FindObjectOfType<BoardManager>();
+                if(boardManager != null)
+                {
+                    if(BoardManager.instance != boardManager)
+                    {
+                        boardManager.Initialise();
+                    }
+                }
                 tutorialManager = FindObjectOfType<TutorialManager>();
 
-                if (boardManager != null) { boardManager.Initialise(); }
+              
+                //boardManager.Initialise();
 
                 if (PlayerPrefs.HasKey("Tutored")) { hasTutored = PlayerPrefs.GetInt("Tutored"); }
 

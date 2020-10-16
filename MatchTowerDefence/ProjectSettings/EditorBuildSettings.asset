@@ -12,9 +12,15 @@ EditorBuildSettings:
     path: Assets/_Scenes/GameWithTutorial.unity
     guid: 630ee135f0e8f99408752f6d1a882c55
   - enabled: 1
-    path: Assets/_Scenes/GameWithTutorialAnimesh.unity
-    guid: 2e11396d407ed8f40a74749aa64cd964
-  - enabled: 0
-    path: Assets/_Scenes/Game.unity
-    guid: 13c4b9a25e714484db0951847e444521
+    path: Assets/_Scenes/GameWithTutorial1.unity
+    guid: cb7940b72b8513e4ca65eccfcc880469
+  - enabled: 1
+    path: Assets/_Scenes/GameWithTutorial2.unity
+    guid: 85a2120d83c9c234eaf907d55e06f18f
+  - enabled: 1
+    path: Assets/_Scenes/GameWithTutorial3.unity
+    guid: ffec6ba22e7e2c64981307fa91901a10
+  - enabled: 1
+    path: Assets/_Scenes/GameWithTutorial4.unity
+    guid: dde121337638be24da305b4d07f7bb0e
   m_configObjects: {}

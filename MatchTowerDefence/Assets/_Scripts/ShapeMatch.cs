@@ -186,7 +186,10 @@ public class ShapeMatch
         // generate new tower and set bonus damage
         TowerObject nextTower = tileToSpawnTower.tower.nextLevelTower;
         tileToSpawnTower.SetTower(nextTower, newBonusDamage);
-        TutorialManager.instance.TowerSpawnedEvent(nextTower);
+        if (TutorialManager.instance != null)
+        {
+            TutorialManager.instance.TowerSpawnedEvent(nextTower);
+        }
 
         // remove new tower from towers in shape
         tilesInShape.Remove(tileToSpawnTower);
