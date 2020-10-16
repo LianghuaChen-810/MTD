@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MatchTowerDefence.Managers;
 
 public static class LevelControl
 {
@@ -77,6 +78,8 @@ public static class LevelControl
         enemiesInWave.Remove(enemy);
         enemiesLeftInWave--;
         enemiesPassed++;
+    
+        // Gamedata.Playerdata.Health -= enemy.attackDamage;
     }
 
 

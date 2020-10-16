@@ -44,6 +44,34 @@ public class GUIManager : MonoBehaviour
 
     public int MoveCounter  { get { return moveCounter; } set { moveCounter = value; moveCounterTxt.text = moveCounter.ToString(); } }
 
+
+
+    [Header("Selected Tower info")]
+    // ST stands for Selected Tower
+    [SerializeField]
+    private GameObject stPanel;
+    [SerializeField]
+    private Image stImage;
+    [SerializeField]
+    private TMP_Text stNameTxt;
+    [SerializeField]
+    private TMP_Text stLevelTxt;
+    [SerializeField]
+    private TMP_Text stDescTxt;
+    [SerializeField]
+    private TMP_Text stBaseDmgTxt;
+    [SerializeField]
+    private TMP_Text stBonusDmgTxt;
+    [SerializeField]
+    private TMP_Text stRangeTxt;
+
+    [SerializeField]
+    private GameObject stUpgradePanel;
+    [SerializeField]
+    private Image stCurrentImage;
+    [SerializeField]
+    private Image stUpgradeImage;
+
     public void Initialise()
     {
         if (instance == null)
@@ -174,4 +202,35 @@ public class GUIManager : MonoBehaviour
         }
     }
 
+
+
+
+    public void UpdateSelectedTower(TowerObject towerObj, int bonusDmg)
+    {
+
+        stImage.sprite = towerObj.sprite;
+        stNameTxt.text = towerObj.name;
+        stLevelTxt.text = towerObj.levelStr;
+        stDescTxt.text = towerObj.description;
+        stBaseDmgTxt.text = towerObj.baseDamage.ToString();
+        stBonusDmgTxt.text = bonusDmg.ToString();
+        stRangeTxt.text = towerObj.range.ToString();
+
+        if (!towerObj.hasUpgrade)
+        {
+            stUpgradePanel.SetActive(false);
+        } 
+        else
+        {
+            stCurrentImage.sprite = towerObj.sprite;
+            stUpgradeImage.sprite = towerObj.nextLevelTower.sprite;
+            stUpgradePanel.SetActive(true);
+        }
+        stPanel.SetActive(true);
+    }
+
+    public void CloseSelectedTower()
+    {
+        stPanel.SetActive(false);
+    }
 }

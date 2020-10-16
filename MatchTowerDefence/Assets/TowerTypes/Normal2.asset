@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a65da6e5679114c849a4e0fa26b5e3, type: 3}
   m_Name: Normal2
   m_EditorClassIdentifier: 
+  name: Tree Tower
+  description: Stronger Tree tower that shoots a single more powerful bullet at an
+    enemu.
+  levelStr: Level Two
   type: 2
   attackType: 0
   baseDamage: 35

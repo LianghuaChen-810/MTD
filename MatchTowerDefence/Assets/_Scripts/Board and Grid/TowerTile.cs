@@ -238,6 +238,7 @@ public class TowerTile : MonoBehaviour
         isSelected = true;
         render.color = bulletSelectedColor;
         previousSelected = gameObject.GetComponent<TowerTile>();
+        GUIManager.instance.UpdateSelectedTower(tower, towerBonusDamage);
     }
 
     /// <summary>
@@ -248,6 +249,8 @@ public class TowerTile : MonoBehaviour
         isSelected = false;
         render.color = Color.white;
         previousSelected = null;
+        GUIManager.instance.CloseSelectedTower();
+
     }
 
     /// <summary>
