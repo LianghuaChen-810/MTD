@@ -13,8 +13,9 @@ public class AOEBullet : Bullet
         Collider2D[] hits = Physics2D.OverlapCircleAll(centre, aoeRange);
         // find all enemies
         List<Enemy> enemiesToHit = new List<Enemy>();
-        foreach (var hit in enemiesToHit)
+        foreach (var hit in hits)
         {
+            //Debug.Log(hit.gameObject);
             Enemy enemyHit = hit.GetComponent<Enemy>();
             if (enemyHit != null)
             {
