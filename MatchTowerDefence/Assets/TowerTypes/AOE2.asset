@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a65da6e5679114c849a4e0fa26b5e3, type: 3}
   m_Name: AOE2
   m_EditorClassIdentifier: 
+  name: Turret Tower
+  description: Stronger turret that shoots a barrel that explodes on contact dealing
+    AoE damage.
+  levelStr: Level Two
   type: 6
   attackType: 1
-  nextLevelTower: {fileID: 11400000, guid: 0d5b475f149945d48b00b739d531aa7f, type: 2}
-  sprite: {fileID: 2636163095113130455, guid: d406cd27aee895442be53270fec2fcf2, type: 3}
-  freezeTime: 0
-  damage: 22
-  color: {r: 0.94509804, g: 0.47058824, b: 0, a: 1}
+  baseDamage: 25
   range: 2
+  sprite: {fileID: 21300000, guid: 1c732f4dc5264ca429cde091b45ae067, type: 3}
+  bulletPrefab: {fileID: 86419254469856350, guid: 318fa4f243138234a8d38059ce00ae36, type: 3}
+  hasUpgrade: 1
+  nextLevelTower: {fileID: 11400000, guid: 0d5b475f149945d48b00b739d531aa7f, type: 2}

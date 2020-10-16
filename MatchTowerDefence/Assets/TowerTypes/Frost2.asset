@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a65da6e5679114c849a4e0fa26b5e3, type: 3}
   m_Name: Frost2
   m_EditorClassIdentifier: 
+  name: Frost Tower
+  description: Stronger frost tower that shoots an icicle that slows down enemies
+    on contact.
+  levelStr: Level Two
   type: 10
   attackType: 2
-  nextLevelTower: {fileID: 11400000, guid: 2c9371d21bb61e547944c34c659fbf7e, type: 2}
-  sprite: {fileID: 2995792399244727857, guid: 032f657bd1da9084194b78bd8596cb89, type: 3}
-  freezeTime: 10
-  damage: 12
-  color: {r: 0.050980393, g: 0.16078432, b: 0.69803923, a: 1}
+  baseDamage: 20
   range: 2
+  sprite: {fileID: 21300000, guid: 8cca2c1f0e9af234d94b02cc574478a4, type: 3}
+  bulletPrefab: {fileID: 3930030298624884989, guid: bee3e0221aa033d479c3c67329b53204, type: 3}
+  hasUpgrade: 1
+  nextLevelTower: {fileID: 11400000, guid: 2c9371d21bb61e547944c34c659fbf7e, type: 2}
