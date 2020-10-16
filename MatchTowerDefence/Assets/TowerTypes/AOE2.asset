@@ -21,7 +21,6 @@ MonoBehaviour:
   baseDamage: 25
   range: 2
   sprite: {fileID: 21300000, guid: 1c732f4dc5264ca429cde091b45ae067, type: 3}
-  freezeTime: 0
-  color: {r: 0.94509804, g: 0.47058824, b: 0, a: 1}
+  bulletPrefab: {fileID: 86419254469856350, guid: 318fa4f243138234a8d38059ce00ae36, type: 3}
   hasUpgrade: 1
   nextLevelTower: {fileID: 11400000, guid: 0d5b475f149945d48b00b739d531aa7f, type: 2}

@@ -18,8 +18,6 @@ public class TowerTile : MonoBehaviour
     private bool isSelected = false;
 
     [SerializeField]
-    private GameObject bulletPrefab = null;
-    [SerializeField]
     private float shootDelayTime = 2.0f;
     [SerializeField]
     private Color bulletSelectedColor = new Color(.5f, .5f, .5f, 1.0f);
@@ -203,8 +201,8 @@ public class TowerTile : MonoBehaviour
     void Shoot(Enemy enemy)
     {
         //Debug.Log(tower.name + " is shooting at " + enemyToshoot.gameObject.name);
-        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-        bullet.GetComponent<Bullet>().Shoot(tower, towerBonusDamage, enemy);
+        GameObject bullet = Instantiate(tower.bulletPrefab, transform.position, Quaternion.identity);
+        bullet.GetComponent<Bullet>().ShootAt(enemy, towerBonusDamage + tower.baseDamage);
 
     }
 

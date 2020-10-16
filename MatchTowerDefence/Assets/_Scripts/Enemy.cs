@@ -1,5 +1,6 @@
 ﻿using MatchTowerDefence.Managers;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -13,10 +14,29 @@ public class Enemy : MonoBehaviour
     public float speed;
 
     public float unfreezeTime = 0.0f;
-
+    public float resistTime = 1.0f;
     public PathTile tileToMoveTo = null;
 
     private Vector3 direction;
+
+    public void DamageEnemy(float dmg)
+    {
+        health -= dmg;
+        StartCoroutine(ReceiveDamageColouring());
+        // CHECK IF LESS THAN ZERO TO DESTROY
+    }
+
+    IEnumerator ReceiveDamageColouring()
+    {
+        var render = GetComponent<SpriteRenderer>();
+        render.color = Color.red;
+
+        yield return new WaitForSeconds(0.1f);
+
+        if (unfreezeTime <= 0.0f)
+            render.color = Color.white;
+        else render.color = Color.blue;
+    }
 
     // Update is called once per frame
     private void Awake()
@@ -36,17 +56,24 @@ public class Enemy : MonoBehaviour
         health = enemyType.health;
         speed = enemyType.speed;
         LevelControl.OnEnemySpawned(this);
+        StartCoroutine(ResistFrost(resistTime));
     }
 
-    private void FixedUpdate()
+    public IEnumerator ResistFrost(float _resistTime)
     {
-        if (unfreezeTime > 0.0f)
+        while (true)
         {
-            unfreezeTime -= 1.0f;
-            if (unfreezeTime <= 0.0f)
-                UnFreeze();
+            yield return new WaitForSeconds(_resistTime);
+
+            if (unfreezeTime > 0.0f)
+            {
+                unfreezeTime -= _resistTime;
+                if (unfreezeTime <= 0.0f)
+                    UnFreeze();
+            }
         }
     }
+
 
     /// <summary>
     /// Adds towers that can shoot at this enemy.
