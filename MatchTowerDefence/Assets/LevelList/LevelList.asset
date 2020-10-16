@@ -16,20 +16,20 @@ MonoBehaviour:
   - id: 1
     name: Easy Peesy
     description: Tutorial Level
-    sceneName: GameWithTutorialAnimesh
+    sceneName: GameWithTutorial
   - id: 2
     name: Easy
     description: Tutorial Level 1
-    sceneName: GameWithTutorialAnimesh
+    sceneName: GameWithTutorial
   - id: 3
     name: Easy Peesy
     description: Tutorial Level 2
-    sceneName: GameWithTutorialAnimesh
+    sceneName: GameWithTutorial
   - id: 4
     name: Easy Peesy
     description: 'Tutorial Level 3 '
-    sceneName: GameWithTutorialAnimesh
+    sceneName: GameWithTutorial
   - id: 5
     name: Easy Peesy
     description: 'Tutorial Level 4 '
-    sceneName: GameWithTutorialAnimesh
+    sceneName: GameWithTutorial

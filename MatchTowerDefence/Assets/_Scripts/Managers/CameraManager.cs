@@ -20,7 +20,7 @@ public class CameraManager : MonoBehaviour
     /// <param name="size"> Orthographic size of camera </param>
     /// <param name="focusPoint"> Focus point of camera </param>
     /// <param name="shiftY"> Shifting of the Y parameter of focus point</param>
-    public void SetDisplay(float size, Vector3 focusPoint, float shiftY = -1.0f)
+    public void SetDisplay(float size, Vector3 focusPoint, float shiftY = 0.0f)
     {
         cameraComponent = GetComponent<Camera>();
         cameraComponent.orthographicSize = size;
