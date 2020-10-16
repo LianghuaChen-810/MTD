@@ -258,10 +258,11 @@ namespace LevelEditor
                                         if (LEditorManager.GetInstance().map[rx, ry] == LEditorManager.ElementType.Empty)
                                         {
 
-                                            GameObject go = Instantiate(elementprefab);//not completed, need more prefabs(only for the editor, not the real ones in the game)
+                                            GameObject go = Instantiate(elementprefab);
                                             go.transform.position = new Vector3(rx, ry, 0);
 
                                             LEditorManager.GetInstance().map[rx, ry] = LEditorManager.GetInstance().usingelement;
+                                            go.GetComponent<LTowerVisualObj>().SetSpriteByType(LEditorManager.GetInstance().usingelement);
 
                                             visualboardelements[rx, ry] = go;
                                         }

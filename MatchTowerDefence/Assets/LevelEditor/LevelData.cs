@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor;
 using LevelEditor;
 
-[CreateAssetMenu(fileName = "LevelData", menuName = "LevelData", order = 1)]
+[CreateAssetMenu(fileName = "LevelData", menuName = "LevelEditor/LevelData", order = 1)]
 public class LevelData : ScriptableObject
 {
     [HideInInspector]
@@ -32,7 +32,7 @@ public class LevelData : ScriptableObject
     /// <summary>
     /// if this level inherit last level board, put that level here
     /// </summary>
-    public LevelData lastlevel;
+    //public LevelData lastlevel;
 
     /// <summary>
     /// health point for all waves
@@ -45,8 +45,15 @@ public class LevelData : ScriptableObject
     public int conditionthreshold;
 
     /// <summary>
-    /// LevelData for latter waves
+    /// MonsterData for one wave
     /// </summary>
-    public LevelData[] latterwaves;
+    public MonsterData firstwave;
 
+    /// <summary>
+    /// MonsterData for latter waves
+    /// </summary>
+    public MonsterData[] latterwaves;
+
+
+    
 }

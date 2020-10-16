@@ -19,6 +19,8 @@ namespace LevelEditor
             LEditorManager.GetInstance().routes.Remove(route);
             LAddRouteBtn.options.Remove(option.GetComponent<RectTransform>());
             LAddRouteBtn.RefreshOptions();
+
+            LMonsterOptionRouteDp.dropdownnum -= 1;
             Destroy(option);
 
         }

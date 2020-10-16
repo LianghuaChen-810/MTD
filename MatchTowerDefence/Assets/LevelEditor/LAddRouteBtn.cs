@@ -22,6 +22,9 @@ namespace LevelEditor
             options.Add(go.GetComponent<RectTransform>());
             
             RefreshOptions();
+
+            //add option of monster route
+            LMonsterOptionRouteDp.dropdownnum += 1;
         }
 
         public static void RefreshOptions()

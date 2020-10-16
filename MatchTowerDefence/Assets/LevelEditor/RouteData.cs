@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "RouteData", menuName = "RouteData", order = 1)]
+[CreateAssetMenu(fileName = "RouteData", menuName = "LevelEditor/RouteData", order = 1)]
 
 public class RouteData : ScriptableObject
 {
@@ -11,15 +11,15 @@ public class RouteData : ScriptableObject
     /// </summary>
     public Vector3[] points;
 
-    [HideInInspector]
+   // [HideInInspector]
     /// <summary>
     /// monster type
     /// </summary>
-    public int[] monstertypes;
+    //public int[] monstertypes;
 
-    [HideInInspector]
+   // [HideInInspector]
     /// <summary>
     /// moster spawn time
     /// </summary>
-    public float[] monstertimes;
+    //public float[] monstertimes;
 }

@@ -19,7 +19,7 @@ namespace LevelEditor
             GameObject go = Instantiate(routePrefab);
             go.GetComponent<RectTransform>().SetParent(generateparent.GetComponent<RectTransform>());
 
-            options.Add(go.GetComponent<RectTransform>());
+            options.Add(go.GetComponent<LMonsterOption>());
 
             RefreshOptions();
         }
@@ -38,6 +38,6 @@ namespace LevelEditor
         public GameObject routePrefab;
         public GameObject generateparent;
 
-        public static List<RectTransform> options = new List<RectTransform>();
+        public static List<LMonsterOption> options = new List<LMonsterOption>();
     }
 }

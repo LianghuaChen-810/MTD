@@ -45,6 +45,7 @@ namespace LevelEditor
 
         public ElementType[,] map;
         public List<LRoute> routes = new List<LRoute>();
+        public MonsterData monsters;
 
         public ElementType usingelement = ElementType.Base;
 

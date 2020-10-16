@@ -12,7 +12,7 @@ namespace LevelEditor
             public float spawntimeoffset;
         }
 
-        public List<MonsterData> monstersdata = new List<MonsterData>();
+        //public List<MonsterData> monstersdata = new List<MonsterData>();
 
         public List<Vector3> corners=new List<Vector3>();
     }
