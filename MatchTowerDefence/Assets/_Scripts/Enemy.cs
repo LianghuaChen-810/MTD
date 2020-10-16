@@ -22,8 +22,22 @@ public class Enemy : MonoBehaviour
     public void DamageEnemy(float dmg)
     {
         health -= dmg;
+        StartCoroutine(ReceiveDamageColouring());
         // CHECK IF LESS THAN ZERO TO DESTROY
     }
+
+    IEnumerator ReceiveDamageColouring()
+    {
+        var render = GetComponent<SpriteRenderer>();
+        render.color = Color.red;
+
+        yield return new WaitForSeconds(0.1f);
+
+        if (unfreezeTime <= 0.0f)
+            render.color = Color.white;
+        else render.color = Color.blue;
+    }
+
     // Update is called once per frame
     private void Awake()
     {
