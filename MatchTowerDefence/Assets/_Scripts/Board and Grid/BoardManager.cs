@@ -50,13 +50,6 @@ public class BoardManager : MonoBehaviour
     [SerializeField]
     private GameObject pathTilePrefab = null;
 
-    //private void Awake()
-    //{
-    //    //DontDestroyOnLoad(gameObject);
-    //    IsShifting = false;
-    //    instance = FindObjectOfType<BoardManager>();
-    //}
-
     public int ShiftsInProgress = 0;
 
 
