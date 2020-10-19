@@ -46,6 +46,10 @@ namespace LevelEditor
         public ElementType[,] map;
         public List<LRoute> routes = new List<LRoute>();
         public MonsterData monsters;
+        public List<MonsterData> waves=new List<MonsterData>();
+        public int editingwave = 0;
+
+        public LevelData readleveldata = null;
 
         public ElementType usingelement = ElementType.Base;
 
@@ -59,7 +63,7 @@ namespace LevelEditor
         {
 
             if (map[x, y] == ElementType.Empty) return false; // cut branches
-            
+
             else if (map[x, y] == ElementType.Spawner)
             {
                 if (x >= 0 && y >= 0)

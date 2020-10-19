@@ -13,10 +13,16 @@ MonoBehaviour:
   m_Name: testlevelroute1
   m_EditorClassIdentifier: 
   points:
-  - {x: 8, y: 11, z: 0}
-  - {x: 8, y: 10, z: 0}
-  - {x: 9, y: 10, z: 0}
-  - {x: 10, y: 10, z: 0}
-  - {x: 11, y: 10, z: 0}
+  - {x: 5, y: 10, z: 0}
+  - {x: 5, y: 9, z: 0}
+  - {x: 5, y: 8, z: 0}
+  - {x: 6, y: 8, z: 0}
+  - {x: 7, y: 8, z: 0}
+  - {x: 8, y: 8, z: 0}
+  - {x: 9, y: 8, z: 0}
+  - {x: 10, y: 8, z: 0}
+  - {x: 11, y: 8, z: 0}
+  - {x: 12, y: 8, z: 0}
+  - {x: 12, y: 9, z: 0}
   - {x: 12, y: 10, z: 0}
   - {x: 12, y: 11, z: 0}

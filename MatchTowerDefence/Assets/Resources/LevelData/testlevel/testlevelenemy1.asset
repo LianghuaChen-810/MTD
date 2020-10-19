@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b393247005759114b89b8d2b20c5aba1, type: 3}
-  m_Name: testlevelenemy
+  m_Name: testlevelenemy1
   m_EditorClassIdentifier: 
-  listnum: 4
-  monstertypes: 00000000000000000100000001000000
-  monsterroutes: 01000000010000000000000000000000
+  listnum: 3
+  monstertypes: 010000000100000001000000
+  monsterroutes: 010000000100000001000000
   monstertimes:
-  - 0
   - 2
-  - 0
+  - 2
   - 2

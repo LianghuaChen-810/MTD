@@ -12,6 +12,11 @@ namespace LevelEditor
         {
             Button btn = GetComponent<Button>();
             btn.onClick.AddListener(OnClick);
+
+            if (LEditorManager.GetInstance().readleveldata!=null)
+            {
+                LoadDataAndVisualizeRoutes();
+            }
         }
 
         private void OnClick()
@@ -42,5 +47,19 @@ namespace LevelEditor
         public GameObject generateparent;
 
         public static List<RectTransform> options=new List<RectTransform>();
+
+        public void LoadDataAndVisualizeRoutes()
+        {
+           
+            for(int i = 0; i < LEditorManager.GetInstance().routes.Count; i++)
+            {
+                GameObject go = Instantiate(routePrefab);
+                go.GetComponent<RectTransform>().SetParent(generateparent.GetComponent<RectTransform>());
+                go.GetComponent<LRouteOption>().LoadExistingRoute(LEditorManager.GetInstance().routes[i]);
+                options.Add(go.GetComponent<RectTransform>());
+
+            }
+            RefreshOptions();
+        }
     }
 }

@@ -8,17 +8,27 @@ public class LRouteOption : MonoBehaviour
 {
     void Start()
     {
-        LRoute lr = new LRoute();
-        LEditorManager.GetInstance().routes.Add(lr);
-        del.route = lr;
-        dis.routedata = lr;
-        dra.route = lr;
-        
+        if (LEditorManager.GetInstance().readleveldata == null)
+        {
+            LRoute lr = new LRoute();
+            LEditorManager.GetInstance().routes.Add(lr);
+            del.route = lr;
+            dis.routedata = lr;
+            dra.route = lr;
+        }
+
     }
 
     void Update()
     {
-        
+
+    }
+
+    public void LoadExistingRoute(LRoute lr)
+    {
+        del.route = lr;
+        dis.routedata = lr;
+        dra.route = lr;
     }
 
     public LRouteOptionDeleteBtn del;

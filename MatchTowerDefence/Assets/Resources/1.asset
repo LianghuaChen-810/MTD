@@ -9,14 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b393247005759114b89b8d2b20c5aba1, type: 3}
-  m_Name: testlevelenemy
+  m_Script: {fileID: 11500000, guid: 390981e480e33f547a0dcdedd63d5307, type: 3}
+  m_Name: 1
   m_EditorClassIdentifier: 
-  listnum: 4
-  monstertypes: 00000000000000000100000001000000
-  monsterroutes: 01000000010000000000000000000000
-  monstertimes:
-  - 0
-  - 2
-  - 0
-  - 2
+  board: 
+  routes: []
+  levelName: 
+  levelNo: 0
+  basehp: 0
+  conditionthreshold: 0
+  waves: []
+  routenum: 0
+  wavenum: 0

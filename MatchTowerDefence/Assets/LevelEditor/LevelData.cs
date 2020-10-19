@@ -45,15 +45,20 @@ public class LevelData : ScriptableObject
     public int conditionthreshold;
 
     /// <summary>
-    /// MonsterData for one wave
+    /// MonsterData for all waves
     /// </summary>
-    public MonsterData firstwave;
+    public MonsterData[] waves;
 
     /// <summary>
-    /// MonsterData for latter waves
+    /// if routes is null, resources.load() based on this counter
     /// </summary>
-    public MonsterData[] latterwaves;
+    [HideInInspector]
+    public int routenum;
 
-
+    /// <summary>
+    /// if waves is null, resources.load() based on this couter
+    /// </summary>
+    [HideInInspector]
+    public int wavenum;
     
 }

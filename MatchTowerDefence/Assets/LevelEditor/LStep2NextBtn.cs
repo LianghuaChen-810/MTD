@@ -17,8 +17,10 @@ namespace LevelEditor
 
         private void OnClick()
         {
-            if (LEditorManager.GetInstance().routes.Count > 0 && LAddMonsterBtn.options.Count > 0)
+           // if (LEditorManager.GetInstance().routes.Count > 0 && LAddMonsterBtn.options.Count > 0)
+           if (LEditorManager.GetInstance().routes.Count > 0 && LEditorManager.GetInstance().waves[0].listnum > 0)
             {
+                /*
                 //save monsters
                 int count = LAddMonsterBtn.options.Count;
                 MonsterData md = ScriptableObject.CreateInstance<MonsterData>();
@@ -35,7 +37,7 @@ namespace LevelEditor
                 }
 
                 LEditorManager.GetInstance().monsters = md;
-
+                */
                 step2.SetActive(false);
                 step3.SetActive(true);
                 LEditorManager.step = 3;

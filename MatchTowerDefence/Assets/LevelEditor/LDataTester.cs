@@ -6,8 +6,8 @@ public class LDataTester : MonoBehaviour
 {
     void Start()
     {
-        //
-        Debug.Log(ld.board[1]);
+        
+       // Debug.Log(ld.board[1]);
     }
 
     void Update()

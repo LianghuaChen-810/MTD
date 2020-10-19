@@ -21,7 +21,7 @@ namespace LevelEditor
         {
 #if UNITY_EDITOR
 
-            string assetPath = "Assets/LevelEditor/LevelData/" + nameipf.text + "/";//can also change the path and put data into Resources folder and use Resources.Load()
+            string assetPath = "Assets/Resources/LevelData/" + nameipf.text + "/";//can also change the path and put data into Resources folder and use Resources.Load()
 
             //data transformation
 
@@ -30,12 +30,14 @@ namespace LevelEditor
             levelData.levelNo = 1;
             levelData.basehp = Convert.ToInt32(basehpipf.text);
             levelData.conditionthreshold = Convert.ToInt32(thresholdipf.text);
+            levelData.routenum = LEditorManager.GetInstance().routes.Count;
+            levelData.wavenum = LEditorManager.GetInstance().waves.Count;
             levelData.board = new int[LEdgeSpawner.verticalcapacity* LEdgeSpawner.horizontalcapacity];
-            for (int i = 0; i < LEdgeSpawner.verticalcapacity; i++)
+            for (int i = 0; i < LEdgeSpawner.horizontalcapacity; i++)
             {
-                for (int j = 0; j < LEdgeSpawner.horizontalcapacity; j++)
+                for (int j = 0; j < LEdgeSpawner.verticalcapacity; j++)
                 {
-                    levelData.board[i * LEdgeSpawner.horizontalcapacity + j] = (int)LEditorManager.GetInstance().map[i, j];
+                    levelData.board[i * LEdgeSpawner.verticalcapacity + j] = (int)LEditorManager.GetInstance().map[i, j];
                 }
             }
 
@@ -67,6 +69,7 @@ namespace LevelEditor
                 routesdata.Add(rd);
             }
 
+
             //data persistence
 
 
@@ -88,9 +91,12 @@ namespace LevelEditor
                 UnityEditor.AssetDatabase.CreateAsset(routesdata[j], indiepath);
             }
 
-            string monsterpath = assetPath + "/" + nameipf.text + "enemy" + ".asset";
-            UnityEditor.AssetDatabase.DeleteAsset(monsterpath);
-            UnityEditor.AssetDatabase.CreateAsset(LEditorManager.GetInstance().monsters, monsterpath);
+            for (int m = 0; m < routesdata.Count; m++)
+            {
+                string monsterpath = assetPath + "/" + nameipf.text + "enemy" + m + ".asset";
+                UnityEditor.AssetDatabase.DeleteAsset(monsterpath);
+                UnityEditor.AssetDatabase.CreateAsset(LEditorManager.GetInstance().waves[m], monsterpath);
+            }
 
             UnityEditor.AssetDatabase.Refresh();
 

@@ -9,14 +9,59 @@ namespace LevelEditor
         {
             lineren = lineobj;
 
-            LEditorManager.GetInstance().InitBoard();
             visualboardelements = new GameObject[LEdgeSpawner.horizontalcapacity, LEdgeSpawner.verticalcapacity];
 
+
+            LEditorManager.GetInstance().InitBoard();
             for (int i = 0; i < LEdgeSpawner.horizontalcapacity; i++)
             {
                 for (int j = 0; j < LEdgeSpawner.verticalcapacity; j++)
                 {
                     visualboardelements[i, j] = null;
+                }
+            }
+            Debug.Log("raytest");
+            
+
+        }
+
+        public void LoadBoardData()
+        {
+            for (int i = 0; i < LEdgeSpawner.horizontalcapacity; i++)
+            {
+                for (int j = 0; j < LEdgeSpawner.verticalcapacity; j++)
+                {
+
+                    if (LEditorManager.GetInstance().map[i, j] == LEditorManager.ElementType.Empty)
+                    {
+                        //do nothing
+                    }
+                    else if (LEditorManager.GetInstance().map[i, j] == LEditorManager.ElementType.Base)
+                    {
+                        visualboardelements[i, j] = null;
+                        SetBaseData(i, j);
+                    }
+                    else if (LEditorManager.GetInstance().map[i, j] == LEditorManager.ElementType.Spawner)
+                    {
+                        GameObject go = Instantiate(spawnervisualobject);
+                        go.transform.position = new Vector3(i, j, 0);
+                        visualboardelements[i, j] = go;
+                    }
+                    else if (LEditorManager.GetInstance().map[i, j] == LEditorManager.ElementType.Pathway)
+                    {
+                        //set pathway
+                        GameObject go = Instantiate(pathwayvisualobject);
+                        go.transform.position = new Vector3(i, j, 0);
+                        visualboardelements[i, j] = go;
+                    }
+                    else
+                    {
+                        //set a tower
+                        GameObject go = Instantiate(elementprefab);
+                        go.transform.position = new Vector3(i, j, 0);
+                        go.GetComponent<LTowerVisualObj>().SetSpriteByType(LEditorManager.GetInstance().map[i, j]);
+                        visualboardelements[i, j] = go;
+                    }
                 }
             }
         }
