@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,6 +31,19 @@ namespace LevelEditor
             }
 
             LEditorManager.GetInstance().waves[LEditorManager.GetInstance().editingwave] = md;
+            
+            //save  moves
+            if (LEditorManager.GetInstance().editingwave < LEditorManager.GetInstance().moves.Count)
+            {
+                LEditorManager.GetInstance().moves[LEditorManager.GetInstance().editingwave] = Convert.ToInt32(movesipf.text);
+            }
+            else
+            {
+                LEditorManager.GetInstance().moves.Add(Convert.ToInt32(movesipf.text));
+            }
         }
+
+
+        public InputField movesipf;
     }
 }

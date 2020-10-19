@@ -23,10 +23,20 @@ namespace LevelEditor
                 //read and display and clear 
                 addbtn.LoadData(LEditorManager.GetInstance().waves[LEditorManager.GetInstance().editingwave]);
 
+                //set moves
+                if (LEditorManager.GetInstance().editingwave < LEditorManager.GetInstance().moves.Count)
+                {
+                    movesipf.text = LEditorManager.GetInstance().moves[LEditorManager.GetInstance().editingwave].ToString();
+                }
+                else
+                {
+                    movesipf.text = "1";
+                }
             }
         }
 
         public Text stxt;
         public LAddMonsterBtn addbtn;
+        public InputField movesipf;
     }
 }

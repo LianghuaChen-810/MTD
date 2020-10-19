@@ -60,5 +60,10 @@ public class LevelData : ScriptableObject
     /// </summary>
     [HideInInspector]
     public int wavenum;
+
+    /// <summary>
+    /// Moves before each wave
+    /// </summary>
+    public int[] moves;
     
 }

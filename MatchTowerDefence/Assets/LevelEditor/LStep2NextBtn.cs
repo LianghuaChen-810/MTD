@@ -17,7 +17,7 @@ namespace LevelEditor
 
         private void OnClick()
         {
-           // if (LEditorManager.GetInstance().routes.Count > 0 && LAddMonsterBtn.options.Count > 0)
+            // if (LEditorManager.GetInstance().routes.Count > 0 && LAddMonsterBtn.options.Count > 0)
            if (LEditorManager.GetInstance().routes.Count > 0 && LEditorManager.GetInstance().waves[0].listnum > 0)
             {
                 /*

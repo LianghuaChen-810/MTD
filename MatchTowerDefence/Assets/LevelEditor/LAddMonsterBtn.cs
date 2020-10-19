@@ -60,7 +60,7 @@ namespace LevelEditor
                         Destroy(option.gameObject);
                     }
                     options.Clear();
-                    Debug.Log(options.Count);
+
                 }
                 if(md.listnum!=0)
                 for (int i = 0; i < md.listnum; i++) //if 0, just skip

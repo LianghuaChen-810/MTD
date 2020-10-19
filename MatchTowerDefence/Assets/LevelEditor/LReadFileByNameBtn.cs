@@ -75,9 +75,17 @@ namespace LevelEditor
                         LEditorManager.GetInstance().waves.Add(md);
                     }
 
+                    
+                    for (int i = 0; i < data.wavenum; i++)
+                    {
+                        LEditorManager.GetInstance().moves.Add(data.moves[i]);
+                    }
+
                     nameipf.text = data.name;
                     basehpipf.text = data.basehp.ToString();
                     thresholdipf.text = data.conditionthreshold.ToString();
+
+                    movesipf.text = data.moves[0].ToString();
                 }
             }
 
@@ -94,5 +102,7 @@ namespace LevelEditor
         public InputField thresholdipf;
 
         public LRayCaster raycaster;
+
+        public InputField movesipf;
     }
 }

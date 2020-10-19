@@ -31,8 +31,7 @@ namespace LevelEditor
             levelData.basehp = Convert.ToInt32(basehpipf.text);
             levelData.conditionthreshold = Convert.ToInt32(thresholdipf.text);
             levelData.routenum = LEditorManager.GetInstance().routes.Count;
-            levelData.wavenum = LEditorManager.GetInstance().waves.Count;
-            levelData.board = new int[LEdgeSpawner.verticalcapacity* LEdgeSpawner.horizontalcapacity];
+            levelData.board = new int[LEdgeSpawner.verticalcapacity * LEdgeSpawner.horizontalcapacity];
             for (int i = 0; i < LEdgeSpawner.horizontalcapacity; i++)
             {
                 for (int j = 0; j < LEdgeSpawner.verticalcapacity; j++)
@@ -45,10 +44,10 @@ namespace LevelEditor
 
             foreach (LRoute route in LEditorManager.GetInstance().routes)
             {
-                RouteData  rd =ScriptableObject.CreateInstance<RouteData>();
+                RouteData rd = ScriptableObject.CreateInstance<RouteData>();
 
                 rd.points = new Vector3[route.corners.Count];
-                for(int i = 0; i < route.corners.Count; i++)
+                for (int i = 0; i < route.corners.Count; i++)
                 {
                     rd.points[i] = route.corners[i];
                 }
@@ -69,6 +68,66 @@ namespace LevelEditor
                 routesdata.Add(rd);
             }
 
+            List<int> marks = new List<int>();
+            Debug.Log("entity num" + LEditorManager.GetInstance().waves.Count);
+            for (int m = 0; m < LEditorManager.GetInstance().waves.Count; m++)
+            {
+                if (LEditorManager.GetInstance().waves[m] == null || LEditorManager.GetInstance().waves[m].listnum == 0)
+                {
+                    marks.Add(m);
+                }
+            }
+
+            foreach (int n in marks)
+            {
+                if (n < LEditorManager.GetInstance().moves.Count)
+                {
+                    LEditorManager.GetInstance().moves[n] = 0;
+                }
+            }
+
+            marks.Reverse();
+            foreach(int n in marks)
+            {
+                LEditorManager.GetInstance().waves.RemoveAt(n);
+            }
+            Debug.Log("file num" + LEditorManager.GetInstance().waves.Count);
+            levelData.wavenum = LEditorManager.GetInstance().waves.Count;
+
+            levelData.moves = new int[levelData.wavenum];
+            int p = 0;
+            for (int i = 0; i < levelData.wavenum; i++)
+            {
+
+                if (p >= LEditorManager.GetInstance().moves.Count)
+                {
+                    levelData.moves[i] = 1;
+                }
+                else
+                {
+                    while (LEditorManager.GetInstance().moves[p] == 0)
+                    {
+                        if (p < LEditorManager.GetInstance().moves.Count)
+                        {
+                            p++;
+                        }
+                        if (p >= LEditorManager.GetInstance().moves.Count)
+                        {
+                            levelData.moves[i] = 1;
+                            break;
+                        }
+
+                    }
+                    if (p < LEditorManager.GetInstance().moves.Count)
+                    {
+                        levelData.moves[i] = LEditorManager.GetInstance().moves[p];
+                        p++;
+                    }
+                }
+
+            }
+
+           
 
             //data persistence
 
@@ -86,18 +145,19 @@ namespace LevelEditor
 
             for (int j = 0; j < routesdata.Count; j++)
             {
-                string indiepath = assetPath + "/" + nameipf.text +"route"+j+".asset";
+                string indiepath = assetPath + "/" + nameipf.text + "route" + j + ".asset";
                 UnityEditor.AssetDatabase.DeleteAsset(indiepath);
                 UnityEditor.AssetDatabase.CreateAsset(routesdata[j], indiepath);
             }
 
-            for (int m = 0; m < routesdata.Count; m++)
+            for (int m = 0; m < LEditorManager.GetInstance().waves.Count; m++)
             {
                 string monsterpath = assetPath + "/" + nameipf.text + "enemy" + m + ".asset";
                 UnityEditor.AssetDatabase.DeleteAsset(monsterpath);
-                UnityEditor.AssetDatabase.CreateAsset(LEditorManager.GetInstance().waves[m], monsterpath);
-            }
+                if(LEditorManager.GetInstance().waves[m]!=null&& LEditorManager.GetInstance().waves[m].listnum!=0) 
+                    UnityEditor.AssetDatabase.CreateAsset(LEditorManager.GetInstance().waves[m], monsterpath);
 
+            }
             UnityEditor.AssetDatabase.Refresh();
 
 

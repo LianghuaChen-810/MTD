@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,11 +26,26 @@ namespace LevelEditor
             }
 
             //read and display and clear 
+            if (LEditorManager.GetInstance().waves[LEditorManager.GetInstance().editingwave] == null)
+            {
+                LEditorManager.GetInstance().waves[LEditorManager.GetInstance().editingwave] = ScriptableObject.CreateInstance<MonsterData>();
+            }
             addbtn.LoadData(LEditorManager.GetInstance().waves[LEditorManager.GetInstance().editingwave]);
 
+            //set moves
+            if (LEditorManager.GetInstance().editingwave < LEditorManager.GetInstance().moves.Count)
+            {
+                movesipf.text = LEditorManager.GetInstance().moves[LEditorManager.GetInstance().editingwave].ToString();
+            }
+            else
+            {
+                LEditorManager.GetInstance().moves.Add(1);
+                movesipf.text = "1";
+            }
         }
 
         public Text stxt;
         public LAddMonsterBtn addbtn;
+        public InputField movesipf;
     }
 }

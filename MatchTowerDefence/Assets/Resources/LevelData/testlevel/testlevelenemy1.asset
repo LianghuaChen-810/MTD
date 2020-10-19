@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b393247005759114b89b8d2b20c5aba1, type: 3}
   m_Name: testlevelenemy1
   m_EditorClassIdentifier: 
-  listnum: 3
-  monstertypes: 010000000100000001000000
-  monsterroutes: 010000000100000001000000
+  listnum: 2
+  monstertypes: 0000000000000000
+  monsterroutes: 0000000000000000
   monstertimes:
-  - 2
-  - 2
-  - 2
+  - 0
+  - 0

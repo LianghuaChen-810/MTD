@@ -48,6 +48,7 @@ namespace LevelEditor
         public MonsterData monsters;
         public List<MonsterData> waves=new List<MonsterData>();
         public int editingwave = 0;
+        public List<int> moves = new List<int>();
 
         public LevelData readleveldata = null;
 
