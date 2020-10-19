@@ -2,19 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class that is used to generate matches after tiles are moved.
+/// Uses the adjacency data in the TowerTile class.
+/// </summary>
 public class ShapeMatch
 {
-    HashSet<TowerTile> tilesInShape = new HashSet<TowerTile>();
-
+    private const int MAX_TILES_IN_DIRECTION = 20000;
+    public bool matchFound = false;
     TowerObject towerType = null;
     TowerTile tileToSpawnTower = null;
-    public bool matchFound = false;
+    HashSet<TowerTile> tilesInShape = new HashSet<TowerTile>();
 
-    public ShapeMatch (TowerTile startTile, bool wasTileSelected = false)
+
+    /// <summary>
+    /// Starts generation of a new shape. Uses the tower type of the start tower tile.
+    /// </summary>
+    /// <param name="startTile">The tile to start generation from</param>
+    /// <param name="wasTileSelected">If false the shapematch will find its own tile to spawn tower</param>
+    public ShapeMatch(TowerTile startTile, bool wasTileSelected = false)
     {
         // Set tower type of shape
         towerType = startTile.tower;
-
 
         // If the player selected the tile the new tower should be at the selectedTile
         if (wasTileSelected)
@@ -36,11 +45,9 @@ public class ShapeMatch
             TowerTile currentTile = nextTilesToVisit.Dequeue();
             alreadyVisitedTiles.Add(currentTile);
 
-            // Check UP and DOWN for a match-3
+            // Initialise a matching line in the UP and DOWN directions
             List<TowerTile> matchingTilesDir = new List<TowerTile>();
             matchingTilesDir.Add(currentTile);
-
-
 
             // Find all same towers in UP
             TowerTile adjacentTile = currentTile.adjTiles.up;
@@ -49,12 +56,6 @@ public class ShapeMatch
                 matchingTilesDir.Add(adjacentTile);
                 adjacentTile = adjacentTile.adjTiles.up;
             }
-            //RaycastHit2D hit = Physics2D.Raycast(currentTile.transform.position, Vector2.up);
-            //while (hit.collider != null && hit.collider.GetComponent<TowerTile>().tower == towerType)
-            //{
-            //    matchingTilesDir.Add(hit.collider.gameObject.GetComponent<TowerTile>());
-            //    hit = Physics2D.Raycast(hit.collider.transform.position, Vector2.up);
-            //}
 
             // Find all same towers in DOWN
             adjacentTile = currentTile.adjTiles.down;
@@ -63,12 +64,6 @@ public class ShapeMatch
                 matchingTilesDir.Add(adjacentTile);
                 adjacentTile = adjacentTile.adjTiles.down;
             }
-            //hit = Physics2D.Raycast(currentTile.transform.position, Vector2.down);
-            //while (hit.collider != null && hit.collider.GetComponent<TowerTile>().tower == towerType)
-            //{
-            //    matchingTilesDir.Add(hit.collider.gameObject.GetComponent<TowerTile>());
-            //    hit = Physics2D.Raycast(hit.collider.transform.position, Vector2.down);
-            //}
 
             // Check if there is a match of three or more
             if (matchingTilesDir.Count >= 3)
@@ -85,7 +80,7 @@ public class ShapeMatch
                 }
             }
 
-            // Check LEFT and RIGHT for a match-3
+            // Initialise a matching line in the LEFT and RIGHT directions
             matchingTilesDir = new List<TowerTile>();
             matchingTilesDir.Add(currentTile);
 
@@ -98,13 +93,6 @@ public class ShapeMatch
                 adjacentTile = adjacentTile.adjTiles.left;
             }
 
-            //hit = Physics2D.Raycast(currentTile.transform.position, Vector2.left);
-            //while (hit.collider != null && hit.collider.GetComponent<TowerTile>().tower == towerType)
-            //{
-            //    matchingTilesDir.Add(hit.collider.gameObject.GetComponent<TowerTile>());
-            //    hit = Physics2D.Raycast(hit.collider.transform.position, Vector2.left);
-            //}
-
             // Find all same towers in RIGHT
             adjacentTile = currentTile.adjTiles.right;
             while (adjacentTile != null && adjacentTile.tower == towerType)
@@ -112,12 +100,6 @@ public class ShapeMatch
                 matchingTilesDir.Add(adjacentTile);
                 adjacentTile = adjacentTile.adjTiles.right;
             }
-            //hit = Physics2D.Raycast(currentTile.transform.position, Vector2.right);
-            //while (hit.collider != null && hit.collider.GetComponent<TowerTile>().tower == towerType)
-            //{
-            //    matchingTilesDir.Add(hit.collider.gameObject.GetComponent<TowerTile>());
-            //    hit = Physics2D.Raycast(hit.collider.transform.position, Vector2.right);
-            //}
 
             // Check if there is a match of three or more
             if (matchingTilesDir.Count >= 3)
@@ -135,12 +117,16 @@ public class ShapeMatch
             }
         }
 
+        // Add all tiles that are in any match connected to the start tile.
         tilesInShape = tilesInMatches;
 
-        if (matchFound && tileToSpawnTower == null)
+        // If there was a match and there was no tiles selected ->
+        // find a possible position where to spawn the tower by 
+        // following the rules BOTTOM > LEFT > TOP > RIGHT
+        if (matchFound && !wasTileSelected)
         {
             List<TowerTile> possibleTilesForTower = new List<TowerTile>();
-            int miny = 20000;
+            int miny = MAX_TILES_IN_DIRECTION;
 
             // Find the tiles that are closer to bottom
             foreach (TowerTile tile in tilesInShape)
@@ -157,8 +143,8 @@ public class ShapeMatch
                 }
             }
 
-            // From those tiles find the one that is most to the left
-            int minx = 20000;
+            // From those tiles find the one that is mostly to the left
+            int minx = MAX_TILES_IN_DIRECTION;
             foreach (TowerTile tile in possibleTilesForTower)
             {
                 if (tile.boardPosition.x < minx)
@@ -170,6 +156,9 @@ public class ShapeMatch
         }
     }
 
+    /// <summary>
+    /// Debugging method to print the shape info.
+    /// </summary>
     public void PrintShape()
     {
         Debug.Log("------------------------------");
@@ -182,6 +171,9 @@ public class ShapeMatch
         }
     }
 
+    /// <summary>
+    /// Generates a new tower from the match shape
+    /// </summary>
     public void UpdateTowerFromMatch()
     {
         // Go through towers in shape and add bonus attacks and new bonus
@@ -190,22 +182,30 @@ public class ShapeMatch
         {
             newBonusDamage += tile.towerBonusDamage;
         }
+
         // generate new tower and set bonus damage
         TowerObject nextTower = tileToSpawnTower.tower.nextLevelTower;
         tileToSpawnTower.SetTower(nextTower, newBonusDamage);
-        TutorialManager.instance.TowerSpawnedEvent(nextTower);
+        if (TutorialManager.instance != null)
+        {
+            TutorialManager.instance.TowerSpawnedEvent(nextTower);
+        }
+
         // remove new tower from towers in shape
         tilesInShape.Remove(tileToSpawnTower);
+
         // remove other towers
         ClearAllOtherTiles();
     }
 
-    public void ClearAllOtherTiles()
+    /// <summary>
+    /// Clears all tiles except the newly generated one.
+    /// </summary>
+    private void ClearAllOtherTiles()
     {
         foreach (TowerTile tile in tilesInShape)
         {
             tile.SetTower(null);
         }
     }
-
 }

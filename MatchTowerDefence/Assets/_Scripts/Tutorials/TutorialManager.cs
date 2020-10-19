@@ -7,7 +7,7 @@ public class TutorialManager : MonoBehaviour
 {
     public GameObject pressAnywhereTxt;
     public GameObject tutTextMsg;
-    [SerializeField] private GameObject skipButton;
+    [SerializeField] private GameObject skipButton = null;
     public static TutorialManager instance;
     public TMP_Text textPanel;
     public List<TutorialStage> stages = new List<TutorialStage>();
@@ -57,7 +57,7 @@ public class TutorialManager : MonoBehaviour
         {
             isActive = true;
 
-            Debug.Log("Next stage activating: " + stages[nextStageIndex]);
+            ////Debug.Log("Next stage activating: " + stages[nextStageIndex]);
             // Always stop current stage before getting new one
             if(currentStage != null)
                 currentStage.StopStage();
@@ -76,7 +76,7 @@ public class TutorialManager : MonoBehaviour
 
             // Activate stage and render objects of stage
             shouldHideStage = currentStage.RenderStage();
-            Debug.Log("Next stage index = " + nextStageIndex);
+            //Debug.Log("Next stage index = " + nextStageIndex);
 
         }
         else
@@ -97,14 +97,14 @@ public class TutorialManager : MonoBehaviour
     }
     public void ExecuteSearchForNextStageRequirement()
     {
-        Debug.Log("SearchNextStage");
+        //Debug.Log("SearchNextStage");
         // SWITCH FOR THE EXECUTION
         if (nextStageIndex < stages.Count)
             nextStage = stages[nextStageIndex];
 
         if (nextStage.requirement == TutorialStage.TutorialStageRequirement.NONE)
         {
-            Debug.Log("NONE");
+            //Debug.Log("NONE");
             NextTutorialStage();
         }
     }
@@ -115,7 +115,7 @@ public class TutorialManager : MonoBehaviour
         //Debug.Log("TOWER SPAWNED EVENT: " + tower.type);
         if (!isActive)
         {
-            Debug.Log("TOWER SPAWNED EVENT: " + tower.type);
+            //Debug.Log("TOWER SPAWNED EVENT: " + tower.type);
 
             if (nextStage.requirement == TutorialStage.TutorialStageRequirement.TOWER)
                 if (tower.type == nextStage.towerToAppear.type)
@@ -144,7 +144,14 @@ public class TutorialManager : MonoBehaviour
 
     public void SkipTutorial()
     {
-        nextStageIndex = 10;
+        if (currentStage != null)
+            currentStage.StopStage();
+        nextStageIndex = stages.Count;
+        PlayerPrefs.SetInt("Tutored", 1);
+        isActive = false;
+        tutTextMsg.SetActive(false);
+        skipButton.SetActive(false);
+        gameObject.SetActive(false);
     }
     // EXECUTION FUNCTIONS
 }

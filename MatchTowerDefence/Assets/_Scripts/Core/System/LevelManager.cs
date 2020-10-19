@@ -1,5 +1,9 @@
 ﻿using MatchTowerDefence.Level;
+using MatchTowerDefence.Managers;
+using MatchTowerDefence.SaveSystem;
+using MatchTowerDefence.UI;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,54 +13,118 @@ namespace GameCore.System
     {
         public static LevelManager instance = null;
 
-        private TutorialManager tutorialManager;
-        private int hasTutored = 0;
-        private int enemyRemaining = 99999;
         public LevelList levelList;
 
-        public static LevelManager Instance
+        private TutorialManager tutorialManager;
+        private int hasTutored = 0;
+
+
+        void Update()
         {
-            get
+            LevelControl.OnUpdate();
+        }
+
+        public void Awake()
+        {
+            DontDestroyOnLoad(gameObject);
+            if (instance == null)
             {
-                if(instance == null)
+                instance = GetComponent<LevelManager>();
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (scene.buildIndex > 0)
+            {
+                // Finds spawners needs to be "true" to search in children of root objects because they are inactive on SceneLoad
+                List<Spawner> spawners = new List<Spawner>(FindObjectsOfType<Spawner>(true));
+                LevelControl.Initialise(spawners);
+
+                // Initialise Board Manager
+                BoardManager boardManager = FindObjectOfType<BoardManager>();
+                if(boardManager != null)
                 {
-                    instance = new LevelManager();
+                    if(BoardManager.instance != boardManager)
+                    {
+                        boardManager.Initialise();
+                    }
                 }
-                return instance;
+                tutorialManager = FindObjectOfType<TutorialManager>();
+
+              
+                //boardManager.Initialise();
+
+                if (PlayerPrefs.HasKey("Tutored")) { hasTutored = PlayerPrefs.GetInt("Tutored"); }
+
+                if (tutorialManager != null && hasTutored == 1) { /*tutorialManager.gameObject.SetActive(false);*/ }
+
+                
+            }
+            else
+            {
+                GUIManager.instance.MainMenuInstance();
+            }
+
+            GUIManager.instance.SetOnSceneLoaded();
+        }
+
+
+        public void CompleteLevel(string levelId, int starsEarned)
+        {
+            if(!levelList.ContainsKey(levelId))
+            { 
+                Debug.LogWarningFormat("Cannot complete level with id = {0}, Not in level list", levelId);
+                return;
+            }
+            if (SaveManager.instance != null)
+            {
+                SaveManager.instance.saveData.CompleteLevel(levelId, starsEarned);
+                SaveManager.instance.SaveData();
+                
+                Debug.Log(JsonUtility.ToJson(SaveManager.instance.saveData));
             }
         }
 
-        private void Awake()
+        public LevelItem LevelItemCurrentScene()
         {
-            BoardManager boardManager = FindObjectOfType<BoardManager>();
-            tutorialManager = FindObjectOfType<TutorialManager>();
-            if (boardManager != null) { boardManager.Initialise(); }
-
-            if (PlayerPrefs.HasKey("Tutored")) { hasTutored = PlayerPrefs.GetInt("Tutored"); }
-
-            if (tutorialManager != null && hasTutored == 1) { /*tutorialManager.gameObject.SetActive(false);*/ }
+            string sceneName = SceneManager.GetActiveScene().name;
+            return levelList.GetLevelByScene(sceneName);
         }
 
-        private void Update()
+        public bool IsLevelCompleted(string levelId)
         {
-            if (BoardManager.instance != null)
-                enemyRemaining = BoardManager.instance.allEnemies.Count;
+            if (!levelList.ContainsKey(levelId))
+            {
+                Debug.LogWarningFormat("Cannot check if level with id = {0} is completed , Not in level list", levelId);
+                return false;
+            }
 
-            //if(enemyRemaining == 0 && GUIManager.instance.phaseTxt.text == "Defense Phase")
-            //{
-            //    Debug.Log("IsLevelFinished");
-            //    GUIManager.instance.LevelIsFinished();
-            //}
-
-            //if (SceneManager.GetActiveScene().buildIndex > 0)
-            //{
-            //    GUIManager.instance.InitiateGame();
-            //}
+            if (SaveManager.instance != null)
+            {
+                return SaveManager.instance.saveData.IsLevelCompleted(levelId);
+            }
+            return false;
         }
 
-        public int GetStarsForLevel(string id)
+        public int GetStarsForLevel(string levelId)
         {
-            throw new NotImplementedException();
+            if (!levelList.ContainsKey(levelId))
+            {
+                Debug.LogWarningFormat("Cannot check if level is completed , Not in level list", levelId);
+                return 0;
+            }
+            if (SaveManager.instance != null)
+            {
+                return SaveManager.instance.saveData.GetNoOfStarsForLevel(levelId);
+            }
+            return 0;
         }
     }
 }

@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3948281456922283613
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3948281456922283614}
+  - component: {fileID: 3948281456922283612}
+  m_Layer: 0
+  m_Name: BoardManager
+  m_TagString: Untagged
+  m_Icon: {fileID: -1944569537103914328, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3948281456922283614
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3948281456922283613}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3948281456922283612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3948281456922283613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62529ad85b5b4d4f939b689d97e24b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camManager: {fileID: 0}
+  spawnTowers:
+  - {fileID: 11400000, guid: 57065164e63cb9a4d89d4cdcc07851de, type: 2}
+  - {fileID: 11400000, guid: 1e3d11b464b5ae44cb62d38685f8fca7, type: 2}
+  - {fileID: 11400000, guid: 5423e55e0626f114d928cad6a795f31b, type: 2}
+  AOETower: {fileID: 11400000, guid: 57065164e63cb9a4d89d4cdcc07851de, type: 2}
+  NormalTower: {fileID: 11400000, guid: 5423e55e0626f114d928cad6a795f31b, type: 2}
+  FrostTower: {fileID: 11400000, guid: 1e3d11b464b5ae44cb62d38685f8fca7, type: 2}
+  towerTilePrefab: {fileID: 1000010131827792, guid: 6417c2a8214b7ab45b35ac5e9e62c2cb, type: 3}
+  allTowerTiles: []
+  shiftDelay: 0.03
+  allPathTiles: []
+  allBases: []
+  allSpawns: []
+  pathTilePrefab: {fileID: 183201617856922424, guid: a07d23a4bb11a4749afa6045a9c33e61, type: 3}
+  ShiftsInProgress: 0
