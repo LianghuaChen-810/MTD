@@ -25,6 +25,10 @@ namespace LevelEditor
             go.GetComponent<RectTransform>().SetParent( generateparent.GetComponent<RectTransform>());
             
             options.Add(go.GetComponent<RectTransform>());
+
+            LRoute lr = new LRoute();
+            LEditorManager.GetInstance().routes.Add(lr);
+            go.GetComponent<LRouteOption>().LoadExistingRoute(lr);
             
             RefreshOptions();
 

@@ -8,14 +8,7 @@ public class LRouteOption : MonoBehaviour
 {
     void Start()
     {
-        if (LEditorManager.GetInstance().readleveldata == null)
-        {
-            LRoute lr = new LRoute();
-            LEditorManager.GetInstance().routes.Add(lr);
-            del.route = lr;
-            dis.routedata = lr;
-            dra.route = lr;
-        }
+        
 
     }
 
