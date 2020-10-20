@@ -18,8 +18,9 @@ MonoBehaviour:
   levelStr: Level Two
   type: 6
   attackType: 1
-  baseDamage: 25
+  baseDamage: 36
   range: 2
+  shootDelayTime: 2
   sprite: {fileID: 21300000, guid: 1c732f4dc5264ca429cde091b45ae067, type: 3}
   bulletPrefab: {fileID: 86419254469856350, guid: 318fa4f243138234a8d38059ce00ae36, type: 3}
   hasUpgrade: 1

@@ -18,8 +18,6 @@ public class TowerTile : MonoBehaviour
     private bool isSelected = false;
 
     [SerializeField]
-    private float shootDelayTime = 2.0f;
-    [SerializeField]
     private Color bulletSelectedColor = new Color(.5f, .5f, .5f, 1.0f);
 
     // Collider info
@@ -74,7 +72,7 @@ public class TowerTile : MonoBehaviour
     }
 
     /// <summary>
-    /// Removes enemies when they get in range
+    /// Removes enemies when they get out of range
     /// </summary>
     /// <param name="collider"></param>
     void OnTriggerExit2D(Collider2D collider)
@@ -187,7 +185,7 @@ public class TowerTile : MonoBehaviour
                     continue;
                 }
                 Shoot(currentEnemyInRange);
-                yield return new WaitForSeconds(shootDelayTime); // NEED TO SCALE WITH GAME TIME SCALE
+                yield return new WaitForSeconds(tower.shootDelayTime); // NEED TO SCALE WITH GAME TIME SCALE
             }
 
            
@@ -234,10 +232,14 @@ public class TowerTile : MonoBehaviour
     /// </summary>
     private void Select()
     {
-        isSelected = true;
-        render.color = bulletSelectedColor;
-        previousSelected = gameObject.GetComponent<TowerTile>();
-        GUIManager.instance.UpdateSelectedTower(tower, towerBonusDamage);
+        //Only select if the game is not paused
+        if (!GUIManager.instance.pauseMenu.activeSelf)
+        {
+            isSelected = true;
+            render.color = bulletSelectedColor;
+            previousSelected = gameObject.GetComponent<TowerTile>();
+            GUIManager.instance.UpdateSelectedTower(tower, towerBonusDamage);
+        }
     }
 
     /// <summary>

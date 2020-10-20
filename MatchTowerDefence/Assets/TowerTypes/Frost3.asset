@@ -20,6 +20,7 @@ MonoBehaviour:
   attackType: 2
   baseDamage: 30
   range: 3
+  shootDelayTime: 2
   sprite: {fileID: 21300000, guid: 4317a08c31a06e34d8dcc4e55a06fc1f, type: 3}
   bulletPrefab: {fileID: 3930030298624884989, guid: bee3e0221aa033d479c3c67329b53204, type: 3}
   hasUpgrade: 0

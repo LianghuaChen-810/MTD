@@ -81,7 +81,6 @@ public class TutorialManager : MonoBehaviour
         }
         else
         {
-            PlayerPrefs.SetInt("Tutored", 1);
             isActive = false;
             tutTextMsg.SetActive(false);
             skipButton.SetActive(false);
@@ -147,7 +146,6 @@ public class TutorialManager : MonoBehaviour
         if (currentStage != null)
             currentStage.StopStage();
         nextStageIndex = stages.Count;
-        PlayerPrefs.SetInt("Tutored", 1);
         isActive = false;
         tutTextMsg.SetActive(false);
         skipButton.SetActive(false);

@@ -2,7 +2,6 @@
 using MatchTowerDefence.Managers;
 using MatchTowerDefence.SaveSystem;
 using MatchTowerDefence.UI;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,7 +15,6 @@ namespace GameCore.System
         public LevelList levelList;
 
         private TutorialManager tutorialManager;
-        private int hasTutored = 0;
 
 
         void Update()
@@ -57,15 +55,6 @@ namespace GameCore.System
                     }
                 }
                 tutorialManager = FindObjectOfType<TutorialManager>();
-
-              
-                //boardManager.Initialise();
-
-                if (PlayerPrefs.HasKey("Tutored")) { hasTutored = PlayerPrefs.GetInt("Tutored"); }
-
-                if (tutorialManager != null && hasTutored == 1) { /*tutorialManager.gameObject.SetActive(false);*/ }
-
-                
             }
             else
             {

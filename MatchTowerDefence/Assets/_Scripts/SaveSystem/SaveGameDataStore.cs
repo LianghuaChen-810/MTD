@@ -10,6 +10,7 @@ namespace MatchTowerDefence.SaveSystem
 
         public int totalStars = 0;
         public List<LevelSaveData> completedLevels = new List<LevelSaveData>();
+        public List<bool> upgradedTowers = new List<bool>();
 
         public override void PostLoad()
         {
@@ -63,6 +64,11 @@ namespace MatchTowerDefence.SaveSystem
             }
 
             return 0;
+        }
+
+        public void SaveUpgrade()
+        {
+
         }
     }
 }

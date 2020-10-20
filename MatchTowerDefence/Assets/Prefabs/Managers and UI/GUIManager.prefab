@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 5.1}
-  m_SizeDelta: {x: 0, y: -10.1}
+  m_AnchoredPosition: {x: 0, y: 0.024986267}
+  m_SizeDelta: {x: 0, y: 0.05002594}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &216173716
 CanvasRenderer:
@@ -324,8 +324,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 5.1}
-  m_SizeDelta: {x: 0, y: -10.1}
+  m_AnchoredPosition: {x: 0, y: 0.025016785}
+  m_SizeDelta: {x: 0, y: 0.05000305}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &307948702
 CanvasRenderer:
@@ -801,7 +801,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: standings
+  m_text: rankings
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -904,8 +904,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 5.1}
-  m_SizeDelta: {x: 0, y: -10.1}
+  m_AnchoredPosition: {x: 0, y: 0.024986267}
+  m_SizeDelta: {x: 0, y: 0.05002594}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1578681431
 CanvasRenderer:
@@ -1338,8 +1338,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 5.1}
-  m_SizeDelta: {x: 0, y: -10.1}
+  m_AnchoredPosition: {x: 0, y: 0.025001526}
+  m_SizeDelta: {x: 0, y: 0.05000305}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2109069391
 CanvasRenderer:
@@ -2305,6 +2305,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &244441026751245961
 GameObject:
   m_ObjectHideFlags: 0
@@ -2452,6 +2457,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &318610385042741110
 GameObject:
   m_ObjectHideFlags: 0
@@ -3454,6 +3464,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &524097479576857776
 GameObject:
   m_ObjectHideFlags: 0
@@ -3737,6 +3752,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &540237083127155050
 GameObject:
   m_ObjectHideFlags: 0
@@ -4020,6 +4040,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &604331104077496234
 GameObject:
   m_ObjectHideFlags: 0
@@ -4820,7 +4845,7 @@ RectTransform:
   - {fileID: 4590701507723798775}
   - {fileID: 3756003285743807940}
   m_Father: {fileID: 3238649529059861495}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5331,6 +5356,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &952893255688392059
 GameObject:
   m_ObjectHideFlags: 0
@@ -5501,7 +5531,7 @@ RectTransform:
   - {fileID: 3594343151095563085}
   - {fileID: 4828215153377869105}
   m_Father: {fileID: 3238649529059861495}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 120}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7239,6 +7269,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &1360805319703503029
 GameObject:
   m_ObjectHideFlags: 0
@@ -7533,8 +7568,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1365d2d99ac40e94683c3d20e8be30e5, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
@@ -8702,7 +8737,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3e949883535be42b389d30af59458c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedImage: {fileID: 0}
+  lockedImage: {fileID: 8145785164299973975}
+  towerObjects:
+  - {fileID: 11400000, guid: 57065164e63cb9a4d89d4cdcc07851de, type: 2}
+  - {fileID: 11400000, guid: 100a2e46682dfcb4a88239c3d2dafa21, type: 2}
+  - {fileID: 11400000, guid: 31bcdde7a477fa54bbc66968dd0a2b2b, type: 2}
+  - {fileID: 11400000, guid: 0d5b475f149945d48b00b739d531aa7f, type: 2}
+  towerAlignment: Left Tree
+  upgradeValue: 1
+  costOfUpgrade: 1
+  attributeId: 2
 --- !u!1 &1833568753283452811
 GameObject:
   m_ObjectHideFlags: 0
@@ -9179,22 +9223,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 3498911847085380180}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 3498911847085380180}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
+      - m_Target: {fileID: 3916108597993407244}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10146,7 +10178,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3e949883535be42b389d30af59458c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedImage: {fileID: 0}
+  lockedImage: {fileID: 3195710524104163601}
+  towerObjects:
+  - {fileID: 11400000, guid: 57065164e63cb9a4d89d4cdcc07851de, type: 2}
+  - {fileID: 11400000, guid: 100a2e46682dfcb4a88239c3d2dafa21, type: 2}
+  - {fileID: 11400000, guid: 31bcdde7a477fa54bbc66968dd0a2b2b, type: 2}
+  - {fileID: 11400000, guid: 0d5b475f149945d48b00b739d531aa7f, type: 2}
+  towerAlignment: Mid Tree
+  upgradeValue: 1
+  costOfUpgrade: 1
+  attributeId: 2
 --- !u!1 &2254054645502556206
 GameObject:
   m_ObjectHideFlags: 0
@@ -10293,7 +10334,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3e949883535be42b389d30af59458c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedImage: {fileID: 0}
+  lockedImage: {fileID: 9124706022790199440}
+  towerObjects:
+  - {fileID: 11400000, guid: 57065164e63cb9a4d89d4cdcc07851de, type: 2}
+  - {fileID: 11400000, guid: 100a2e46682dfcb4a88239c3d2dafa21, type: 2}
+  - {fileID: 11400000, guid: 31bcdde7a477fa54bbc66968dd0a2b2b, type: 2}
+  - {fileID: 11400000, guid: 0d5b475f149945d48b00b739d531aa7f, type: 2}
+  towerAlignment: Right Tree
+  upgradeValue: 0
+  costOfUpgrade: 4
+  attributeId: 0
 --- !u!1 &2269521871011195483
 GameObject:
   m_ObjectHideFlags: 0
@@ -10983,6 +11033,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8449449068623517417}
+        m_TargetAssemblyTypeName: MatchTowerDefence.UpgradeSystem.SkillUpgrade, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8449449068623517417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10995,7 +11057,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3e949883535be42b389d30af59458c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedImage: {fileID: 0}
+  lockedImage: {fileID: 6939501484673627584}
+  towerObjects:
+  - {fileID: 11400000, guid: 57065164e63cb9a4d89d4cdcc07851de, type: 2}
+  - {fileID: 11400000, guid: 100a2e46682dfcb4a88239c3d2dafa21, type: 2}
+  - {fileID: 11400000, guid: 31bcdde7a477fa54bbc66968dd0a2b2b, type: 2}
+  - {fileID: 11400000, guid: 0d5b475f149945d48b00b739d531aa7f, type: 2}
+  towerAlignment: Left Tree
+  upgradeValue: 1
+  costOfUpgrade: 1
+  attributeId: 1
 --- !u!1 &2487060308162374060
 GameObject:
   m_ObjectHideFlags: 0
@@ -11706,7 +11777,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3e949883535be42b389d30af59458c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedImage: {fileID: 0}
+  lockedImage: {fileID: 8346442840555575641}
+  towerObjects:
+  - {fileID: 11400000, guid: 57065164e63cb9a4d89d4cdcc07851de, type: 2}
+  - {fileID: 11400000, guid: 100a2e46682dfcb4a88239c3d2dafa21, type: 2}
+  - {fileID: 11400000, guid: 31bcdde7a477fa54bbc66968dd0a2b2b, type: 2}
+  - {fileID: 11400000, guid: 0d5b475f149945d48b00b739d531aa7f, type: 2}
+  towerAlignment: Left Tree
+  upgradeValue: 3
+  costOfUpgrade: 2
+  attributeId: 1
 --- !u!1 &2690371178454485900
 GameObject:
   m_ObjectHideFlags: 0
@@ -12949,6 +13029,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &3096601678123603850
 GameObject:
   m_ObjectHideFlags: 0
@@ -13846,6 +13931,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &3239966791027143995
 GameObject:
   m_ObjectHideFlags: 0
@@ -14145,7 +14235,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3e949883535be42b389d30af59458c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedImage: {fileID: 0}
+  lockedImage: {fileID: 3797655684053875514}
+  towerObjects:
+  - {fileID: 11400000, guid: 57065164e63cb9a4d89d4cdcc07851de, type: 2}
+  - {fileID: 11400000, guid: 100a2e46682dfcb4a88239c3d2dafa21, type: 2}
+  - {fileID: 11400000, guid: 31bcdde7a477fa54bbc66968dd0a2b2b, type: 2}
+  - {fileID: 11400000, guid: 0d5b475f149945d48b00b739d531aa7f, type: 2}
+  towerAlignment: Mid Tree
+  upgradeValue: 1
+  costOfUpgrade: 1
+  attributeId: 1
 --- !u!1 &3363223531839638100
 GameObject:
   m_ObjectHideFlags: 0
@@ -14293,6 +14392,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &3493655060005918013
 GameObject:
   m_ObjectHideFlags: 0
@@ -14440,6 +14544,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &3496152202387299995
 GameObject:
   m_ObjectHideFlags: 0
@@ -15635,7 +15744,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3e949883535be42b389d30af59458c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedImage: {fileID: 0}
+  lockedImage: {fileID: 4739320889833513555}
+  towerObjects:
+  - {fileID: 11400000, guid: 57065164e63cb9a4d89d4cdcc07851de, type: 2}
+  - {fileID: 11400000, guid: 100a2e46682dfcb4a88239c3d2dafa21, type: 2}
+  - {fileID: 11400000, guid: 31bcdde7a477fa54bbc66968dd0a2b2b, type: 2}
+  - {fileID: 11400000, guid: 0d5b475f149945d48b00b739d531aa7f, type: 2}
+  towerAlignment: Right Tree
+  upgradeValue: 3
+  costOfUpgrade: 2
+  attributeId: 2
 --- !u!1 &3855652577797641299
 GameObject:
   m_ObjectHideFlags: 0
@@ -16519,7 +16637,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3e949883535be42b389d30af59458c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedImage: {fileID: 0}
+  lockedImage: {fileID: 3368993726222018265}
+  towerObjects:
+  - {fileID: 11400000, guid: 57065164e63cb9a4d89d4cdcc07851de, type: 2}
+  - {fileID: 11400000, guid: 100a2e46682dfcb4a88239c3d2dafa21, type: 2}
+  - {fileID: 11400000, guid: 31bcdde7a477fa54bbc66968dd0a2b2b, type: 2}
+  - {fileID: 11400000, guid: 0d5b475f149945d48b00b739d531aa7f, type: 2}
+  towerAlignment: Mid Tree
+  upgradeValue: 0
+  costOfUpgrade: 4
+  attributeId: 0
 --- !u!1 &3989415344297685262
 GameObject:
   m_ObjectHideFlags: 0
@@ -16667,6 +16794,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &4044008673787144677
 GameObject:
   m_ObjectHideFlags: 0
@@ -17490,8 +17622,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2905359350675487777}
   - {fileID: 4459071310225339831}
+  - {fileID: 2905359350675487777}
   - {fileID: 6708855560019597370}
   m_Father: {fileID: 6448334090044630818}
   m_RootOrder: 0
@@ -18069,6 +18201,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &4586728346207511287
 GameObject:
   m_ObjectHideFlags: 0
@@ -18585,7 +18722,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3e949883535be42b389d30af59458c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedImage: {fileID: 0}
+  lockedImage: {fileID: 175153106469542789}
+  towerObjects:
+  - {fileID: 11400000, guid: 57065164e63cb9a4d89d4cdcc07851de, type: 2}
+  - {fileID: 11400000, guid: 100a2e46682dfcb4a88239c3d2dafa21, type: 2}
+  - {fileID: 11400000, guid: 31bcdde7a477fa54bbc66968dd0a2b2b, type: 2}
+  - {fileID: 11400000, guid: 0d5b475f149945d48b00b739d531aa7f, type: 2}
+  towerAlignment: Mid Tree
+  upgradeValue: 3
+  costOfUpgrade: 2
+  attributeId: 2
 --- !u!1 &4830361049148010553
 GameObject:
   m_ObjectHideFlags: 0
@@ -19438,7 +19584,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3e949883535be42b389d30af59458c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedImage: {fileID: 0}
+  lockedImage: {fileID: 3832459646050713820}
+  towerObjects:
+  - {fileID: 11400000, guid: 57065164e63cb9a4d89d4cdcc07851de, type: 2}
+  - {fileID: 11400000, guid: 100a2e46682dfcb4a88239c3d2dafa21, type: 2}
+  - {fileID: 11400000, guid: 31bcdde7a477fa54bbc66968dd0a2b2b, type: 2}
+  - {fileID: 11400000, guid: 0d5b475f149945d48b00b739d531aa7f, type: 2}
+  towerAlignment: Left Tree
+  upgradeValue: 3
+  costOfUpgrade: 2
+  attributeId: 1
 --- !u!1 &5176202683092434296
 GameObject:
   m_ObjectHideFlags: 0
@@ -19899,7 +20054,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3e949883535be42b389d30af59458c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedImage: {fileID: 0}
+  lockedImage: {fileID: 3497618661446166667}
+  towerObjects:
+  - {fileID: 11400000, guid: 57065164e63cb9a4d89d4cdcc07851de, type: 2}
+  - {fileID: 11400000, guid: 100a2e46682dfcb4a88239c3d2dafa21, type: 2}
+  - {fileID: 11400000, guid: 31bcdde7a477fa54bbc66968dd0a2b2b, type: 2}
+  - {fileID: 11400000, guid: 0d5b475f149945d48b00b739d531aa7f, type: 2}
+  towerAlignment: Mid Tree
+  upgradeValue: 0
+  costOfUpgrade: 4
+  attributeId: 0
 --- !u!1 &5248662885097882086
 GameObject:
   m_ObjectHideFlags: 0
@@ -20539,6 +20703,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &5365535158110401186
 GameObject:
   m_ObjectHideFlags: 0
@@ -20762,7 +20931,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3e949883535be42b389d30af59458c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedImage: {fileID: 0}
+  lockedImage: {fileID: 6617898972866312263}
+  towerObjects:
+  - {fileID: 11400000, guid: 57065164e63cb9a4d89d4cdcc07851de, type: 2}
+  - {fileID: 11400000, guid: 100a2e46682dfcb4a88239c3d2dafa21, type: 2}
+  - {fileID: 11400000, guid: 31bcdde7a477fa54bbc66968dd0a2b2b, type: 2}
+  - {fileID: 11400000, guid: 0d5b475f149945d48b00b739d531aa7f, type: 2}
+  towerAlignment: Right Tree
+  upgradeValue: 1
+  costOfUpgrade: 1
+  attributeId: 2
 --- !u!1 &5378580518972310852
 GameObject:
   m_ObjectHideFlags: 0
@@ -22071,6 +22249,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &5607544087985192298
 GameObject:
   m_ObjectHideFlags: 0
@@ -23115,6 +23298,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &5826116718276928619
 GameObject:
   m_ObjectHideFlags: 0
@@ -23706,6 +23894,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &5935112360115200064
 GameObject:
   m_ObjectHideFlags: 0
@@ -23853,6 +24046,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &5939922843496068454
 GameObject:
   m_ObjectHideFlags: 0
@@ -24582,6 +24780,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &6181464596070224186
 GameObject:
   m_ObjectHideFlags: 0
@@ -24729,6 +24932,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &6206073725551401191
 GameObject:
   m_ObjectHideFlags: 0
@@ -25443,6 +25651,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &6472305099210738359
 GameObject:
   m_ObjectHideFlags: 0
@@ -25842,6 +26055,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &6573380475594955458
 GameObject:
   m_ObjectHideFlags: 0
@@ -26332,7 +26550,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3e949883535be42b389d30af59458c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedImage: {fileID: 0}
+  lockedImage: {fileID: 26975025357778490}
+  towerObjects:
+  - {fileID: 11400000, guid: 57065164e63cb9a4d89d4cdcc07851de, type: 2}
+  - {fileID: 11400000, guid: 100a2e46682dfcb4a88239c3d2dafa21, type: 2}
+  - {fileID: 11400000, guid: 31bcdde7a477fa54bbc66968dd0a2b2b, type: 2}
+  - {fileID: 11400000, guid: 0d5b475f149945d48b00b739d531aa7f, type: 2}
+  towerAlignment: Right Tree
+  upgradeValue: 3
+  costOfUpgrade: 2
+  attributeId: 2
 --- !u!1 &6745787754390629995
 GameObject:
   m_ObjectHideFlags: 0
@@ -26555,6 +26782,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &6780880279488090022
 GameObject:
   m_ObjectHideFlags: 0
@@ -27179,6 +27411,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &6884304765794721674
 GameObject:
   m_ObjectHideFlags: 0
@@ -27460,6 +27697,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &6916994269092856432
 GameObject:
   m_ObjectHideFlags: 0
@@ -28524,6 +28766,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &7106418657779835908
 GameObject:
   m_ObjectHideFlags: 0
@@ -28671,6 +28918,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &7128931542245280117
 GameObject:
   m_ObjectHideFlags: 0
@@ -29669,6 +29921,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &7318675544403572220
 GameObject:
   m_ObjectHideFlags: 0
@@ -30024,7 +30281,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3e949883535be42b389d30af59458c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedImage: {fileID: 0}
+  lockedImage: {fileID: 1811616553926243975}
+  towerObjects:
+  - {fileID: 11400000, guid: 57065164e63cb9a4d89d4cdcc07851de, type: 2}
+  - {fileID: 11400000, guid: 100a2e46682dfcb4a88239c3d2dafa21, type: 2}
+  - {fileID: 11400000, guid: 31bcdde7a477fa54bbc66968dd0a2b2b, type: 2}
+  - {fileID: 11400000, guid: 0d5b475f149945d48b00b739d531aa7f, type: 2}
+  towerAlignment: Right Tree
+  upgradeValue: 1
+  costOfUpgrade: 1
+  attributeId: 1
 --- !u!1 &7415158853041357656
 GameObject:
   m_ObjectHideFlags: 0
@@ -30171,7 +30437,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3e949883535be42b389d30af59458c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedImage: {fileID: 0}
+  lockedImage: {fileID: 6128966216954818799}
+  towerObjects:
+  - {fileID: 11400000, guid: 57065164e63cb9a4d89d4cdcc07851de, type: 2}
+  - {fileID: 11400000, guid: 100a2e46682dfcb4a88239c3d2dafa21, type: 2}
+  - {fileID: 11400000, guid: 31bcdde7a477fa54bbc66968dd0a2b2b, type: 2}
+  - {fileID: 11400000, guid: 0d5b475f149945d48b00b739d531aa7f, type: 2}
+  towerAlignment: Right Tree
+  upgradeValue: 0
+  costOfUpgrade: 4
+  attributeId: 0
 --- !u!1 &7608871315986643207
 GameObject:
   m_ObjectHideFlags: 0
@@ -30397,7 +30672,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3e949883535be42b389d30af59458c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedImage: {fileID: 0}
+  lockedImage: {fileID: 8110519325272058670}
+  towerObjects:
+  - {fileID: 11400000, guid: 57065164e63cb9a4d89d4cdcc07851de, type: 2}
+  - {fileID: 11400000, guid: 100a2e46682dfcb4a88239c3d2dafa21, type: 2}
+  - {fileID: 11400000, guid: 31bcdde7a477fa54bbc66968dd0a2b2b, type: 2}
+  - {fileID: 11400000, guid: 0d5b475f149945d48b00b739d531aa7f, type: 2}
+  towerAlignment: Left Tree
+  upgradeValue: 0
+  costOfUpgrade: 4
+  attributeId: 0
 --- !u!1 &7620176742209020491
 GameObject:
   m_ObjectHideFlags: 0
@@ -31105,6 +31389,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &7791634932999973407
 GameObject:
   m_ObjectHideFlags: 0
@@ -31252,6 +31541,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &7821229575605204963
 GameObject:
   m_ObjectHideFlags: 0
@@ -32294,6 +32588,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &7920127413999528998
 GameObject:
   m_ObjectHideFlags: 0
@@ -32913,6 +33212,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &8218437707339163456
 GameObject:
   m_ObjectHideFlags: 0
@@ -33404,7 +33708,6 @@ MonoBehaviour:
   tabIdle: {fileID: 21300000, guid: 38b2d84eb32b0f049abdaece601a243e, type: 3}
   tabHover: {fileID: 21300000, guid: 05348ca3bd8810d4d9f70a6e2aef62db, type: 3}
   tabActive: {fileID: 21300000, guid: ceb7fcddd93523249a0be955bcca0f41, type: 3}
-  selectedTab: {fileID: 0}
   objectsToSwap:
   - {fileID: 4297676654756765883}
   - {fileID: 7141925592110955875}
@@ -34888,7 +35191,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3e949883535be42b389d30af59458c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedImage: {fileID: 0}
+  lockedImage: {fileID: 5267671256719110938}
+  towerObjects:
+  - {fileID: 11400000, guid: 57065164e63cb9a4d89d4cdcc07851de, type: 2}
+  - {fileID: 11400000, guid: 100a2e46682dfcb4a88239c3d2dafa21, type: 2}
+  - {fileID: 11400000, guid: 31bcdde7a477fa54bbc66968dd0a2b2b, type: 2}
+  - {fileID: 11400000, guid: 0d5b475f149945d48b00b739d531aa7f, type: 2}
+  towerAlignment: Left Tree
+  upgradeValue: 0
+  costOfUpgrade: 4
+  attributeId: 0
 --- !u!1 &8612833355761224240
 GameObject:
   m_ObjectHideFlags: 0
@@ -35036,6 +35348,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &8664203986111237960
 GameObject:
   m_ObjectHideFlags: 0
@@ -35183,6 +35500,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &8709053740339157503
 GameObject:
   m_ObjectHideFlags: 0
@@ -35921,6 +36243,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &8851130520311713426
 GameObject:
   m_ObjectHideFlags: 0
@@ -36818,7 +37145,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3e949883535be42b389d30af59458c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedImage: {fileID: 0}
+  lockedImage: {fileID: 1284774514431886317}
+  towerObjects:
+  - {fileID: 11400000, guid: 57065164e63cb9a4d89d4cdcc07851de, type: 2}
+  - {fileID: 11400000, guid: 100a2e46682dfcb4a88239c3d2dafa21, type: 2}
+  - {fileID: 11400000, guid: 31bcdde7a477fa54bbc66968dd0a2b2b, type: 2}
+  - {fileID: 11400000, guid: 0d5b475f149945d48b00b739d531aa7f, type: 2}
+  towerAlignment: Mid Tree
+  upgradeValue: 2
+  costOfUpgrade: 2
+  attributeId: 2
 --- !u!1 &9037328425011202795
 GameObject:
   m_ObjectHideFlags: 0
@@ -37994,6 +38330,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedImage: {fileID: 0}
+  towerObjects: []
+  towerAlignment: 
+  upgradeValue: 0
+  costOfUpgrade: 0
+  attributeId: 0
 --- !u!1 &9167951299283548086
 GameObject:
   m_ObjectHideFlags: 0
